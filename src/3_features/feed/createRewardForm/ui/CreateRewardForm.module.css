@@ -1,0 +1,9 @@
+.box {
+    position: relative;
+}
+
+.question {
+    position: absolute;
+    top: var(--ant-padding-xs);
+    right: var(--ant-padding-xs);
+}

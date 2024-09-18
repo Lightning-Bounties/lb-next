@@ -1,0 +1,17 @@
+.amount {
+    font-weight: 600;
+}
+
+.amount.income *,
+.amount.income {
+    color: var(--ant-green-6) !important
+}
+
+.amount.expense *,
+.amount.expense {
+    color: var(--ant-red-6) !important
+}
+
+.finish {
+    color: var(--ant-green-6) !important
+}

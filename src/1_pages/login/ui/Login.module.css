@@ -1,0 +1,5 @@
+.image {
+    max-width: 400px;
+    width: 100%;
+    border-radius: var(--ant-border-radius);
+}

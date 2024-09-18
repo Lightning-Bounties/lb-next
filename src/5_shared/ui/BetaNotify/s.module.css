@@ -1,0 +1,22 @@
+.box {
+    max-width: 500px;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: var(--ant-padding-xl);
+    border-radius: var(--ant-border-radius);
+    border: 1px solid var(--ant-orange-6);
+    box-sizing: border-box;
+    padding: var(--ant-padding-md)
+}
+
+.title {
+    font-size: var(--ant-font-size-heading-3);
+    font-weight: var(--ant-font-weight-strong);
+    color: var(--ant-orange-6);
+}
+
+@media screen and (max-width: 332px) {
+    .box {
+        padding: var(--ant-padding-xs)
+    }
+}

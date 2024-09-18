@@ -1,0 +1,25 @@
+body,
+html {
+    padding: 0;
+    margin: 0;
+}
+
+.cont {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 20px;
+}
+
+.opacity50 {
+    opacity: .5;
+}
+
+[data-color-mode*='dark'] .wmde-markdown,
+[data-color-mode*='dark'] .wmde-markdown-var,
+.wmde-markdown-var[data-color-mode*='dark'],
+.wmde-markdown[data-color-mode*='dark'],
+body[data-color-mode*='dark'] {
+    --color-canvas-default: #181818 !important
+}

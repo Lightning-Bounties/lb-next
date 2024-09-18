@@ -1,0 +1,9 @@
+.qrBox {
+    width: 220px;
+    height: 220px;
+    box-sizing: border-box;
+}
+
+.qrBox :global(.ant-card-body) {
+    padding: 10px !important;
+}
