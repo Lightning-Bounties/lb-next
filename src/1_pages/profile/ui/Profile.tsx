@@ -1,12 +1,12 @@
-import { Button, Col, Empty, Flex, Row, Tabs } from 'antd'
+import { Button, Col, Flex, Row, Tabs } from 'antd'
 import s from './Profile.module.css'
 import Link from 'next/link'
 import Title from 'antd/es/typography/Title'
 import { ProfileRewardCard } from '@/4_entities/me'
 import { FC } from 'react'
-import { profileApi } from '@/4_entities/profile'
 import { appRoutes } from '@/5_shared/config/appRoutes'
 import { RewardExpandedSchema, UserSchema } from '@/5_shared/gen'
+import { ProfileEmptyRewardsList } from './ProfileEmptyRewardsList'
 
 
 type ProfileProps = {
@@ -47,10 +47,7 @@ const Profile: FC<ProfileProps> = async ({ userInfo, userRewards }) => {
                                         children: <Flex vertical gap="small">
                                             {userRewards.length
                                                 ? userRewards.map((item) => <ProfileRewardCard key={item.id}  {...item} />)
-                                                : <Empty
-                                                    image={Empty.PRESENTED_IMAGE_SIMPLE}
-                                                    description="The list is empty"
-                                                />}
+                                                : <ProfileEmptyRewardsList />}
                                         </Flex>
                                     },
                                 ]}
