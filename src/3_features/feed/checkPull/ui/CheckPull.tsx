@@ -5,6 +5,7 @@ import { profileApi } from '@/4_entities/me'
 import { hintsConfig } from '@/5_shared/config/hints.config';
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Button, Flex, Form, Input, notification, Popover, Tour, TourProps } from 'antd'
+import { catchHTTPValidationError } from '@/5_shared/utils/catchHTTPValidationError'
 import { useRouter } from 'next/navigation'
 import { FC, useRef, useState } from 'react'
 import { QuestionCircleOutlined } from '@ant-design/icons'
@@ -52,8 +53,9 @@ const CheckPull: FC<CheckPullProps> = ({ repoName }) => {
                         })
                     }
                     catch (e) {
+                        console.log(e)
                         api.error({
-                            message: 'Error'
+                            message: catchHTTPValidationError(e)
                         })
                     }
                 }}>

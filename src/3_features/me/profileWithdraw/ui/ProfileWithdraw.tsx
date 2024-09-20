@@ -4,6 +4,7 @@ import { useMutation } from '@tanstack/react-query';
 import { Button, Flex, Form, Input, notification, Tour, TourProps, Typography } from 'antd'
 import { useRef, useState } from 'react';
 import { QuestionCircleOutlined } from '@ant-design/icons'
+import { catchHTTPValidationError } from '@/5_shared/utils/catchHTTPValidationError';
 
 const ProfileWithdraw = () => {
 
@@ -23,7 +24,7 @@ const ProfileWithdraw = () => {
         }
         catch (e) {
             api.error({
-                message: 'Error'
+                message: catchHTTPValidationError(e)
             })
         }
     }

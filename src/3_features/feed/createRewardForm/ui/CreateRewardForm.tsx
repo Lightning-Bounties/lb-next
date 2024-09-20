@@ -10,6 +10,7 @@ import { profileApi } from '@/4_entities/me'
 import { useRouter } from 'next/navigation'
 import s from './CreateRewardForm.module.css'
 import { hintsConfig } from '@/5_shared/config/hints.config'
+import { catchHTTPValidationError } from '@/5_shared/utils/catchHTTPValidationError'
 
 
 const CreateRewardForm: FC = () => {
@@ -90,7 +91,7 @@ const CreateRewardForm: FC = () => {
                                 }
                                 catch (e) {
                                     api.error({
-                                        message: 'Error'
+                                        message: catchHTTPValidationError(e)
                                     })
                                 }
                             }}
