@@ -9,6 +9,7 @@ import { ProfileDepositStatus } from '@/3_features/me/profileDepositStatus/'
 import { profileApi } from '@/4_entities/me'
 import { CheckOutlined, CopyOutlined, QuestionCircleOutlined } from '@ant-design/icons'
 import { hintsConfig } from '@/5_shared/config/hints.config'
+import { catchHTTPValidationError } from '@/5_shared/utils/catchHTTPValidationError'
 
 
 const ProfileDeposit: FC = () => {
@@ -38,7 +39,7 @@ const ProfileDeposit: FC = () => {
         }
         catch (e) {
             api.error({
-                message: 'Error generating invoice: try back in a few minutes'
+                message: catchHTTPValidationError(e)
             })
         }
     }
