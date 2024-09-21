@@ -20,6 +20,10 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
 
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/LB_No_BG_Favicon.png" type="image/png" />
+        {/* <link rel="icon" href="./assets/LB_No_BG_Favicon.png"></link> */}
+      </head>
       <App>
         <body>
           <Script
