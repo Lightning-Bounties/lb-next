@@ -26,7 +26,7 @@ const PaymentCard: FC<LightningTransactionSchema> = (props) => {
                                 : null
                         }
                     </Flex>
-                    <Typography className="opacity50">{getStringDate(new Date(props.time))}</Typography>
+                    <Typography className="opacity50">{getStringDate(new Date(props.time * 1000))}</Typography>
                 </Flex>
                 <Typography style={{ fontStyle: "italic" }}>"{props.memo}"</Typography>
             </Flex>
