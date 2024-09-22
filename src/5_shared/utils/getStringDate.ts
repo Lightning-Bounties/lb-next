@@ -6,6 +6,9 @@ const getStringDate = (date: Date) => {
     return monthNames[date.getMonth()] + ' '
         + date.getDate()
         + ', '
+        + date.getFullYear()
+        + ', '
+        + ' '
         + date.getHours().toString().padStart(2, "0")
         + ':' + date.getMinutes().toString().padStart(2, "0")
 }
