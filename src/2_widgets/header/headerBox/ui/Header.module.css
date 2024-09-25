@@ -1,5 +1,14 @@
 @media screen and (max-width: 600px) {
-    /* .logo {
-        display: none !important;
-    } */
+    .logo {
+        width: 40px; 
+        gap: 10px !important;
+    }
+
+    .headerLinks {
+        margin-right: 3px !important;
+    }
+
+    .themeToggler {
+        margin-left: 8px !important;
+    }
 }
