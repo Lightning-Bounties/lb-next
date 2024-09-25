@@ -22,3 +22,7 @@
     top: var(--ant-padding-xs);
     right: var(--ant-padding-xs);
 }
+
+.card {
+    cursor: pointer; 
+}
