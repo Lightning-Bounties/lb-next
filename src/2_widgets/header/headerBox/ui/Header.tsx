@@ -30,12 +30,12 @@ const Header: FC<HeaderProps> = ({ profileSlot, walletSlot }) => {
     return (
         <HeaderAntd style={{ flexShrink: 0 }}>
             <Flex justify="space-between" align="center">
-                <Flex align="center" gap="middle">
+                <Flex align="center" gap="small" className={s.headerLinks}>
                     <Link href={appRoutes.feed} style={{  display: "flex", alignItems: "center" }}>
                         <Image className={s.logo} width={60} src={logo} alt="logo" />
                     </Link>
-                    <Flex align="center" gap="small">
-                        <Link href={appRoutes.feed} >Feed</Link>
+                    <Flex align="center" gap="small" >
+                        <Link href={appRoutes.feed} className={s.headerFeed}>Feed</Link>
                     </Flex>
                     <Flex align="center" gap="small">
                         <Link href="https://docs.lightningbounties.com/docs" target="_blank" rel="noopener noreferrer">Docs</Link>
@@ -45,7 +45,9 @@ const Header: FC<HeaderProps> = ({ profileSlot, walletSlot }) => {
                     </Flex>
                 </Flex>
                 <Flex gap="middle" align="center">
+                    <Flex className={s.themeToggler}>
                     <ThemeToggler />
+                    </Flex>
                     {
                         isLoading
                             ? <Spin />

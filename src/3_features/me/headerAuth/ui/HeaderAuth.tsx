@@ -17,7 +17,7 @@ const HeaderAuth = () => {
                 userApi.loginWithGitHub(windowLocation)
             }}
         >
-            <Typography>Login with GitHub</Typography>
+            <Typography className={s.textSize}>Login with GitHub</Typography>
             <GithubOutlined style={{ fontSize: '22px' }} />
         </Flex>
     )

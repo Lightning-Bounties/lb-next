@@ -2,3 +2,13 @@
     color: var(--ant-color-primary) !important;
     cursor: pointer;
 }
+
+@media screen and (max-width: 600px) {
+    .box {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    .textSize {
+        font-size: 12px !important;
+    }
+}

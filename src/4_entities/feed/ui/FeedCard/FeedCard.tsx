@@ -71,7 +71,7 @@ const FeedCard: FC<FeedCardProps> = (props) => {
                         </Flex>
                     </Col>
                     <Col md={6} xs={10} sm={10} className={s.winner}>
-                        <Flex vertical gap="small" >
+                        <Flex vertical gap="small" className={s.rewardContainer}>
                             {
                                 props.winner_id
                                     ? <>
@@ -95,7 +95,7 @@ const FeedCard: FC<FeedCardProps> = (props) => {
                                     </>
                                     : null
                             }
-                            <Flex align="center" gap="small">
+                            <Flex align="center" gap="small" className={s.reward}>
                                 <Typography className="opacity50">Reward:</Typography>
                                 <Price amount={props.total_reward_sats} />
                             </Flex>
