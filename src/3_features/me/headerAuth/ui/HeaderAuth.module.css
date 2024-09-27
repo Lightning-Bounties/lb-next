@@ -10,5 +10,6 @@
     }
     .textSize {
         font-size: 12px !important;
+        margin-left: 25px !important;
     }
 }
