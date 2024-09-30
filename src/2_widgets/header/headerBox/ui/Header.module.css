@@ -11,4 +11,8 @@
     .themeToggler {
         margin-left: 8px !important;
     }
+
+    .mobileGap {
+        gap: 5px !important;
+    }
 }

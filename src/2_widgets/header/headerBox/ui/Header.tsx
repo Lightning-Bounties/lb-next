@@ -44,7 +44,7 @@ const Header: FC<HeaderProps> = ({ profileSlot, walletSlot }) => {
                         <Link href="https://www.lightningbounties.com/" target="_blank" rel="noopener noreferrer">About</Link>
                     </Flex>
                 </Flex>
-                <Flex gap="middle" align="center">
+                <Flex gap="middle" align="center" className={s.mobileGap}>
                     <Flex className={s.themeToggler}>
                     <ThemeToggler />
                     </Flex>

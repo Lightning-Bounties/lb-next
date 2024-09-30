@@ -63,3 +63,10 @@
     color: var(--ant-text-color);
     font-size: 24px;
 }
+
+@media screen and (max-width: 600px) {
+    .box {
+        width: 30px;
+        height: 30px;
+    }
+}
