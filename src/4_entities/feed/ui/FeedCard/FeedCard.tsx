@@ -29,6 +29,26 @@ const FeedCard: FC<FeedCardProps> = (props) => {
         e.stopPropagation();
     };
 
+    const renderRewarderAvatars = () => {
+        const rewarders = [
+            props.last_rewarder_data,
+            props.second_last_rewarder_data,
+            props.third_last_rewarder_data
+        ];
+
+        return rewarders.map((rewarder, index) => (
+            rewarder && (
+                <Link
+                    key={index}
+                    href={'/' + appRoutes.profile + '/' + rewarder.id}
+                    onClick={handleLinkClick}
+                >
+                    <Avatar avatarUrl={rewarder.avatar_url as string} />
+                </Link>
+            )
+        ));
+    };
+
     return (
         <Card bordered={false}>
             <div className={s.card} onClick={handleCardClick}>
@@ -47,15 +67,7 @@ const FeedCard: FC<FeedCardProps> = (props) => {
                     <Col md={18} xs={14} sm={14} className={s.owner}>
                         <Flex vertical gap="small">
                             <Flex>
-                                <Link href={'/' + appRoutes.profile + '/' + props.last_rewarder_data?.id} onClick={handleLinkClick}>
-                                    <Avatar
-                                        withOthers={[
-                                            props.second_last_rewarder_data?.avatar_url ?? '',
-                                            props.third_last_rewarder_data?.avatar_url ?? ''
-                                        ]}
-                                        avatarUrl={props.last_rewarder_data?.avatar_url as string}
-                                    />
-                                </Link>
+                                {renderRewarderAvatars()}
                             </Flex>
                             <Flex align="center" gap="small">
                                 <Link href={appRoutes.profile + '/' + props.last_rewarder_data?.id} rel="nofollow" onClick={handleLinkClick}>
