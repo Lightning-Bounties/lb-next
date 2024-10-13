@@ -11,8 +11,7 @@ import { FC, ReactNode, useState } from 'react'
 
 type ProfileInfoProps = {
     rewardsHistorySlot?: ReactNode,
-    paymentsHistorySlot?: ReactNode
-}
+    paymentsHistorySlot?: ((props: { activeTab?: 'deposit' | 'withdraw' }) => ReactNode)}
 
 const ProfileInfo: FC<ProfileInfoProps> = ({ rewardsHistorySlot, paymentsHistorySlot }) => {
 
@@ -94,7 +93,7 @@ const ProfileInfo: FC<ProfileInfoProps> = ({ rewardsHistorySlot, paymentsHistory
                     {
                         key: '2',
                         label: 'Payments History',
-                        children: paymentsHistorySlot
+                        children: paymentsHistorySlot?.({ activeTab })
                     }
                 ]}
             />
