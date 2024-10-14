@@ -88,28 +88,30 @@ const IssueBaseInfo: FC<IssueBaseInfoProps> = async ({ rewardId }) => {
                         <Typography>{getStringDate(new Date(data.created_at))}</Typography>
                     </Flex>
                 </Flex>
-                <Flex
-                    className={s.info__line}
-                    justify="flex-start"
-                    align="center"
-                    gap="large"
-                >
-                    <Flex gap="large" align="center" style={{ marginRight: "85px" }}>
-                        <Link href={`/${appRoutes.profile}/${data?.winner_data?.id}`}>
-                            <Flex align="center" gap="small">
-                                <Avatar
-                                    icon={<TrophyFilled style={{ color: orange[3] }} />}
-                                    iconTitle="Reward Winner"
-                                    avatarUrl={data?.winner_data?.avatar_url ?? ""}
-                                />
-                                <Typography>{data?.winner_data?.github_username}</Typography>
-                            </Flex>
-                        </Link>
+                {data.winner_data && (
+                    <Flex
+                        className={s.info__line}
+                        justify="flex-start"
+                        align="center"
+                        gap="large"
+                    >
+                        <Flex gap="large" align="center" style={{ marginRight: "85px" }}>
+                            <Link href={`/${appRoutes.profile}/${data?.winner_data?.id}`}>
+                                <Flex align="center" gap="small">
+                                    <Avatar
+                                        icon={<TrophyFilled style={{ color: orange[3] }} />}
+                                        iconTitle="Reward Winner"
+                                        avatarUrl={data?.winner_data?.avatar_url ?? ""}
+                                    />
+                                    <Typography>{data?.winner_data?.github_username}</Typography>
+                                </Flex>
+                            </Link>
+                        </Flex>
+                        <Flex align="center" gap="small">
+                            <Typography>Reward Winner</Typography>
+                        </Flex>
                     </Flex>
-                    <Flex align="center" gap="small">
-                        <Typography>Reward Winner</Typography>
-                    </Flex>
-                </Flex>
+                )}
                 {data.body ? (
                     <Flex vertical gap="small">
                         <Typography className="opacity50">Description</Typography>
