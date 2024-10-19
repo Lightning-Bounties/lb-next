@@ -11,7 +11,7 @@ const IssueBaseInfoDesc: FC<{ data: string }> = ({ data }) => {
     return (
         <MarkdownPreview
             source={data ?? ''}
-            style={{ padding: 16 }}
+            style={{ padding: 16, borderRadius: 9 }}
             wrapperElement={{
                 "data-color-mode": darkTheme ? 'dark' : 'light'
             }}
