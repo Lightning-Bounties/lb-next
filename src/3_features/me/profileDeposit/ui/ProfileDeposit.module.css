@@ -2,8 +2,13 @@
     width: 220px;
     height: 220px;
     box-sizing: border-box;
+    border-radius: 10px; 
+    overflow: hidden;
 }
 
 .qrBox :global(.ant-card-body) {
-    padding: 10px !important;
+    padding: 0px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
