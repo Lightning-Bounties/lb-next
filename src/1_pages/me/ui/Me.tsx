@@ -32,7 +32,7 @@ const Me = () => {
                     <Flex vertical gap="middle">
                         <ProfileInfo
                             rewardsHistorySlot={<ProfileRewardsHistory />}
-                            paymentsHistorySlot={<ProfilePaymentsHistory />}
+                            paymentsHistorySlot={({ activeTab }) => <ProfilePaymentsHistory activeTab={activeTab} />}
                         />
                     </Flex>
                 </Col>
