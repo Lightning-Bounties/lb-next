@@ -111,6 +111,34 @@ return (
                     </Flex>
                 </Form>
                 {invoiceInfo && <ProfileDepositStatus checkingId={invoiceInfo.checkingId} />}
+                {invoiceInfo && 
+                    <>
+                        <br />
+                        <div >
+                            <a   target="_blank" href={`https://staging.branta.pro/v1/verify/${invoiceInfo.invoice}`}>
+                            Verify on
+                            
+                            <svg 
+                                xmlns="http://www.w3.org/2000/svg" version="1.1" 
+                                viewBox="0 0 67 67"
+                                style={{height: "20px"}}
+                                >
+                            <defs>
+                                <style>
+                                    {`.cls-1{fill:#f1c40f;}`}
+                                </style>
+                            </defs>
+                            <g>
+                                <g id="Layer_1">
+                                <circle cx="33.5" cy="33.5" r="32"/>
+                                <path className="cls-1" d="M51.69,22.12c.58.24,1.09.56,1.53.99.44.42.79.95,1.06,1.57.27.63.4,1.32.4,2.07v3.24c0,.72-.19,1.36-.56,1.93-.38.56-.75.99-1.13,1.27.38.22.75.56,1.13,1.03.38.47.56,1.1.56,1.88v3.48c0,.75-.13,1.44-.4,2.07-.27.63-.62,1.15-1.06,1.57-.44.42-.95.75-1.53.99s-1.17.35-1.76.35H12.85v-22.79h37.08c.6,0,1.18.12,1.76.35ZM17.88,30.65h29.98c.47,0,.88-.11,1.25-.33.36-.22.54-.64.54-1.27v-.52c0-.66-.16-1.12-.49-1.39-.33-.27-.78-.4-1.34-.4h-29.94v3.9ZM17.88,39.58h30.03c.56,0,.99-.09,1.29-.26.3-.17.45-.59.45-1.25v-.56c0-.63-.19-1.1-.56-1.41-.38-.31-.8-.47-1.27-.47h-29.94v3.95Z"/>
+                                </g>
+                            </g>
+                            </svg>
+                            </a>
+                        </div>
+                    </>
+                }
             </Col>
             <Col span={14} md={14} xs={24} sm={12}>
                 {invoiceInfo && (
