@@ -59,11 +59,11 @@ const ProfileDeposit: FC = () => {
             }
         },
         {
-            title: hintsConfig['depositForm'].title,
-            description: hintsConfig['depositForm'].body,
+            title: hintsConfig['verifyOnBranta'].title,
+            description: hintsConfig['verifyOnBranta'].body,
             target: () => ref2.current,
             nextButtonProps: {
-                children: hintsConfig['depositForm'].buttonText
+                children: hintsConfig['verifyOnBranta'].buttonText
             }
         },
     ]
@@ -115,9 +115,9 @@ return (
                     <>
                         <br />
                         <div >
-                            <a   target="_blank" href={`https://staging.branta.pro/v1/verify/${invoiceInfo.invoice}`}>
-                            Verify on
-                            
+                            <a   target="_blank" href={`https://${process.env.NEXT_PUBLIC_DEV_MODE == 'true' ? 'staging' : 'payments'}.branta.pro/v1/verify/${invoiceInfo.invoice}`}>
+                            Verify on Branta
+                            <span style={{marginLeft: "5px"}}></span>
                             <svg 
                                 xmlns="http://www.w3.org/2000/svg" version="1.1" 
                                 viewBox="0 0 67 67"
@@ -136,6 +136,13 @@ return (
                             </g>
                             </svg>
                             </a>
+                            <span style={{marginLeft: "5px"}}></span>
+                            <QuestionCircleOutlined
+                                style={{ flexShrink: 0, marginTop: '4px' }}
+                                ref={ref2}
+                                onClick={() => { setOpen(true) }}
+                                className={`opacity50 ${s.question}`}
+                            />
                         </div>
                     </>
                 }
@@ -146,13 +153,6 @@ return (
                         <Typography style={{ flexShrink: 0, marginTop: '5px' }}>Deposit: {invoiceInfo.amount} sats</Typography>
                         <Typography className="opacity50" style={{ textAlign: 'center' }}>
                             BOLT-11 Invoice: scan with any lightning wallet
-                            &nbsp;
-                            <QuestionCircleOutlined
-                                style={{ flexShrink: 0, marginTop: '8px' }}
-                                ref={ref2}
-                                onClick={() => { setOpen(true) }}
-                                className={`opacity50 ${s.question}`}
-                            />
                         </Typography>
                         <Card className={s.qrBox} style={qrExpandedMode ? { width: '350px', height: '350px' } : { width: '220px', height: '220px' }}>
                             <Tooltip placement="top" title={qrExpandedMode ? "Click to reset size" : "Click to enlarge"}>
