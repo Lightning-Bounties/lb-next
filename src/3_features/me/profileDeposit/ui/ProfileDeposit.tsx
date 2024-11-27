@@ -67,6 +67,7 @@ const ProfileDeposit: FC = () => {
             }
         },
     ]
+    const brantaEnv = process.env.WEB_ENV === "production" ? "payments" : "staging";
 
 return (
     <>
@@ -115,7 +116,7 @@ return (
                     <>
                         <br />
                         <div >
-                            <a   target="_blank" href={`https://staging.branta.pro/v1/verify/${invoiceInfo.invoice}`}>
+                            <a   target="_blank" href={`https://${brantaEnv}.branta.pro/v1/verify/${invoiceInfo.invoice}`}>
                             Verify on Branta
                             <span style={{marginLeft: "5px"}}></span>
                             <svg 
