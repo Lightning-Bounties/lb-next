@@ -3,7 +3,8 @@ const appRoutes = {
     me: 'me',
     issue: 'issue',
     github: 'https://github.com/',
-    feed: '/'
+    feed: '/',
+    paginationFeed: '/feed/'
 }
 
 export { appRoutes }

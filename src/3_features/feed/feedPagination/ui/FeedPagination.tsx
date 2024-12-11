@@ -12,7 +12,7 @@ const FeedPagination: FC = () => {
     const router = useRouter()
     const params = useParams()
 
-    const { data, isLoading } = useQuery({
+    const { data } = useQuery({
         queryKey: feedApi.qkGetFeedTotalCount(),
         queryFn: () => feedApi.getFeedTotalCount()
     })
@@ -28,7 +28,7 @@ const FeedPagination: FC = () => {
                 onChange={(page) => {
                     page === 1
                         ? router.push(appRoutes.feed)
-                        : router.push(appRoutes.feed + '/' + page)
+                        : router.push(appRoutes.paginationFeed + '/' + page)
 
                 }}
             />
