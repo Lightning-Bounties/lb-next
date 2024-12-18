@@ -68,12 +68,6 @@ Below is an example of how you can instruct your audience on installing and sett
 6.  Grab a JWT token from the production backend and add it to your local storage under the dev server domain.
     - see documents for instructions and video [here](https://docs.lightningbounties.com/docs/solve-a-bounty/working-on-opensource-frontend-lb-next).
       
-7.  Change git remote url to avoid accidental pushes to base project
-   ```sh
-   git remote set-url origin github_username/repo_name
-   git remote -v # confirm the changes
-   ```
-
 
 ## Top contributors: 
 
@@ -81,8 +75,7 @@ Below is an example of how you can instruct your audience on installing and sett
   <img src="https://contrib.rocks/image?repo=Lightning-Bounties/lb-next" />
 </a>
 
-<div align="center">
-<details> <summary> <h2>Special Thanks to ⬇️</h2></summary>
+
 <div align="center">
 <h2><span> Special Thanks </span></h2>  
 </div>
