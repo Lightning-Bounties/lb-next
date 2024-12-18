@@ -1,11 +1,6 @@
 <div align="center">
-  <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=48&letterSpacing=small&duration=1999&pause=1000&color=A96CFF&center=true&vCenter=true&repeat=true&width=1000&height=75&lines=Welcome+to+Lightning+Bounties!" alt="Typing SVG" /></a>
-  <div align="center">
-  <a href="https://github.com/Lightning-Bounties">
-    <img src="public/lb_Logo_github.png" alt="Logo" width="800" height="700">
-  </a>
-  </div>
-  <div align="center" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; border: 2px solid #4285f4; padding: 20px; border-radius: 10px;">
+  <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=54&letterSpacing=small&duration=1999&pause=1000&color=A96CFF&center=true&vCenter=true&repeat=true&width=1000&height=75&lines=Welcome+to+Lightning+Bounties!" alt="Typing SVG" /></a>
+    <div align="center" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; border: 2px solid #4285f4; padding: 20px; border-radius: 10px;">
 
   <a href="https://https://x.com/LBounties" target="_blank">
     <img src="https://img.shields.io/badge/X-000?logo=x&logoColor=fff&style=for-the-badge" height="35" alt="X Badge">
@@ -18,11 +13,16 @@
   </a>
 </div>
 </div>
+  <div align="center">
+  <a href="https://github.com/Lightning-Bounties">
+    <img src="public/lb_Logo_github2.png" alt="Logo" width="900" height="250">
+  </a>
+  </div>
 
 ## About
 In the current landscape, many open-source bug bounty platforms inadvertently shut out developers from regions outside the USA and EU, creating barriers to participation and diversity. To address this, Lightning Bounties is revolutionizing open-source development by integrating Bitcoin payments directly into GitHub. This approach aligns with the core principles of the open-source software and Bitcoin movements—decentralization, transparency, and inclusivity—by offering seamless and instantaneous financial rewards to developers globally. By leveraging the Bitcoin Lightning Network, Lightning Bounties ensures that contributions to open-source projects are directly rewarded, fostering a sustainable and thriving community where developers can easily receive compensation for their valuable work
 
-## 🚀 How to Contribute
+## How to Contribute
 
 1. **Find an open bounty** on our [bounty platform](https://app.lightningbounties.com) or in the [Issues tab](https://github.com/Lightning-Bounties/docs/issues).
 2. **Fork this repository** and create a new branch for your work.
@@ -32,7 +32,7 @@ In the current landscape, many open-source bug bounty platforms inadvertently sh
 
 ***For a full guide on our contribution process,*** please check our [Contribution Guidelines](about-lb/contributing.md).
 
-##⭐Why Contribute?
+## Why Contribute?
   
 - **Earn Bitcoin**: Get paid in sats for your valuable contributions.
 - **Learn**: Dive deep into Open-Source, Bitcoin, & Lightning Network technologies and uncover the future of money and decentralized tech.
@@ -68,12 +68,6 @@ Below is an example of how you can instruct your audience on installing and sett
 6.  Grab a JWT token from the production backend and add it to your local storage under the dev server domain.
     - see documents for instructions and video [here](https://docs.lightningbounties.com/docs/solve-a-bounty/working-on-opensource-frontend-lb-next).
       
-7.  Change git remote url to avoid accidental pushes to base project
-   ```sh
-   git remote set-url origin github_username/repo_name
-   git remote -v # confirm the changes
-   ```
-
 
 ## Top contributors: 
 
@@ -83,18 +77,18 @@ Below is an example of how you can instruct your audience on installing and sett
 
 
 <div align="center">
-
-<h2><span> Special Thanks </span></h2>      
+<h2><span> Special Thanks </span></h2>  
+</div>
 <div align="center">
 
 | <h3><a href="https://branta.pro">Branta</a></h3> | <h3><a href="https://www.gitbook.com">GitBook</a></h3> | <h3><a href="https://www.pleblab.dev/">PlebLab</h3> |
 |:-------:|:-------:|:--------------------:|
 | ![Branta Logo](https://pbs.twimg.com/profile_images/1730013699824332800/ZaGLT3-T_200x200.jpg) | ![Gitbook Logo](https://pbs.twimg.com/profile_images/1730174148289138688/F8UigNVy_200x200.jpg) | ![PlebLab Logo](https://avatars.githubusercontent.com/u/112909654?s=200&v=4) |
 | <p align="center" width="240">Branta offers payment verification <br>for various bitcoin and lightning technologies.</p> | <p align="center" width="240">GitBook: Documentation platform<br>for teams to share knowledge</p> | <p align="center" width="240">PlebLab is founder-led and founder-focused, <br>providing resources and mentorship to drive<br>impactful Bitcoin companies since 2021.</p> |
-
+</details>
 </div>
 <br>
-<div>
+<div align="center">
   <p>
     <a href="https://docs.lightningbounties.com"><strong>Explore the docs » </strong></a>
   </>  ⚡
