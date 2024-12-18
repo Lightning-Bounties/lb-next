@@ -1,7 +1,11 @@
 <div align="center">
   <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=48&letterSpacing=small&duration=1999&pause=1000&color=A96CFF&center=true&vCenter=true&repeat=true&width=1000&height=75&lines=Welcome+to+Lightning+Bounties!" alt="Typing SVG" /></a>
+  <div align="center">
+  <a href="https://github.com/Lightning-Bounties">
+    <img src="public/lb_Logo_github.png" alt="Logo" width="800" height="700">
+  </a>
+  </div>
   <div align="center" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; border: 2px solid #4285f4; padding: 20px; border-radius: 10px;">
-
 
   <a href="https://https://x.com/LBounties" target="_blank">
     <img src="https://img.shields.io/badge/X-000?logo=x&logoColor=fff&style=for-the-badge" height="35" alt="X Badge">
@@ -14,7 +18,6 @@
   </a>
 </div>
 </div>
-
 
 ## About
 In the current landscape, many open-source bug bounty platforms inadvertently shut out developers from regions outside the USA and EU, creating barriers to participation and diversity. To address this, Lightning Bounties is revolutionizing open-source development by integrating Bitcoin payments directly into GitHub. This approach aligns with the core principles of the open-source software and Bitcoin movements—decentralization, transparency, and inclusivity—by offering seamless and instantaneous financial rewards to developers globally. By leveraging the Bitcoin Lightning Network, Lightning Bounties ensures that contributions to open-source projects are directly rewarded, fostering a sustainable and thriving community where developers can easily receive compensation for their valuable work
