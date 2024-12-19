@@ -5,6 +5,7 @@
 import type { CheckPullRequest } from '../models/CheckPullRequest';
 import type { CountResponse } from '../models/CountResponse';
 import type { CreateRewardRequest } from '../models/CreateRewardRequest';
+import type { ExpireRewardRequest } from '../models/ExpireRewardRequest';
 import type { RewardCompletionSchema } from '../models/RewardCompletionSchema';
 import type { RewardExpandedSchema } from '../models/RewardExpandedSchema';
 import type { RewardSchema } from '../models/RewardSchema';
@@ -116,6 +117,28 @@ export class RewardsService {
             },
             errors: {
                 404: `Not Found`,
+                422: `Validation Error`,
+            },
+        });
+    }
+    /**
+     * Expire Reward
+     * @returns RewardSchema Successful Response
+     * @throws ApiError
+     */
+    public expireRewardApiRewardsExpirePost({
+        requestBody,
+    }: {
+        requestBody: ExpireRewardRequest,
+    }): CancelablePromise<RewardSchema> {
+        return this.httpRequest.request({
+            method: 'POST',
+            url: '/api/rewards/expire',
+            body: requestBody,
+            mediaType: 'application/json',
+            errors: {
+                400: `Bad Request`,
+                401: `Unauthorized`,
                 422: `Validation Error`,
             },
         });

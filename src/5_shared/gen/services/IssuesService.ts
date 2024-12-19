@@ -16,13 +16,13 @@ export class IssuesService {
     public listIssuesApiIssuesGet({
         skip,
         limit = 100,
-        repositoryId,
+        repositoryIds,
         isClosed,
         winnerId,
     }: {
         skip?: number,
         limit?: number,
-        repositoryId?: (string | null),
+        repositoryIds?: Array<string>,
         isClosed?: (boolean | null),
         winnerId?: (string | null),
     }): CancelablePromise<Array<IssueExpandedSchema>> {
@@ -32,7 +32,7 @@ export class IssuesService {
             query: {
                 'skip': skip,
                 'limit': limit,
-                'repository_id': repositoryId,
+                'repository_ids': repositoryIds,
                 'is_closed': isClosed,
                 'winner_id': winnerId,
             },
@@ -47,11 +47,11 @@ export class IssuesService {
      * @throws ApiError
      */
     public countIssuesApiIssuesCountGet({
-        repositoryId,
+        repositoryIds,
         isClosed,
         winnerId,
     }: {
-        repositoryId?: (string | null),
+        repositoryIds?: Array<string>,
         isClosed?: (boolean | null),
         winnerId?: (string | null),
     }): CancelablePromise<CountResponse> {
@@ -59,7 +59,7 @@ export class IssuesService {
             method: 'GET',
             url: '/api/issues/count',
             query: {
-                'repository_id': repositoryId,
+                'repository_ids': repositoryIds,
                 'is_closed': isClosed,
                 'winner_id': winnerId,
             },
