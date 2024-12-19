@@ -13,11 +13,12 @@ class FeedApi {
         return resp.count
     }
 
-    async createReward(opts: { issueUrl: string, rewardAmount: number }) {
+    async createReward(opts: { issueUrl: string, rewardAmount: number, lockedUntilMins: number }) {
         const resp = await appApi.rewards.postRewardApiRewardsPost({
             requestBody: {
                 issue_html_url: opts.issueUrl,
-                reward_sats: opts.rewardAmount
+                reward_sats: opts.rewardAmount,
+                locked_until_mins: opts.lockedUntilMins
             }
         })
         return resp
