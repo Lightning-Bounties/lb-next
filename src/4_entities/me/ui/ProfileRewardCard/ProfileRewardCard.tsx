@@ -57,12 +57,45 @@ const ProfileRewardCard: FC<RewardExpandedSchema> = (props) => {
                     </Flex>
                 </Flex>
                 <Flex justify="space-between" align="center">
-                    <Typography className="opacity50">
-                        {getStringDate(new Date(props.modified_at))}
-                    </Typography>
+                    <Flex gap="small" align="center">
+                        <Typography className="opacity85">
+                            📅Created at: 
+                        </Typography>
+                        <Typography className="opacity50">
+                            {getStringDate(new Date(props.created_at))}
+                        </Typography>
+                    </Flex>
                     <Typography>
                         <span className="opacity50">
                             {props.issue_data.is_closed ? 'Closed' : null}
+                        </span>
+                    </Typography>
+                </Flex>
+                <Flex justify="space-between" align="center">
+                    <Flex gap="small" align="center">
+                        <Typography className="opacity85">
+                            {isLocked ? "🔒Locked until:" : "🔓Unlocked at:"}
+                        </Typography>
+                        <Typography className="opacity50">
+                            {getStringDate(new Date(props.locked_until))}
+                        </Typography>
+                    </Flex>
+                    <Typography>
+                        <span className="opacity50">
+                        </span>
+                    </Typography>
+                </Flex>
+                <Flex justify="space-between" align="center">
+                    <Flex gap="small" align="center">
+                        <Typography className="opacity85">
+                            {props.expired_at ? "🗑️ Expired at" : ""}
+                        </Typography>
+                        <Typography className="opacity50">
+                            {props.expired_at ? getStringDate(new Date(props.expired_at)) : ""}
+                        </Typography>
+                    </Flex>
+                    <Typography>
+                        <span className="opacity50">
                         </span>
                     </Typography>
                 </Flex>
