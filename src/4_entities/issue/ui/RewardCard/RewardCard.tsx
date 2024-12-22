@@ -3,7 +3,7 @@ import { RewardExpandedSchema, RewardSchema } from '@/5_shared/gen'
 import { Avatar } from '@/5_shared/ui/Avatar/Avatar'
 import { Price } from '@/5_shared/ui/Price/Price'
 import { getStringDate } from '@/5_shared/utils/getStringDate'
-import { Card, Flex, Typography } from 'antd'
+import { Card, Flex, Typography, Tooltip } from 'antd'
 import Link from 'next/link'
 import { FC } from 'react'
 
@@ -25,7 +25,30 @@ const RewardCard: FC<RewardExpandedSchema> = (props) => {
                 </Flex>
                 <Price amount={props.reward_sats} />
             </Flex>
-            <Typography className="opacity50">{getStringDate(new Date(props.modified_at))}</Typography>
+            <Flex justify="space-between" align="flex-end">
+                <Tooltip 
+                    title={`Reward created at: ${getStringDate(new Date(props.created_at))}` }
+                    >
+                    <Typography className="opacity50">
+                        {new Date(props.created_at).toLocaleDateString(
+                            'en-US', {
+                                month: 'long',
+                                day: 'numeric',
+                                year: 'numeric'
+                            }
+                        )}
+                    </Typography>
+                </Tooltip>
+                <Tooltip 
+                    title={props.locked_until > new Date().toISOString() ? 
+                        `Locked until: ${getStringDate(new Date(props.locked_until))}` : 
+                        `Unlocked at: ${getStringDate(new Date(props.locked_until))}` }
+                    >
+                    <Typography className="opacity50">
+                        {props.locked_until > new Date().toISOString()  ? "🔒Locked" : "🔓Unlocked"}
+                    </Typography>
+                </Tooltip>
+            </Flex>
         </Card>
     )
 }
