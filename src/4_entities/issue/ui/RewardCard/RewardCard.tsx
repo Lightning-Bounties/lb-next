@@ -9,7 +9,9 @@ import { FC } from 'react'
 
 const RewardCard: FC<RewardExpandedSchema> = (props) => {
     return (
-        <Card>
+        <Card 
+            className={props.expired_at ? 'opacity50': 'opacity100'}
+            >
             <Flex justify="space-between" align="flex-end">
                 <Flex vertical gap="small">
                     <Link href={'/' + appRoutes.profile + '/' + (props?.rewarder_data?.id ?? '')} >
@@ -39,15 +41,23 @@ const RewardCard: FC<RewardExpandedSchema> = (props) => {
                         )}
                     </Typography>
                 </Tooltip>
-                <Tooltip 
-                    title={props.locked_until > new Date().toISOString() ? 
-                        `Locked until: ${getStringDate(new Date(props.locked_until))}` : 
-                        `Unlocked at: ${getStringDate(new Date(props.locked_until))}` }
-                    >
-                    <Typography className="opacity50">
-                        {props.locked_until > new Date().toISOString()  ? "🔒Locked" : "🔓Unlocked"}
-                    </Typography>
-                </Tooltip>
+                { props.expired_at ?
+                    <Tooltip 
+                        title={`Expired at:${getStringDate(new Date(props.expired_at))}`}>
+                        <Typography className="opacity50">
+                            🗑️ Expired
+                        </Typography>
+                    </Tooltip>
+                    : <Tooltip 
+                        title={props.locked_until > new Date().toISOString() ? 
+                            `Locked until: ${getStringDate(new Date(props.locked_until))}` : 
+                            `Unlocked at: ${getStringDate(new Date(props.locked_until))}` }
+                        >
+                        <Typography className="opacity50">
+                            {props.locked_until > new Date().toISOString()  ? "🔒Locked" : "🔓Unlocked"}
+                        </Typography>
+                    </Tooltip>
+                }
             </Flex>
         </Card>
     )
