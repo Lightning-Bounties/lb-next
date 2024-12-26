@@ -19,13 +19,17 @@ const ProfileRewardsHistory: FC = () => {
         enabled: profileInfo?.id !== undefined
     })
 
+    const sortedData = data?.slice().sort((a, b) => 
+        new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+    )
+
     return (
         <Flex vertical gap="small">
             {
                 isLoading
                     ? <Spin />
-                    : data?.length
-                        ? data?.map(item => <ProfileRewardCard key={item.id}  {...item} />)
+                    : sortedData?.length
+                        ? sortedData?.map(item => <ProfileRewardCard key={item.id}  {...item} />)
                         : <Empty
                             image={Empty.PRESENTED_IMAGE_SIMPLE}
                             description="No rewards posted yet"
