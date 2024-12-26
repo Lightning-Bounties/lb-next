@@ -1,11 +1,13 @@
 'use client'
 
 import { FC, useState } from 'react'
-import { Button, Input, Flex, Form, notification } from 'antd'
+import { Button, Input, Flex, Form, Collapse, notification, Row, Col } from 'antd'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { feedApi } from '@/4_entities/feed'
 import { useRouter } from 'next/navigation'
 import { catchHTTPValidationError } from '@/5_shared/utils/catchHTTPValidationError';
+import { LockTimeSelector } from '@/5_shared/ui/LockTimeSelector'
+import { convertToLockedUntilMins } from '@/5_shared/utils/timeConversion'
 
 type AddRewardProps = {
 	issueId: string
@@ -34,44 +36,79 @@ const AddReward: FC<AddRewardProps> = ({ issueId, issueUrl }) => {
 		}
 	})
 
-	const onFinish = (values: { amount: number }) => {
-		addReward({ issueUrl, rewardAmount: values.amount })
+	const onFinish = (values: { amount: number, lockedUntilAmount: number, lockedUntilUnit: string }) => {
+		addReward({ 
+			issueUrl, 
+			rewardAmount: values.amount, 
+			lockedUntilMins: convertToLockedUntilMins(values.lockedUntilAmount, values.lockedUntilUnit)
+		})
 	}
 
 	const handleCancel = () => {
 		setFormVisible(false)
 	}
 
-	return (
-		<Flex vertical gap="large" align="start">
-			{contextHolder}
-			{!formVisible && (
-				<Button onClick={() => setFormVisible(true)}>
-					Add Reward To This Issue
-				</Button>
-			)}
-			{formVisible && (
-				<Form form={form} onFinish={onFinish} layout="inline">
-					<Form.Item
-						name="amount"
-						rules={[{ required: true, message: 'Please input reward amount' }]}
-					>
-						<Input type="number" placeholder="Amount in sats" />
-					</Form.Item>
-					<Form.Item>
-						<Button type="primary" htmlType="submit" loading={isPending}>
-							Add Reward
-						</Button>
-					</Form.Item>
-					<Form.Item>
-						<Button type="default" onClick={handleCancel}>
-							Cancel
-						</Button>
-					</Form.Item>
-				</Form>
-			)}
-		</Flex>
-	)
+	const { Panel } = Collapse
+
+    return (
+        <Flex vertical gap="large" align="start">
+            {contextHolder}
+            {!formVisible && (
+                <Button onClick={() => setFormVisible(true)}>
+                    Add Reward To This Issue
+                </Button>
+            )}
+            {formVisible && (
+                <Form 
+                    initialValues={{
+                        lockedUntilAmount: 2,
+                        lockedUntilUnit: 'weeks'
+                    }}
+                    form={form} 
+                    onFinish={onFinish}
+                    layout="vertical"
+                    style={{ width: '100%' }}
+                >
+                    <Row gutter={[16, 16]} style={{ marginBottom: '4px' }}>
+                        <Col>
+                            <Form.Item
+                                name="amount"
+                                rules={[{ required: true, message: 'Please input reward amount' }]}
+                            >
+                                <Input type="number" placeholder="Amount in sats" />
+                            </Form.Item>
+                        </Col>
+                        <Col>
+                            <Form.Item>
+                                <Button type="primary" htmlType="submit" loading={isPending}>
+                                    Add Reward
+                                </Button>
+                            </Form.Item>
+                        </Col>
+                        <Col>
+                            <Form.Item>
+                                <Button type="default" onClick={handleCancel}>
+                                    Cancel
+                                </Button>
+                            </Form.Item>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col span={24}>
+                            <Collapse
+                                bordered={false}
+                                style={{ background: 'none', padding: 0 }}
+                            >
+                                <Panel key="1" header="Advanced settings" forceRender>
+                                    <LockTimeSelector />
+                                </Panel>
+                            </Collapse>
+                        </Col>
+                    </Row>
+                </Form>
+            )}
+        </Flex>
+    )
 }
 
 export { AddReward }
