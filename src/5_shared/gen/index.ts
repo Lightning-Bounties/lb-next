@@ -11,6 +11,8 @@ export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
 export type { CheckPullRequest } from './models/CheckPullRequest';
+export type { ClaimRewardRequest } from './models/ClaimRewardRequest';
+export type { ClaimRewardResponse } from './models/ClaimRewardResponse';
 export type { CountResponse } from './models/CountResponse';
 export type { CreateRewardRequest } from './models/CreateRewardRequest';
 export type { DepositRequestSchema } from './models/DepositRequestSchema';

@@ -3,6 +3,8 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { CheckPullRequest } from '../models/CheckPullRequest';
+import type { ClaimRewardRequest } from '../models/ClaimRewardRequest';
+import type { ClaimRewardResponse } from '../models/ClaimRewardResponse';
 import type { CountResponse } from '../models/CountResponse';
 import type { CreateRewardRequest } from '../models/CreateRewardRequest';
 import type { ExpireRewardRequest } from '../models/ExpireRewardRequest';
@@ -159,6 +161,28 @@ export class RewardsService {
             body: requestBody,
             mediaType: 'application/json',
             errors: {
+                401: `Unauthorized`,
+                422: `Validation Error`,
+            },
+        });
+    }
+    /**
+     * Claim Reward
+     * @returns ClaimRewardResponse Successful Response
+     * @throws ApiError
+     */
+    public claimRewardApiRewardsClaimRewardPost({
+        requestBody,
+    }: {
+        requestBody: ClaimRewardRequest,
+    }): CancelablePromise<ClaimRewardResponse> {
+        return this.httpRequest.request({
+            method: 'POST',
+            url: '/api/rewards/claim-reward',
+            body: requestBody,
+            mediaType: 'application/json',
+            errors: {
+                400: `Bad Request`,
                 401: `Unauthorized`,
                 422: `Validation Error`,
             },
