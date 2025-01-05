@@ -34,6 +34,15 @@ class FeedApi {
         return resp
     }
 
+    async claimReward(opts: { issueId: string }) {
+        const resp = await appApi.rewards.claimRewardApiRewardsClaimRewardPost({
+            requestBody: {
+                'issue_id': opts.issueId
+            }
+        })
+        return resp
+    }
+
     async getFeedList(page: number) {
         const resp = await fetch(
             `${API_URL}/api/issues/?distinct_issues=true&skip=${FEED_LIMIT * ((page ?? 1) - 1)}&limit=${FEED_LIMIT}`,

@@ -7,8 +7,9 @@ import { FC } from 'react'
 
 type IssueBaseInfoCheckPullProps = {
     repoName: string
+    issueId: string
 }
-const IssueBaseInfoCheckPull: FC<IssueBaseInfoCheckPullProps> = ({ repoName }) => {
+const IssueBaseInfoCheckPull: FC<IssueBaseInfoCheckPullProps> = ({ repoName, issueId }) => {
 
     const { error, isLoading } = useQuery({
         queryKey: userApi.qkGetUserData(),
@@ -17,7 +18,7 @@ const IssueBaseInfoCheckPull: FC<IssueBaseInfoCheckPullProps> = ({ repoName }) =
     })
 
 
-    return !error ? <CheckPull repoName={repoName} /> : null
+    return !error ? <CheckPull repoName={repoName} issueId={issueId} /> : null
 
 }
 export { IssueBaseInfoCheckPull }

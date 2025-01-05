@@ -66,7 +66,10 @@ const IssueBaseInfo: FC<IssueBaseInfoProps> = async ({ rewardId }) => {
                     )}
                     &nbsp; &nbsp; &nbsp; &nbsp;
                     {!data.is_closed && (
-                        <IssueBaseInfoCheckPull repoName={data.repository_data.full_name} />
+                        <IssueBaseInfoCheckPull 
+                            repoName={data.repository_data.full_name} 
+                            issueId={data.id}
+                        />
                     )}
                 </div>
                 <Flex className={s.info__line} justify="space-between" align="center">
