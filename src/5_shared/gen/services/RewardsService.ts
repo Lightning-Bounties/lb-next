@@ -7,7 +7,6 @@ import type { ClaimRewardRequest } from '../models/ClaimRewardRequest';
 import type { ClaimRewardResponse } from '../models/ClaimRewardResponse';
 import type { CountResponse } from '../models/CountResponse';
 import type { CreateRewardRequest } from '../models/CreateRewardRequest';
-import type { ExpireRewardRequest } from '../models/ExpireRewardRequest';
 import type { RewardCompletionSchema } from '../models/RewardCompletionSchema';
 import type { RewardExpandedSchema } from '../models/RewardExpandedSchema';
 import type { RewardSchema } from '../models/RewardSchema';
@@ -48,12 +47,16 @@ export class RewardsService {
         issueId,
         isClosed,
         rewarderId,
+        isExpired,
+        isLocked,
     }: {
         skip?: number,
         limit?: number,
         issueId?: (string | null),
         isClosed?: (boolean | null),
         rewarderId?: (string | null),
+        isExpired?: (boolean | null),
+        isLocked?: (boolean | null),
     }): CancelablePromise<Array<RewardExpandedSchema>> {
         return this.httpRequest.request({
             method: 'GET',
@@ -64,6 +67,8 @@ export class RewardsService {
                 'issue_id': issueId,
                 'is_closed': isClosed,
                 'rewarder_id': rewarderId,
+                'is_expired': isExpired,
+                'is_locked': isLocked,
             },
             errors: {
                 422: `Validation Error`,
@@ -79,10 +84,14 @@ export class RewardsService {
         issueId,
         isClosed,
         rewarderId,
+        isExpired,
+        isLocked,
     }: {
         issueId?: (string | null),
         isClosed?: (boolean | null),
         rewarderId?: (string | null),
+        isExpired?: (boolean | null),
+        isLocked?: (boolean | null),
     }): CancelablePromise<CountResponse> {
         return this.httpRequest.request({
             method: 'GET',
@@ -91,6 +100,8 @@ export class RewardsService {
                 'issue_id': issueId,
                 'is_closed': isClosed,
                 'rewarder_id': rewarderId,
+                'is_expired': isExpired,
+                'is_locked': isLocked,
             },
             errors: {
                 422: `Validation Error`,
@@ -125,22 +136,21 @@ export class RewardsService {
     }
     /**
      * Expire Reward
-     * @returns RewardSchema Successful Response
+     * @returns any Successful Response
      * @throws ApiError
      */
-    public expireRewardApiRewardsExpirePost({
-        requestBody,
+    public expireRewardApiRewardsRewardIdExpirePost({
+        rewardId,
     }: {
-        requestBody: ExpireRewardRequest,
-    }): CancelablePromise<RewardSchema> {
+        rewardId: string,
+    }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'POST',
-            url: '/api/rewards/expire',
-            body: requestBody,
-            mediaType: 'application/json',
+            url: '/api/rewards/{reward_id}/expire',
+            path: {
+                'reward_id': rewardId,
+            },
             errors: {
-                400: `Bad Request`,
-                401: `Unauthorized`,
                 422: `Validation Error`,
             },
         });

@@ -12,7 +12,7 @@ import s from './CreateRewardForm.module.css'
 import { hintsConfig } from '@/5_shared/config/hints.config'
 import { catchHTTPValidationError } from '@/5_shared/utils/catchHTTPValidationError'
 import { LockTimeSelector } from '@/5_shared/ui/LockTimeSelector'
-import { convertToLockedUntilMins } from '@/5_shared/utils/timeConversion'
+import { convertToUnlocksAtTimestamp } from '@/5_shared/utils/timeConversion'
 
 
 const CreateRewardForm: FC = () => {
@@ -84,12 +84,12 @@ const CreateRewardForm: FC = () => {
                             }}
                             onFinish={async (vals: { issueUrl: string, rewardAmount: number, lockedUntilAmount: number, lockedUntilUnit: string }) => {
                                 try {
-                                    const lockedUntilMins = convertToLockedUntilMins(vals.lockedUntilAmount, vals.lockedUntilUnit)
+                                    const unlocksAtTimeStamp = convertToUnlocksAtTimestamp(vals.lockedUntilAmount, vals.lockedUntilUnit)
 
                                     await createRewardMutation({
                                         issueUrl: vals.issueUrl,
                                         rewardAmount: vals.rewardAmount,
-                                        lockedUntilMins
+                                        unlocks_at: unlocksAtTimeStamp
                                     })
 
                                     queryClient.invalidateQueries({ queryKey: profileApi.qkGetUserWallet() })

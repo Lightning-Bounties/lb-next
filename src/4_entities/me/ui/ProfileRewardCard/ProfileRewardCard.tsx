@@ -11,10 +11,29 @@ import { profileApi } from '@/4_entities/me'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 const ProfileRewardCard: FC<RewardExpandedSchema> = (props) => {
+
+    const {
+        reward_sats,
+        rewarder_data,
+        created_at,
+        unlocks_at,
+        expires_at,
+      } = props
+    
+      const isExpired = Boolean(expires_at)
+      const nowIso = new Date().toISOString()
+    
+      // Decide locked vs. unlocked
+      // - If unlocks_at is null/undefined => unlocked
+      // - If unlocks_at is a string in the future => locked
+      // - If unlocks_at is a string in the past => unlocked
+      const isLocked =
+        unlocks_at != null &&
+        unlocks_at > nowIso
+    
+
     const [api, contextHolder] = notification.useNotification()
     const queryClient = useQueryClient()
-
-    const isLocked = props.locked_until > new Date().toISOString()
 
     const { mutateAsync: expireReward, isPending: isExpiring } = useMutation({
         mutationFn: profileApi.expireReward,
@@ -77,7 +96,7 @@ const ProfileRewardCard: FC<RewardExpandedSchema> = (props) => {
                             {isLocked ? "🔒Locked until:" : "🔓Unlocked at:"}
                         </Typography>
                         <Typography className="opacity50">
-                            {getStringDate(new Date(props.locked_until))}
+                            {getStringDate(new Date(props.unlocks_at!))}
                         </Typography>
                     </Flex>
                     <Typography>
@@ -88,10 +107,10 @@ const ProfileRewardCard: FC<RewardExpandedSchema> = (props) => {
                 <Flex justify="space-between" align="center">
                     <Flex gap="small" align="center">
                         <Typography className="opacity85">
-                            {props.expired_at ? "🗑️ Expired at" : ""}
+                            {isExpired ? "🗑️ Expired at" : ""}
                         </Typography>
                         <Typography className="opacity50">
-                            {props.expired_at ? getStringDate(new Date(props.expired_at)) : ""}
+                            {isExpired ? getStringDate(new Date(props.expires_at!)) : ""}
                         </Typography>
                     </Flex>
                     <Typography>
@@ -99,7 +118,7 @@ const ProfileRewardCard: FC<RewardExpandedSchema> = (props) => {
                         </span>
                     </Typography>
                 </Flex>
-                {!props.expired_at && (
+                {!isExpired && (
                     <Flex justify="end" style={{ marginTop: '16px' }}>
                         <Tooltip 
                             title={isLocked ? 

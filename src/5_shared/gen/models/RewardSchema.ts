@@ -9,7 +9,7 @@ export type RewardSchema = {
     issue_id: string;
     rewarder_id: string;
     reward_sats: number;
-    locked_until: string;
-    expired_at?: (string | null);
+    unlocks_at?: (string | null);
+    expires_at?: (string | null);
 };
 

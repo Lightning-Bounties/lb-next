@@ -52,8 +52,8 @@ class ProfileApi {
     }
 
     async expireReward(rewardId: string) {
-        const resp = await appApi.rewards.expireRewardApiRewardsExpirePost({
-            requestBody: { id: rewardId }
+        const resp = await appApi.rewards.expireRewardApiRewardsRewardIdExpirePost({
+            rewardId: rewardId 
         })
         return resp
     }

@@ -8,9 +8,29 @@ import Link from 'next/link'
 import { FC } from 'react'
 
 const RewardCard: FC<RewardExpandedSchema> = (props) => {
+
+    const {
+        reward_sats,
+        rewarder_data,
+        created_at,
+        unlocks_at,
+        expires_at,
+      } = props
+    
+      const isExpired = Boolean(expires_at)
+      const nowIso = new Date().toISOString()
+    
+      // Decide locked vs. unlocked
+      // - If unlocks_at is null/undefined => unlocked
+      // - If unlocks_at is a string in the future => locked
+      // - If unlocks_at is a string in the past => unlocked
+      const isLocked =
+        unlocks_at != null &&
+        unlocks_at > nowIso
+
     return (
         <Card 
-            className={props.expired_at ? 'opacity50': 'opacity100'}
+            className={isExpired ? 'opacity50': 'opacity100'}
             >
             <Flex justify="space-between" align="flex-end">
                 <Flex vertical gap="small">
@@ -41,20 +61,23 @@ const RewardCard: FC<RewardExpandedSchema> = (props) => {
                         )}
                     </Typography>
                 </Tooltip>
-                { props.expired_at ?
+                { isExpired ?
                     <Tooltip 
-                        title={`Expired at:${getStringDate(new Date(props.expired_at))}`}>
+                        title={`Expired at:${getStringDate(new Date(expires_at!))}`}>
                         <Typography className="opacity50">
                             🗑️ Expired
                         </Typography>
                     </Tooltip>
                     : <Tooltip 
-                        title={props.locked_until > new Date().toISOString() ? 
-                            `Locked until: ${getStringDate(new Date(props.locked_until))}` : 
-                            `Unlocked at: ${getStringDate(new Date(props.locked_until))}` }
+                        title={isLocked 
+                            ? `Locked until: ${getStringDate(new Date(unlocks_at!))}`
+                            : unlocks_at
+                                ? `Unlocked at: ${getStringDate(new Date(unlocks_at))}`
+                                : 'Unlocked (no lock set)'
+                        }
                         >
                         <Typography className="opacity50">
-                            {props.locked_until > new Date().toISOString()  ? "🔒Locked" : "🔓Unlocked"}
+                            { isLocked ? "🔒Locked" : "🔓Unlocked"}
                         </Typography>
                     </Tooltip>
                 }

@@ -10,4 +10,11 @@ const convertToLockedUntilMins = (amount: number, unit: string): number => {
     return amount * (multipliers[unit] ?? 1)
 }
 
-export { convertToLockedUntilMins }
+const convertToUnlocksAtTimestamp = (amount: number, unit: string): string => {
+    const totalMinutes = convertToLockedUntilMins(amount, unit)
+    const now = new Date()
+    const future = new Date(now.getTime() + totalMinutes * 60_000) // convert minutes to ms
+    return future.toISOString()  // Return ISO string: "2025-01-08T02:22:26.720Z"
+}
+
+export { convertToUnlocksAtTimestamp }

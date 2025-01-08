@@ -17,7 +17,6 @@ export type { CountResponse } from './models/CountResponse';
 export type { CreateRewardRequest } from './models/CreateRewardRequest';
 export type { DepositRequestSchema } from './models/DepositRequestSchema';
 export type { DepositResponseSchema } from './models/DepositResponseSchema';
-export type { ExpireRewardRequest } from './models/ExpireRewardRequest';
 export type { HTTPExceptionDetailSchema } from './models/HTTPExceptionDetailSchema';
 export type { HTTPValidationError } from './models/HTTPValidationError';
 export type { IssueData } from './models/IssueData';
