@@ -84,7 +84,7 @@ const IssueBaseInfo: FC<IssueBaseInfoProps> = async ({ rewardId }) => {
                     </Flex>
                     <Flex align="center" gap="small">
                         <Typography className="opacity50">total reward</Typography>
-                        <Price amount={data.total_reward_sats} />
+                        <Price amount={data.unexpired_total_rewards} />
                     </Flex>
                     <Flex align="center" gap="small">
                         <Typography className="opacity50">rewards</Typography>

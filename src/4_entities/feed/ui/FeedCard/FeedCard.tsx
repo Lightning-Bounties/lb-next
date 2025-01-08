@@ -109,7 +109,7 @@ const FeedCard: FC<FeedCardProps> = (props) => {
                             }
                             <Flex align="center" gap="small" className={s.reward}>
                                 <Typography className="opacity50">Reward:</Typography>
-                                <Price amount={props.total_reward_sats} />
+                                <Price amount={props.unexpired_total_rewards} />
                             </Flex>
                         </Flex>
                     </Col>

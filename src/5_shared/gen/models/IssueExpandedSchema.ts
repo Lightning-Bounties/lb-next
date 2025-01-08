@@ -27,5 +27,7 @@ export type IssueExpandedSchema = {
     third_last_rewarder_data: (UserData | null);
     total_rewards: number;
     total_reward_sats: number;
+    unlocked_total_rewards: number;
+    unexpired_total_rewards: number;
 };
 
