@@ -7,7 +7,7 @@ import { feedApi } from '@/4_entities/feed'
 import { useRouter } from 'next/navigation'
 import { catchHTTPValidationError } from '@/5_shared/utils/catchHTTPValidationError';
 import { LockTimeSelector } from '@/5_shared/ui/LockTimeSelector'
-import { convertToLockedUntilMins } from '@/5_shared/utils/timeConversion'
+import { convertToUnlocksAtTimestamp } from '@/5_shared/utils/timeConversion'
 
 type AddRewardProps = {
 	issueId: string
@@ -40,7 +40,7 @@ const AddReward: FC<AddRewardProps> = ({ issueId, issueUrl }) => {
 		addReward({ 
 			issueUrl, 
 			rewardAmount: values.amount, 
-			lockedUntilMins: convertToLockedUntilMins(values.lockedUntilAmount, values.lockedUntilUnit)
+            unlocks_at: convertToUnlocksAtTimestamp(values.lockedUntilAmount, values.lockedUntilUnit)
 		})
 	}
 
