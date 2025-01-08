@@ -14,10 +14,10 @@ const IssueRewardsList: FC<IssueRewardsListProps> = async ({ rewardId }) => {
     try {
         const data = await issueApi.getAllIssueRewards(rewardId)
         const sortedData = [...data].sort((a, b) => {
-            if (!a.expired_at && !b.expired_at) return 0
-            if (!a.expired_at) return -1
-            if (!b.expired_at) return 1
-            return new Date(a.expired_at).getTime() - new Date(b.expired_at).getTime()
+            if (!a.expires_at && !b.expires_at) return 0
+            if (!a.expires_at) return -1
+            if (!b.expires_at) return 1
+            return new Date(a.expires_at).getTime() - new Date(b.expires_at).getTime()
         })
         return (
             <Flex vertical gap="small">
