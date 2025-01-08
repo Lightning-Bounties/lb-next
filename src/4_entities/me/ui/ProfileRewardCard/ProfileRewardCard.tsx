@@ -42,6 +42,10 @@ const ProfileRewardCard: FC<RewardExpandedSchema> = (props) => {
             queryClient.invalidateQueries({
                 queryKey: profileApi.qkGetProfileRewardsHistory(props.rewarder_id)
             })
+            queryClient.invalidateQueries({ 
+                queryKey: profileApi.qkGetUserWallet() 
+            })
+
         },
         onError: (error: any) => {
             api.error({
