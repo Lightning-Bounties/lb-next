@@ -56,7 +56,7 @@ const hintsConfig: HintsConfigMap = {
         title: 'Optional: Verify your Invoice on Branta',
         body: (
             <div>
-            Use this link to verfiy the invoice you're about to pay is correct.
+            Use this link to verify the invoice you're about to pay is correct.
             <br/><br/>
             Lightning Bounties uses Branta for third-party address verification. For extra safety, you can open the Branta verify link in a new tab to see the address.
             <br/><br/>
