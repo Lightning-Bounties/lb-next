@@ -13,6 +13,7 @@ import dynamic from 'next/dynamic'
 import { appRoutes } from '@/5_shared/config/appRoutes'
 import { IssueBaseInfoCheckPull } from './IssueBaseInfoCheckPull'
 import { orange, grey } from '@ant-design/colors';
+import { IssueBaseInfoAddReward } from './IssueBaseInfoAddReward'
 
 const IssueBaseInfoDesc = dynamic(() => import('./IssueBaseInfoDesc'), { ssr: false })
 
@@ -66,7 +67,10 @@ const IssueBaseInfo: FC<IssueBaseInfoProps> = async ({ rewardId }) => {
                     )}
                     &nbsp; &nbsp; &nbsp; &nbsp;
                     {!data.is_closed && (
-                        <IssueBaseInfoCheckPull repoName={data.repository_data.full_name} />
+                        <IssueBaseInfoCheckPull 
+                            repoName={data.repository_data.full_name} 
+                            issueId={data.id}
+                        />
                     )}
                 </div>
                 <Flex className={s.info__line} justify="space-between" align="center">
@@ -80,7 +84,7 @@ const IssueBaseInfo: FC<IssueBaseInfoProps> = async ({ rewardId }) => {
                     </Flex>
                     <Flex align="center" gap="small">
                         <Typography className="opacity50">total reward</Typography>
-                        <Price amount={data.total_reward_sats} />
+                        <Price amount={data.unexpired_total_rewards} />
                     </Flex>
                     <Flex align="center" gap="small">
                         <Typography className="opacity50">rewards</Typography>
@@ -115,12 +119,22 @@ const IssueBaseInfo: FC<IssueBaseInfoProps> = async ({ rewardId }) => {
                         </Flex>
                     </Flex>
                 )}
+                {
+                    data.html_url
+                        ? <IssueBaseInfoAddReward 
+                            issueId={data.id} 
+                            issueUrl={data.html_url} 
+                        />
+                        : null
+                }
                 {data.body ? (
                     <Flex vertical gap="small">
                         <Typography className="opacity50">Description</Typography>
                         <IssueBaseInfoDesc data={data.body ?? ""} />
                     </Flex>
-                ) : null}
+                ) 
+                    : null
+                }
             </Flex>
         )
     } catch (e) {

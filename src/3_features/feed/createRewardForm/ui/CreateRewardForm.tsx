@@ -2,7 +2,7 @@
 
 import { userApi } from '@/4_entities/user'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { Button, Card, Col, Flex, Form, Input, notification, Row, Spin, Tour, TourProps, Typography } from 'antd'
+import { Collapse, Button, Card, Col, Flex, Form, Input, notification, Row, Spin, Tour, TourProps, Typography, Select } from 'antd'
 import { FC, useRef, useState } from 'react'
 import { GithubOutlined, QuestionCircleOutlined } from '@ant-design/icons'
 import { feedApi } from '@/4_entities/feed'
@@ -11,10 +11,11 @@ import { useRouter } from 'next/navigation'
 import s from './CreateRewardForm.module.css'
 import { hintsConfig } from '@/5_shared/config/hints.config'
 import { catchHTTPValidationError } from '@/5_shared/utils/catchHTTPValidationError'
+import { LockTimeSelector } from '@/5_shared/ui/LockTimeSelector'
+import { convertToUnlocksAtTimestamp } from '@/5_shared/utils/timeConversion'
 
 
 const CreateRewardForm: FC = () => {
-
     const queryClient = useQueryClient();
 
     const { error, isLoading } = useQuery({
@@ -44,10 +45,10 @@ const CreateRewardForm: FC = () => {
         }
     ]
 
+    const { Panel } = Collapse
+
     return (
-        <Card
-            className={s.box}
-        >
+        <Card className={s.box}>
             <Tour open={open} onClose={() => setOpen(false)} steps={steps} />
             <QuestionCircleOutlined
                 ref={ref1}
@@ -77,13 +78,21 @@ const CreateRewardForm: FC = () => {
                             </Button>
                         </Flex>
                         : <Form
-                            onFinish={async (vals: { issueUrl: string, rewardAmount: number }) => {
+                            initialValues={{
+                                lockedUntilAmount: 2,
+                                lockedUntilUnit: 'weeks'
+                            }}
+                            onFinish={async (vals: { issueUrl: string, rewardAmount: number, lockedUntilAmount: number, lockedUntilUnit: string }) => {
                                 try {
+                                    const unlocksAtTimeStamp = convertToUnlocksAtTimestamp(vals.lockedUntilAmount, vals.lockedUntilUnit)
+
                                     await createRewardMutation({
                                         issueUrl: vals.issueUrl,
-                                        rewardAmount: vals.rewardAmount
+                                        rewardAmount: vals.rewardAmount,
+                                        unlocks_at: unlocksAtTimeStamp
                                     })
-                                    queryClient.invalidateQueries({queryKey: profileApi.qkGetUserWallet()})
+
+                                    queryClient.invalidateQueries({ queryKey: profileApi.qkGetUserWallet() })
                                     router.refresh()
                                     api.success({
                                         message: 'Success'
@@ -123,6 +132,18 @@ const CreateRewardForm: FC = () => {
                                         <Input placeholder="Amount in sats" />
                                     </Form.Item>
                                 </Col>
+                            </Row>
+
+                            <Collapse
+                                bordered={false}
+                                style={{ background: 'none', padding: 0, marginTop: '8px' }} // optional styling
+                                >
+                                {/* forceRender to allow the field values to flow to form submit */}
+                                <Panel key="1"  header="Advanced settings" forceRender>  
+                                    <LockTimeSelector />
+                                </Panel>
+                            </Collapse>
+                            <Row> 
                                 <Col span={24}>
                                     <Button
                                         loading={isPending}

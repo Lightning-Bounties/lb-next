@@ -13,11 +13,16 @@ class FeedApi {
         return resp.count
     }
 
-    async createReward(opts: { issueUrl: string, rewardAmount: number }) {
+    async createReward(opts: { 
+        issueUrl: string, 
+        rewardAmount: number, 
+        unlocks_at: string,
+    }) {
         const resp = await appApi.rewards.postRewardApiRewardsPost({
             requestBody: {
                 issue_html_url: opts.issueUrl,
-                reward_sats: opts.rewardAmount
+                reward_sats: opts.rewardAmount,
+                unlocks_at: opts.unlocks_at,
             }
         })
         return resp
@@ -28,6 +33,15 @@ class FeedApi {
             requestBody: {
                 'repo_full_name': opts.repo_full_name,
                 'pull_request_number': opts.pull_request_number
+            }
+        })
+        return resp
+    }
+
+    async claimReward(opts: { issueId: string }) {
+        const resp = await appApi.rewards.claimRewardApiRewardsClaimRewardPost({
+            requestBody: {
+                'issue_id': opts.issueId
             }
         })
         return resp

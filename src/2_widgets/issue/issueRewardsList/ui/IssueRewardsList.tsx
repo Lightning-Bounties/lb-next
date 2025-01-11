@@ -13,14 +13,20 @@ const IssueRewardsList: FC<IssueRewardsListProps> = async ({ rewardId }) => {
 
     try {
         const data = await issueApi.getAllIssueRewards(rewardId)
+        const sortedData = [...data].sort((a, b) => {
+            if (!a.expires_at && !b.expires_at) return 0
+            if (!a.expires_at) return -1
+            if (!b.expires_at) return 1
+            return new Date(a.expires_at).getTime() - new Date(b.expires_at).getTime()
+        })
         return (
             <Flex vertical gap="small">
                 <Title level={3}>Rewards:</Title>
                 {
-                    data.length
+                    sortedData.length
                         ? <Row gutter={[12, 12]}>
                             {
-                                data.map(item =>
+                                sortedData.map(item =>
                                     <Col span={12} md={12} xs={24}>
                                         <RewardCard {...item} />
                                     </Col>

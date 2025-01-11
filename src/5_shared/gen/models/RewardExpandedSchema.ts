@@ -11,6 +11,8 @@ export type RewardExpandedSchema = {
     issue_id: string;
     rewarder_id: string;
     reward_sats: number;
+    unlocks_at?: (string | null);
+    expires_at?: (string | null);
     rewarder_data: UserData;
     issue_data: IssueData;
 };

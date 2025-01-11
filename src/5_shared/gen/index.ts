@@ -11,6 +11,8 @@ export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
 export type { CheckPullRequest } from './models/CheckPullRequest';
+export type { ClaimRewardRequest } from './models/ClaimRewardRequest';
+export type { ClaimRewardResponse } from './models/ClaimRewardResponse';
 export type { CountResponse } from './models/CountResponse';
 export type { CreateRewardRequest } from './models/CreateRewardRequest';
 export type { DepositRequestSchema } from './models/DepositRequestSchema';
@@ -21,6 +23,7 @@ export type { IssueData } from './models/IssueData';
 export type { IssueExpandedSchema } from './models/IssueExpandedSchema';
 export type { LightningTransactionSchema } from './models/LightningTransactionSchema';
 export type { RepositoryData } from './models/RepositoryData';
+export type { RepositorySchema } from './models/RepositorySchema';
 export type { RewardCompletionSchema } from './models/RewardCompletionSchema';
 export type { RewardExpandedSchema } from './models/RewardExpandedSchema';
 export type { RewardSchema } from './models/RewardSchema';
@@ -34,6 +37,7 @@ export type { WithdrawResponseSchema } from './models/WithdrawResponseSchema';
 
 export { AuthService } from './services/AuthService';
 export { IssuesService } from './services/IssuesService';
+export { RepositoriesService } from './services/RepositoriesService';
 export { RewardsService } from './services/RewardsService';
 export { UsersService } from './services/UsersService';
 export { WalletsService } from './services/WalletsService';

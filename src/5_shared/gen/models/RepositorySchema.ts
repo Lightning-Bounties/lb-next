@@ -2,14 +2,13 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type RewardSchema = {
+export type RepositorySchema = {
     created_at: string;
     modified_at: string;
     id: string;
-    issue_id: string;
-    rewarder_id: string;
-    reward_sats: number;
-    unlocks_at?: (string | null);
-    expires_at?: (string | null);
+    github_id: number;
+    full_name: string;
+    owner_github_id: number;
+    html_url: string;
 };
 
