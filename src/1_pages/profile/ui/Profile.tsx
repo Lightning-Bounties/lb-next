@@ -46,7 +46,7 @@ const Profile: FC<ProfileProps> = async ({ userInfo, userRewards }) => {
                                         label: 'User Rewards',
                                         children: <Flex vertical gap="small">
                                             {userRewards.length
-                                                ? userRewards.map((item) => <ProfileRewardCard key={item.id}  {...item} />)
+                                                ? userRewards.map((item) => <ProfileRewardCard key={item.id}  {...item} activeController={false}/>)
                                                 : <ProfileEmptyRewardsList />}
                                         </Flex>
                                     },
