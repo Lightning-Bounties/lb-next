@@ -26,6 +26,21 @@ const hintsConfig: HintsConfigMap = {
          ),
         buttonText: 'OK'
     },
+    lockTimeSelector: {
+        title: 'Bounty Lock Times',
+        body: (
+            <div>
+            This is how long your bounty will stay <i>locked</i>. After the lock time is over, you can <i>expire</i> the reward and return the sats to your own wallet if they haven't been claimed.
+            <br/><br/>
+            If your lock time is too short, bounty hunters might be reluctant to work on your issue, fearing the bounty may expire before they can claim the reward. If your lock time is too long, you may have your sats stuck longer than you like on an issue that may not be gaining traction.
+            <br/><br/>
+            As a rule of thumb, we suggest the default of 2 weeks for your first bounty.
+            <br/><br/>
+            <b>TODO</b> - add to <a href="https://docs.lightningbounties.com/docs/posting-a-bounty/post-a-bounty" target="blank">docs</a>.
+            </div>
+         ),
+        buttonText: 'Got it'
+    },
     rewardCardFromFeed: {
         title: 'Example of a Bounty Card',
         body: (
