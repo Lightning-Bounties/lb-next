@@ -27,7 +27,7 @@ const IssueRewardsList: FC<IssueRewardsListProps> = async ({ rewardId }) => {
                         ? <Row gutter={[12, 12]}>
                             {
                                 sortedData.map(item =>
-                                    <Col span={12} md={12} xs={24}>
+                                    <Col span={12} md={12} xs={24} key={item.id}>
                                         <RewardCard {...item} />
                                     </Col>
                                 )
