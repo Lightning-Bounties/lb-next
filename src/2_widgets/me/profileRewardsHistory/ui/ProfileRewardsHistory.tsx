@@ -29,7 +29,7 @@ const ProfileRewardsHistory: FC = () => {
                 isLoading
                     ? <Spin />
                     : sortedData?.length
-                        ? sortedData?.map(item => <ProfileRewardCard key={item.id}  {...item} />)
+                        ? sortedData?.map(item => <ProfileRewardCard key={item.id}  {...item} activeController={true} />)
                         : <Empty
                             image={Empty.PRESENTED_IMAGE_SIMPLE}
                             description="No rewards posted yet"

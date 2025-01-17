@@ -10,7 +10,11 @@ import { FC, useState } from 'react'
 import { profileApi } from '@/4_entities/me'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-const ProfileRewardCard: FC<RewardExpandedSchema> = (props) => {
+type ProfileRewardCardProps = RewardExpandedSchema & {
+    activeController?: boolean,
+}
+
+const ProfileRewardCard: FC<ProfileRewardCardProps> = (props) => {
 
     const {
         reward_sats,
@@ -30,6 +34,8 @@ const ProfileRewardCard: FC<RewardExpandedSchema> = (props) => {
       const isLocked =
         unlocks_at != null &&
         unlocks_at > nowIso
+
+      const activeExpireButton = props.activeController ? true : false
     
 
     const [api, contextHolder] = notification.useNotification()
@@ -122,7 +128,7 @@ const ProfileRewardCard: FC<RewardExpandedSchema> = (props) => {
                         </span>
                     </Typography>
                 </Flex>
-                {!isExpired && (
+                {(!isExpired && activeExpireButton) && (
                     <Flex justify="end" style={{ marginTop: '16px' }}>
                         <Tooltip 
                             title={isLocked ? 

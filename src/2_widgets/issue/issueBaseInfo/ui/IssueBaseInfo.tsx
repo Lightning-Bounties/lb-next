@@ -120,7 +120,7 @@ const IssueBaseInfo: FC<IssueBaseInfoProps> = async ({ rewardId }) => {
                     </Flex>
                 )}
                 {
-                    data.html_url
+                    (data.html_url && !data.winner_id)
                         ? <IssueBaseInfoAddReward 
                             issueId={data.id} 
                             issueUrl={data.html_url} 
