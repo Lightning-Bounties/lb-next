@@ -1,4 +1,10 @@
 import { appRoutes } from '@/5_shared/config/appRoutes'
+
+const parseTimestamp = (timestamp: string) => {
+    // Add Z suffix if missing to ensure UTC interpretation
+    const normalizedTimestamp = timestamp.endsWith('Z') ? timestamp : timestamp + 'Z'
+    return new Date(normalizedTimestamp)
+}
 import { RewardExpandedSchema, RewardSchema } from '@/5_shared/gen'
 import { Avatar } from '@/5_shared/ui/Avatar/Avatar'
 import { Price } from '@/5_shared/ui/Price/Price'
@@ -27,6 +33,7 @@ const RewardCard: FC<RewardExpandedSchema> = (props) => {
       const isLocked =
         unlocks_at != null &&
         unlocks_at > nowIso
+    
 
     return (
         <Card 
@@ -49,30 +56,24 @@ const RewardCard: FC<RewardExpandedSchema> = (props) => {
             </Flex>
             <Flex justify="space-between" align="flex-end">
                 <Tooltip 
-                    title={`Reward created at: ${getStringDate(new Date(props.created_at))}` }
+                    title={`Reward created at: ${getStringDate(parseTimestamp(props.created_at))}` }
                     >
                     <Typography className="opacity50">
-                        {new Date(props.created_at).toLocaleDateString(
-                            'en-US', {
-                                month: 'long',
-                                day: 'numeric',
-                                year: 'numeric'
-                            }
-                        )}
+                        Added: {getStringDate(parseTimestamp(props.created_at)).split(',')[0]}
                     </Typography>
                 </Tooltip>
                 { isExpired ?
                     <Tooltip 
-                        title={`Expired at:${getStringDate(new Date(expires_at!))}`}>
+                        title={`Expired at:${getStringDate(parseTimestamp(expires_at!))}`}>
                         <Typography className="opacity50">
                             🗑️ Expired
                         </Typography>
                     </Tooltip>
                     : <Tooltip 
                         title={isLocked 
-                            ? `Locked until: ${getStringDate(new Date(unlocks_at!))}`
+                            ? `Locked until: ${getStringDate(parseTimestamp(unlocks_at!))}`
                             : unlocks_at
-                                ? `Unlocked at: ${getStringDate(new Date(unlocks_at))}`
+                                ? `Unlocked at: ${getStringDate(parseTimestamp(unlocks_at))}`
                                 : 'Unlocked (no lock set)'
                         }
                         >
