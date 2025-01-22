@@ -46,6 +46,7 @@ const CreateRewardForm: FC = () => {
     ]
 
     const { Panel } = Collapse
+    const [form] = Form.useForm()
 
     return (
         <Card className={s.box}>
@@ -82,6 +83,7 @@ const CreateRewardForm: FC = () => {
                                 lockedUntilAmount: 2,
                                 lockedUntilUnit: 'weeks'
                             }}
+                            form={form}
                             onFinish={async (vals: { issueUrl: string, rewardAmount: number, lockedUntilAmount: number, lockedUntilUnit: string }) => {
                                 try {
                                     const unlocksAtTimeStamp = convertToUnlocksAtTimestamp(vals.lockedUntilAmount, vals.lockedUntilUnit)
@@ -97,6 +99,7 @@ const CreateRewardForm: FC = () => {
                                     api.success({
                                         message: 'Success'
                                     })
+                                    form.resetFields()
                                 }
                                 catch (e) {
                                     api.error({

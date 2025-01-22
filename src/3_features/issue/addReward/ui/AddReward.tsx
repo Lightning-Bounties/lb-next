@@ -29,7 +29,7 @@ const AddReward: FC<AddRewardProps> = ({ issueId, issueUrl }) => {
 			queryClient.invalidateQueries({ queryKey: ['issue', issueId] })
             queryClient.invalidateQueries({ queryKey: profileApi.qkGetUserWallet() })
 			api.success({ message: 'Reward added successfully' })
-			form.resetFields()
+			form.resetFields(['amount', 'lockedUntilAmount', 'lockedUntilUnit'])
 			setFormVisible(false)
 			router.refresh()
 		},
