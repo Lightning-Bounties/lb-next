@@ -1,9 +1,10 @@
 {
   "name": "lb",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "sidedev": "next dev -p 3001",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

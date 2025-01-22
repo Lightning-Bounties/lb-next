@@ -23,12 +23,21 @@ const FeedCardGuide = () => {
 
     return (
         <>
-            <QuestionCircleOutlined
-                ref={ref1}
-                onClick={() => { setOpen(true) }}
-                className={`opacity50`}
-            />
-            <Tour open={open} onClose={() => setOpen(false)} steps={steps} />
+            <div onClick={(e) => e.stopPropagation()}>
+                <QuestionCircleOutlined
+                    ref={ref1}
+                    onClick={(e) => { 
+                        e.stopPropagation();
+                        setOpen(true);
+                    }}
+                    className={`opacity50`}
+                />
+                <Tour 
+                    open={open} 
+                    onClose={() => setOpen(false)} 
+                    steps={steps}
+                />
+            </div>
         </>
     )
 }
