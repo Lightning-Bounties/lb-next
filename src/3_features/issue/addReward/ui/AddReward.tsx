@@ -4,6 +4,7 @@ import { FC, useState } from 'react'
 import { Button, Input, Flex, Form, Collapse, notification, Row, Col } from 'antd'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { feedApi } from '@/4_entities/feed'
+import { profileApi } from '@/4_entities/me'
 import { useRouter } from 'next/navigation'
 import { catchHTTPValidationError } from '@/5_shared/utils/catchHTTPValidationError';
 import { LockTimeSelector } from '@/5_shared/ui/LockTimeSelector'
@@ -26,6 +27,7 @@ const AddReward: FC<AddRewardProps> = ({ issueId, issueUrl }) => {
 		mutationFn: feedApi.createReward,
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['issue', issueId] })
+            queryClient.invalidateQueries({ queryKey: profileApi.qkGetUserWallet() })
 			api.success({ message: 'Reward added successfully' })
 			form.resetFields()
 			setFormVisible(false)
