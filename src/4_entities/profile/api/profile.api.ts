@@ -9,9 +9,14 @@ class ProfileApi {
       rewarderId: userId,
     });
 
+    const userBounties = await appApi.issues.listIssuesApiIssuesGet({
+      winnerId: userId
+    });
+
     return {
       userInfo: userBaseInfo,
       userRewards: userRewards,
+      userBounties: userBounties
     };
   }
 }
