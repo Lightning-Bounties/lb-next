@@ -5,16 +5,17 @@ import Title from 'antd/es/typography/Title'
 import { ProfileRewardCard } from '@/4_entities/me'
 import { FC } from 'react'
 import { appRoutes } from '@/5_shared/config/appRoutes'
-import { RewardExpandedSchema, UserSchema } from '@/5_shared/gen'
+import { IssueExpandedSchema, RewardExpandedSchema, UserSchema } from '@/5_shared/gen'
 import { ProfileEmptyRewardsList } from './ProfileEmptyRewardsList'
 
 
 type ProfileProps = {
     userInfo: UserSchema,
-    userRewards: RewardExpandedSchema[]
+    userRewards: RewardExpandedSchema[],
+    userBounties: IssueExpandedSchema[]
 }
 
-const Profile: FC<ProfileProps> = async ({ userInfo, userRewards }) => {
+const Profile: FC<ProfileProps> = async ({ userInfo, userRewards, userBounties }) => {
 
 
     return (
@@ -48,6 +49,15 @@ const Profile: FC<ProfileProps> = async ({ userInfo, userRewards }) => {
                                             {userRewards.length
                                                 ? userRewards.map((item) => <ProfileRewardCard key={item.id}  {...item} activeController={false}/>)
                                                 : <ProfileEmptyRewardsList />}
+                                        </Flex>
+                                    },
+                                    {
+                                        key: '2', 
+                                        label: 'User Bounties',
+                                        children: <Flex vertical gap="small">
+                                            <pre>
+                                                {JSON.stringify(userBounties, null, 2)}
+                                            </pre>
                                         </Flex>
                                     },
                                 ]}

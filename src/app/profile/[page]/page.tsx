@@ -29,5 +29,6 @@ export default async function ProfilePage({ params }: Props) {
     return <Profile
         userInfo={data.userInfo}
         userRewards={data.userRewards}
+        userBounties={data.userBounties}
     />
 }
