@@ -128,7 +128,7 @@ const ProfileRewardCard: FC<ProfileRewardCardProps> = (props) => {
                         </span>
                     </Typography>
                 </Flex>
-                {(!isExpired && activeExpireButton) && (
+                {(!isExpired && activeExpireButton && !props.issue_data.is_closed) && (
                     <Flex justify="end" style={{ marginTop: '16px' }}>
                         <Tooltip 
                             title={isLocked ? 
