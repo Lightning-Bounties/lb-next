@@ -28,7 +28,11 @@ const darkTheme: ThemeConfig = {
         Breadcrumb: {
             linkColor: 'rgba(255,255,255,.5)',
             separatorColor: 'rgba(255,255,255,.5)'
-        }
+        },
+        Select: {
+            controlItemBgHover: "rgba(255,255,255,.5)",
+            controlItemBgActive: "rgb(89, 126, 247)",
+        },
     }
 }
 
