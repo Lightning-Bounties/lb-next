@@ -16,6 +16,9 @@ const lightTheme: ThemeConfig = {
             headerBg: '#fff',
             headerPadding: '0 20px'
         },
+        Select: {
+            colorTextPlaceholder: "rgb(0, 0, 0)"
+        },
     }
 }
 
