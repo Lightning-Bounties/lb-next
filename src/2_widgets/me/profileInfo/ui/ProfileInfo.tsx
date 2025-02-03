@@ -19,13 +19,12 @@ const ProfileInfo: FC<ProfileInfoProps> = ({ rewardsHistorySlot, paymentsHistory
     const { data } = useQuery({
         queryKey: userApi.qkGetUserData(),
         queryFn: () => userApi.getUserData()
-    })
+    });
 
-    // TODO: wallet to separate component
-    const { data: userWallet } = useQuery({
+    const { data: userWallet, refetch } = useQuery({
         queryKey: profileApi.qkGetUserWallet(),
         queryFn: () => profileApi.getUserWallet()
-    })
+    });
 
     const [activeTab, setActiveTab] = useState<'deposit' | 'withdraw' | undefined>(undefined)
 
@@ -76,7 +75,7 @@ const ProfileInfo: FC<ProfileInfoProps> = ({ rewardsHistorySlot, paymentsHistory
                         {
                             activeTab === 'deposit'
                                 ? <ProfileDeposit />
-                                : <ProfileWithdraw />
+                                : <ProfileWithdraw refetch={refetch} />
                         }
                         <Divider />
                     </>
@@ -99,6 +98,7 @@ const ProfileInfo: FC<ProfileInfoProps> = ({ rewardsHistorySlot, paymentsHistory
                 ]}
             />
         </Flex>
-    )
+    );
 }
+
 export { ProfileInfo }
