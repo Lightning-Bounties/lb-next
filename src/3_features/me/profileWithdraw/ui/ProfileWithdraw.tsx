@@ -12,12 +12,12 @@ type ProfileWithdrawProps = {
 };
 
 const ProfileWithdraw: React.FC<ProfileWithdrawProps> = ({ refetch }) => {
-    const [form] = Form.useForm(); // Create a form instance
+    const [form] = Form.useForm()
     const [api, contextHolder] = notification.useNotification();
     const { mutateAsync: withdrawFunds } = useMutation({
         mutationFn: profileApi.withdrawFunds
     });
-    const [isButtonEnabled, setIsButtonEnabled] = useState(false); // State to track button enable/disable
+    const [isButtonEnabled, setIsButtonEnabled] = useState(false)
 
     const onFinishHandler = async (data: { payment_request: string }) => {
         try {
@@ -27,11 +27,9 @@ const ProfileWithdraw: React.FC<ProfileWithdrawProps> = ({ refetch }) => {
             api.success({
                 message: 'Success'
             });
-            // Call refetch to update the balance
             await refetch();
-            // Reset the form fields
-            form.resetFields(); // Clear the input field
-            setIsButtonEnabled(false); // Disable the button after submission
+            form.resetFields();
+            setIsButtonEnabled(false);
         } catch (e) {
             api.error({
                 message: catchHTTPValidationError(e)
@@ -40,7 +38,6 @@ const ProfileWithdraw: React.FC<ProfileWithdrawProps> = ({ refetch }) => {
     };
 
     const handleValuesChange = (changedValues: any) => {
-        // Check if the payment_request field has a value
         if (changedValues.payment_request) {
             setIsButtonEnabled(changedValues.payment_request.trim() !== '');
         } else {
@@ -68,9 +65,9 @@ const ProfileWithdraw: React.FC<ProfileWithdrawProps> = ({ refetch }) => {
             <Tour open={open} onClose={() => setOpen(false)} steps={steps} />
             {contextHolder}
             <Form
-                form={form} // Link the form instance here
+                form={form}
                 onFinish={onFinishHandler}
-                onValuesChange={handleValuesChange} // Monitor changes in form values
+                onValuesChange={handleValuesChange}
             >
                 <Flex gap="small">
                     <Typography style={{ marginTop: '4px' }}>Payments request:</Typography>
