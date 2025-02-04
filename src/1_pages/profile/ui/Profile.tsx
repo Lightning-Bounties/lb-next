@@ -3,11 +3,11 @@ import s from './Profile.module.css'
 import Link from 'next/link'
 import Title from 'antd/es/typography/Title'
 import { ProfileRewardCard } from '@/4_entities/me'
+import { ProfileBountyCard } from '@/4_entities/me'
 import { FC } from 'react'
 import { appRoutes } from '@/5_shared/config/appRoutes'
 import { IssueExpandedSchema, RewardExpandedSchema, UserSchema } from '@/5_shared/gen'
 import { ProfileEmptyRewardsList } from './ProfileEmptyRewardsList'
-
 
 type ProfileProps = {
     userInfo: UserSchema,
@@ -47,16 +47,37 @@ const Profile: FC<ProfileProps> = async ({ userInfo, userRewards, userBounties }
                                         label: 'User Rewards',
                                         children: <Flex vertical gap="small">
                                             {userRewards.length
-                                                ? userRewards.map((item) => <ProfileRewardCard key={item.id}  {...item} activeController={false}/>)
+                                                ? userRewards.map((item) => <ProfileRewardCard key={item.id}  {...item} activeController={false} />)
                                                 : <ProfileEmptyRewardsList />}
                                         </Flex>
                                     },
                                     {
-                                        key: '2', 
+                                        key: '2',
                                         label: 'User Bounties',
                                         children: <Flex vertical gap="small">
                                             <pre>
-                                                {JSON.stringify(userBounties, null, 2)}
+                                                {
+                                                    userBounties.length
+                                                        ? userBounties
+                                                            .sort((a, b) => {
+                                                                const dateA = a.claimed_at ? new Date(a.claimed_at) : new Date(0);
+                                                                const dateB = b.claimed_at ? new Date(b.claimed_at) : new Date(0);
+
+                                                                return dateB.getTime() - dateA.getTime();
+                                                            })
+                                                            .map((bounty) => (
+                                                                <ProfileBountyCard
+                                                                    key={bounty.issue_number}
+                                                                    repository={bounty.repository_data.full_name}
+                                                                    title={bounty.title}
+                                                                    issueNumber={bounty.issue_number}
+                                                                    htmlUrl={bounty.html_url}
+                                                                    claimedAt={bounty.claimed_at}
+                                                                    totalReward={bounty.total_reward_sats}
+                                                                />
+                                                            ))
+                                                        : <ProfileEmptyRewardsList />
+                                                }
                                             </pre>
                                         </Flex>
                                     },
