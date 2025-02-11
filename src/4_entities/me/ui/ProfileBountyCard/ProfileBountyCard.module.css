@@ -1,0 +1,6 @@
+.title {
+    white-space: normal; 
+    overflow-wrap: break-word;
+    width: 100%; 
+    margin: 0; 
+}
