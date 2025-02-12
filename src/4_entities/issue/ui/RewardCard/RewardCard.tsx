@@ -21,6 +21,7 @@ const RewardCard: FC<RewardExpandedSchema> = (props) => {
         created_at,
         unlocks_at,
         expires_at,
+        issue_data,
       } = props
     
       const isExpired = Boolean(expires_at)
@@ -33,7 +34,6 @@ const RewardCard: FC<RewardExpandedSchema> = (props) => {
       const isLocked =
         unlocks_at != null &&
         unlocks_at > nowIso
-    
 
     return (
         <Card 
@@ -64,21 +64,26 @@ const RewardCard: FC<RewardExpandedSchema> = (props) => {
                 </Tooltip>
                 { isExpired ?
                     <Tooltip 
-                        title={`Expired at:${getStringDate(parseTimestamp(expires_at!))}`}>
+                        title={issue_data?.is_closed 
+                            ? `Expired at: ${getStringDate(parseTimestamp(expires_at!))} (before issue was claimed)`
+                            : `Expired at:${getStringDate(parseTimestamp(expires_at!))}`
+                        }>
                         <Typography className="opacity50">
-                            🗑️ Expired
+                            🗑️ {issue_data?.is_closed ? "Expired before claim" : "Expired"}
                         </Typography>
                     </Tooltip>
                     : <Tooltip 
-                        title={isLocked 
-                            ? `Locked until: ${getStringDate(parseTimestamp(unlocks_at!))}`
-                            : unlocks_at
-                                ? `Unlocked at: ${getStringDate(parseTimestamp(unlocks_at))}`
-                                : 'Unlocked (no lock set)'
+                        title={issue_data?.is_closed
+                            ? "Reward was claimed for this closed issue"
+                            : isLocked 
+                                ? `Locked until: ${getStringDate(parseTimestamp(unlocks_at!))}`
+                                : unlocks_at
+                                    ? `Unlocked at: ${getStringDate(parseTimestamp(unlocks_at))}`
+                                    : 'Unlocked (no lock set)'
                         }
                         >
                         <Typography className="opacity50">
-                            { isLocked ? "🔒Locked" : "🔓Unlocked"}
+                            {issue_data?.is_closed ? "💰 Claimed" : (isLocked ? "🔒Locked" : "🔓Unlocked")}
                         </Typography>
                     </Tooltip>
                 }
