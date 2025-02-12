@@ -1,7 +1,7 @@
 'use client'
 
 import { FC, useState } from 'react'
-import { Button, Input, Flex, Form, Collapse, notification, Row, Col } from 'antd'
+import { Button, Input, Flex, Form, Collapse, notification, Row, Col, Checkbox } from 'antd'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { feedApi } from '@/4_entities/feed'
 import { profileApi } from '@/4_entities/me'
@@ -38,11 +38,12 @@ const AddReward: FC<AddRewardProps> = ({ issueId, issueUrl }) => {
 		}
 	})
 
-	const onFinish = (values: { amount: number, lockedUntilAmount: number, lockedUntilUnit: string }) => {
+	const onFinish = (values: { amount: number, lockedUntilAmount: number, lockedUntilUnit: string, is_anonymous: boolean }) => {
 		addReward({ 
 			issueId,
-			rewardAmount: values.amount, 
-            unlocks_at: convertToUnlocksAtTimestamp(values.lockedUntilAmount, values.lockedUntilUnit)
+			rewardAmount: values.amount,
+            unlocks_at: convertToUnlocksAtTimestamp(values.lockedUntilAmount, values.lockedUntilUnit),
+            is_anonymous: values.is_anonymous
 		})
 	}
 
@@ -64,7 +65,8 @@ const AddReward: FC<AddRewardProps> = ({ issueId, issueUrl }) => {
                 <Form 
                     initialValues={{
                         lockedUntilAmount: 2,
-                        lockedUntilUnit: 'weeks'
+                        lockedUntilUnit: 'weeks',
+                        is_anonymous: false
                     }}
                     form={form} 
                     onFinish={onFinish}
@@ -102,6 +104,12 @@ const AddReward: FC<AddRewardProps> = ({ issueId, issueUrl }) => {
                                 style={{ background: 'none', padding: 0 }}
                             >
                                 <Panel key="1" header="Advanced settings" forceRender>
+                                    <Form.Item
+                                        name="is_anonymous"
+                                        valuePropName="checked"
+                                    >
+                                        <Checkbox>Make reward anonymous</Checkbox>
+                                    </Form.Item>
                                     <LockTimeSelector />
                                 </Panel>
                             </Collapse>

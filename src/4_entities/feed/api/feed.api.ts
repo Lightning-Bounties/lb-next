@@ -18,6 +18,7 @@ class FeedApi {
         issueId?: string, 
         rewardAmount: number, 
         unlocks_at: string,
+        is_anonymous?: boolean,
     }) {
         const resp = await appApi.rewards.postRewardApiRewardsPost({
             requestBody: {
@@ -25,6 +26,7 @@ class FeedApi {
                 issue_lb_id: opts.issueId,
                 reward_sats: opts.rewardAmount,
                 unlocks_at: opts.unlocks_at,
+                is_anonymous: opts.is_anonymous
             }
         })
         return resp

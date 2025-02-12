@@ -1,5 +1,7 @@
 import { appRoutes } from '@/5_shared/config/appRoutes'
 
+const ANONYMOUS_AVATAR_URL = '/anon_avatar.png'
+
 const parseTimestamp = (timestamp: string) => {
     // Add Z suffix if missing to ensure UTC interpretation
     const normalizedTimestamp = timestamp.endsWith('Z') ? timestamp : timestamp + 'Z'
@@ -41,16 +43,29 @@ const RewardCard: FC<RewardExpandedSchema> = (props) => {
             >
             <Flex justify="space-between" align="flex-end">
                 <Flex vertical gap="small">
-                    <Link href={'/' + appRoutes.profile + '/' + (props?.rewarder_data?.id ?? '')} >
-                        <Avatar
-                            avatarUrl={props?.rewarder_data?.avatar_url ?? undefined}
-                        />
-                    </Link>
-                    <Flex align="center" gap="small">
-                        <Link href={'/' + appRoutes.profile + '/' + (props?.rewarder_data?.id ?? '')}>
-                            {props.rewarder_data?.github_username}
-                        </Link>
-                    </Flex>
+                    {props.is_anonymous ? (
+                        <>
+                            <Avatar
+                                avatarUrl={ANONYMOUS_AVATAR_URL}
+                            />
+                            <Flex align="center" gap="small">
+                                <Typography>Anonymous Reward</Typography>
+                            </Flex>
+                        </>
+                    ) : (
+                        <>
+                            <Link href={'/' + appRoutes.profile + '/' + (props?.rewarder_data?.id ?? '')} >
+                                <Avatar
+                                    avatarUrl={props?.rewarder_data?.avatar_url ?? undefined}
+                                />
+                            </Link>
+                            <Flex align="center" gap="small">
+                                <Link href={'/' + appRoutes.profile + '/' + (props?.rewarder_data?.id ?? '')}>
+                                    {props.rewarder_data?.github_username}
+                                </Link>
+                            </Flex>
+                        </>
+                    )}
                 </Flex>
                 <Price amount={props.reward_sats} />
             </Flex>
