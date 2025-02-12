@@ -40,7 +40,7 @@ const AddReward: FC<AddRewardProps> = ({ issueId, issueUrl }) => {
 
 	const onFinish = (values: { amount: number, lockedUntilAmount: number, lockedUntilUnit: string }) => {
 		addReward({ 
-			issueUrl, 
+			issueId,
 			rewardAmount: values.amount, 
             unlocks_at: convertToUnlocksAtTimestamp(values.lockedUntilAmount, values.lockedUntilUnit)
 		})
