@@ -54,6 +54,21 @@ const hintsConfig: HintsConfigMap = {
          ),
         buttonText: 'Got it'
     },
+    lockTimeSelectorOneTimeReward: {
+        title: 'No Lock/Expiry on One-Time Rewards',
+        body: (
+            <div>
+            You are making an anonymous one-time additional reward: you can't set a lock time. 
+            <br/><br/>
+            Since you are not logged-in, this reward will not be tied to an account and you will not be able to be able to expire this award and recover the funds. Thus there is no lock time available for this reward action.
+            <br/><br/>
+            If you want to be able expire this award, you can log-in and post the reward as <a href="https://docs.lightningbounties.com/docs/posting-a-bounty/post-a-bounty" target="blank">anonymous (TODO)</a>.
+            <br/><br/>
+            If this bounty is closed, without completion, your reward will be rolled onto other bounties. See the docs for more details on <a href="https://docs.lightningbounties.com/docs/posting-a-bounty/post-a-bounty" target="blank">rolling forward one-time rewards (TODO)</a>.
+            </div>
+         ),
+        buttonText: 'Got it'
+    },
     rewardCardFromFeed: {
         title: 'Example of a Bounty Card',
         body: (

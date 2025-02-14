@@ -3,6 +3,7 @@
 import { FC, useState, useRef } from 'react'
 import { Button, Input, Flex, Form, Collapse, notification, Row, Col, Checkbox, Tour, TourProps } from 'antd'
 import { QuestionCircleOutlined } from '@ant-design/icons'
+import { OneTimeRewardInvoiceModal } from '@/3_features/issue/oneTimeRewardInvoiceModal'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { feedApi } from '@/4_entities/feed'
 import { profileApi } from '@/4_entities/me'
@@ -15,13 +16,16 @@ import { hintsConfig } from '@/5_shared/config/hints.config'
 type AddRewardProps = {
 	issueId: string
 	issueUrl: string
+    isLoggedIn: boolean
 }
 
-const AddReward: FC<AddRewardProps> = ({ issueId, issueUrl }) => {
+const AddReward: FC<AddRewardProps> = ({ issueId, issueUrl, isLoggedIn }) => {
 
 	const [formVisible, setFormVisible] = useState(false)
 	const [openTour, setOpenTour] = useState(false)
 	const anonymousHelpRef = useRef(null)
+	const [isModalOpen, setIsModalOpen] = useState(false)
+	const [pendingValues, setPendingValues] = useState<any>(null)
 	const [form] = Form.useForm()
 	const [api, contextHolder] = notification.useNotification()
 	const queryClient = useQueryClient()
@@ -42,13 +46,38 @@ const AddReward: FC<AddRewardProps> = ({ issueId, issueUrl }) => {
 		}
 	})
 
+    const handleQuickAmount = (amount: number) => {
+        form.setFieldValue('amount', amount)
+    }
+
 	const onFinish = (values: { amount: number, lockedUntilAmount: number, lockedUntilUnit: string, is_anonymous: boolean }) => {
-		addReward({ 
-			issueId,
-			rewardAmount: values.amount,
-            unlocks_at: convertToUnlocksAtTimestamp(values.lockedUntilAmount, values.lockedUntilUnit),
-            is_anonymous: values.is_anonymous
-		})
+		if (isLoggedIn) {
+            addReward({ 
+                issueId,
+                rewardAmount: values.amount,
+                unlocks_at: convertToUnlocksAtTimestamp(values.lockedUntilAmount, values.lockedUntilUnit),
+                is_anonymous: values.is_anonymous
+            })
+        } else {
+            setPendingValues({
+                ...values,
+                issueUrl,
+                issueTitle: 'Issue Title' // TODO: Get actual issue title from props
+            })
+            setIsModalOpen(true)
+        }
+	}
+
+	const handleModalConfirm = () => {
+		if (pendingValues) {
+			addReward({ 
+				issueId,
+				rewardAmount: pendingValues.amount,
+				unlocks_at: convertToUnlocksAtTimestamp(pendingValues.lockedUntilAmount, pendingValues.lockedUntilUnit),
+				is_anonymous: pendingValues.is_anonymous
+			})
+			setIsModalOpen(false)
+		}
 	}
 
 	const handleCancel = () => {
@@ -79,20 +108,31 @@ const AddReward: FC<AddRewardProps> = ({ issueId, issueUrl }) => {
             {formVisible && (
                 <Form 
                     initialValues={{
-                        lockedUntilAmount: 2,
-                        lockedUntilUnit: 'weeks',
-                        is_anonymous: false
+                        lockedUntilAmount: isLoggedIn ? 2 : 3,
+                        lockedUntilUnit: isLoggedIn ? 'weeks' : 'months',
+                        is_anonymous: isLoggedIn ? false : true
                     }}
                     form={form} 
                     onFinish={onFinish}
                     layout="vertical"
                     style={{ width: '100%' }}
                 >
+                    <h4>{isLoggedIn ? 'Add Reward to the Bounty' : 'Add Reward and Pay Invoice'}</h4>
                     <Row gutter={[16, 16]} style={{ marginBottom: '4px' }}>
                         <Col>
+                            <Button onClick={() => handleQuickAmount(21)} style={{ marginRight: '8px' }}>
+                                21 sats
+                            </Button>
+                            <Button onClick={() => handleQuickAmount(1000)} style={{ marginRight: '8px' }}>
+                                1000 sats
+                            </Button>
+                            <Button onClick={() => handleQuickAmount(8333)} style={{ marginRight: '8px' }}>
+                                8333 sats
+                            </Button>
                             <Form.Item
                                 name="amount"
                                 rules={[{ required: true, message: 'Please input reward amount' }]}
+                                style={{ display: 'inline-block', marginBottom: 0, marginRight: '8px' }}
                             >
                                 <Input type="number" placeholder="Amount in sats" />
                             </Form.Item>
@@ -149,12 +189,19 @@ const AddReward: FC<AddRewardProps> = ({ issueId, issueUrl }) => {
                                         steps={tourSteps}
                                     />
                                     <LockTimeSelector />
+                                    <LockTimeSelector isOneTimeReward={!isLoggedIn} />
                                 </Panel>
                             </Collapse>
                         </Col>
                     </Row>
                 </Form>
             )}
+            <OneTimeRewardInvoiceModal
+                open={isModalOpen}
+                onOk={handleModalConfirm}
+                onCancel={() => setIsModalOpen(false)}
+                pendingValues={pendingValues}
+            />
         </Flex>
     )
 }

@@ -18,7 +18,7 @@ const IssueBaseInfoAddReward: FC<IssueBaseInfoAddRewardProps> = ({ issueId, issu
     retry: false
   })
 
-  return !error ? <AddReward issueId={issueId} issueUrl={issueUrl} /> : null
+  return <AddReward issueId={issueId} issueUrl={issueUrl} isLoggedIn={!error} />
 
 }
 

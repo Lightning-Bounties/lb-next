@@ -14,23 +14,29 @@ const timeUnits = [
 interface LockTimeSelectorProps {
     amountName?: string;
     unitName?: string;
+    isOneTimeReward?: boolean;
 }
 
 const LockTimeSelector: FC<LockTimeSelectorProps> = ({ 
     amountName = "lockedUntilAmount",
-    unitName = "lockedUntilUnit"
+    unitName = "lockedUntilUnit",
+    isOneTimeReward = false
 }) => {
 
     const ref1 = useRef<any>(null)
     const [open, setOpen] = useState<boolean>(false);
 
+    const hintName = isOneTimeReward ? 
+        'lockTimeSelectorOneTimeReward' : 
+        'lockTimeSelector'
+
     const steps: TourProps['steps'] = [
         {
-            title: hintsConfig['lockTimeSelector'].title,
-            description: hintsConfig['lockTimeSelector'].body,
+            title: hintsConfig[hintName].title,
+            description: hintsConfig[hintName].body,
             target: () => ref1.current,
             nextButtonProps: {
-                children: hintsConfig['lockTimeSelector'].buttonText
+                children: hintsConfig[hintName].buttonText
             }
         }
     ]
@@ -60,7 +66,7 @@ const LockTimeSelector: FC<LockTimeSelectorProps> = ({
                     ]}
                     normalize={(value: string) => Number(value)}
                 >
-                    <Input type="number" min={1} placeholder="Duration" />
+                    <Input type="number" min={1} placeholder="Duration" disabled={isOneTimeReward} />
                 </Form.Item>
             </Col>
             <Col span={6}>
@@ -73,6 +79,7 @@ const LockTimeSelector: FC<LockTimeSelectorProps> = ({
                     <Select
                         options={timeUnits}
                         placeholder="Select unit (e.g. weeks)"
+                        disabled={isOneTimeReward}
                     />
                 </Form.Item>
             </Col>
