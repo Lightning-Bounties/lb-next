@@ -26,6 +26,19 @@ const hintsConfig: HintsConfigMap = {
          ),
         buttonText: 'OK'
     },
+    anonRewardCheckbox: {
+        title: 'Anonymous Rewards',
+        body: (
+            <div>
+            Check this box to hide your name/profile from appearing on this reward.
+            <br/><br/>
+            You can still expire your reward (after the lock-time have elapsed) just like with a normal reward.
+            <br/><br/>
+            <b>TODO</b> - add to <a href="https://docs.lightningbounties.com/docs/posting-a-bounty/post-a-bounty" target="blank">docs</a>.
+            </div>
+         ),
+        buttonText: 'OK'
+    },
     lockTimeSelector: {
         title: 'Bounty Lock Times',
         body: (

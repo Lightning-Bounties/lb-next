@@ -1,7 +1,8 @@
 'use client'
 
-import { FC, useState } from 'react'
-import { Button, Input, Flex, Form, Collapse, notification, Row, Col, Checkbox } from 'antd'
+import { FC, useState, useRef } from 'react'
+import { Button, Input, Flex, Form, Collapse, notification, Row, Col, Checkbox, Tour, TourProps } from 'antd'
+import { QuestionCircleOutlined } from '@ant-design/icons'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { feedApi } from '@/4_entities/feed'
 import { profileApi } from '@/4_entities/me'
@@ -9,6 +10,7 @@ import { useRouter } from 'next/navigation'
 import { catchHTTPValidationError } from '@/5_shared/utils/catchHTTPValidationError';
 import { LockTimeSelector } from '@/5_shared/ui/LockTimeSelector'
 import { convertToUnlocksAtTimestamp } from '@/5_shared/utils/timeConversion'
+import { hintsConfig } from '@/5_shared/config/hints.config'
 
 type AddRewardProps = {
 	issueId: string
@@ -18,6 +20,8 @@ type AddRewardProps = {
 const AddReward: FC<AddRewardProps> = ({ issueId, issueUrl }) => {
 
 	const [formVisible, setFormVisible] = useState(false)
+	const [openTour, setOpenTour] = useState(false)
+	const anonymousHelpRef = useRef(null)
 	const [form] = Form.useForm()
 	const [api, contextHolder] = notification.useNotification()
 	const queryClient = useQueryClient()
@@ -50,6 +54,17 @@ const AddReward: FC<AddRewardProps> = ({ issueId, issueUrl }) => {
 	const handleCancel = () => {
 		setFormVisible(false)
 	}
+
+    const tourSteps: TourProps['steps'] = [
+        {
+            title: hintsConfig['anonRewardCheckbox'].title,
+            description: hintsConfig['anonRewardCheckbox'].body,
+            target: () => anonymousHelpRef.current,
+            nextButtonProps: {
+                children: hintsConfig['anonRewardCheckbox'].buttonText
+            }
+        }
+    ]
 
 	const { Panel } = Collapse
 
@@ -104,12 +119,35 @@ const AddReward: FC<AddRewardProps> = ({ issueId, issueUrl }) => {
                                 style={{ background: 'none', padding: 0 }}
                             >
                                 <Panel key="1" header="Advanced settings" forceRender>
-                                    <Form.Item
-                                        name="is_anonymous"
-                                        valuePropName="checked"
-                                    >
-                                        <Checkbox>Make reward anonymous</Checkbox>
+                                    <Form.Item style={{ marginBottom: '8px' }}>
+                                        <Row align="middle" gutter={8}>
+                                            <Col span={1}>
+                                                <QuestionCircleOutlined
+                                                    ref={anonymousHelpRef}
+                                                    onClick={() => setOpenTour(true)}
+                                                    style={{ cursor: 'pointer' }}
+                                                    className={`opacity50`}
+                                                />
+                                            </Col>
+                                            <Col span={7} style={{ display: 'flex', alignItems: 'center' }}>
+                                                <span style={{ marginRight: '8px' }}>Make reward anonymous</span>
+                                            </Col>
+                                            <Col>
+                                                <Form.Item
+                                                    name="is_anonymous"
+                                                    valuePropName="checked"
+                                                    noStyle
+                                                >
+                                                    <Checkbox />
+                                                </Form.Item>
+                                            </Col>
+                                        </Row>
                                     </Form.Item>
+                                    <Tour 
+                                        open={openTour}
+                                        onClose={() => setOpenTour(false)}
+                                        steps={tourSteps}
+                                    />
                                     <LockTimeSelector />
                                 </Panel>
                             </Collapse>
