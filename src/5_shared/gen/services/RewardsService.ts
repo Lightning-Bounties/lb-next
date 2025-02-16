@@ -2,11 +2,14 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { CheckOneTimePaymentRequest } from '../models/CheckOneTimePaymentRequest';
 import type { CheckPullRequest } from '../models/CheckPullRequest';
 import type { ClaimRewardRequest } from '../models/ClaimRewardRequest';
 import type { ClaimRewardResponse } from '../models/ClaimRewardResponse';
 import type { CountResponse } from '../models/CountResponse';
+import type { CreateOneTimeRewardRequest } from '../models/CreateOneTimeRewardRequest';
 import type { CreateRewardRequest } from '../models/CreateRewardRequest';
+import type { OnetimePaymentResponse } from '../models/OnetimePaymentResponse';
 import type { RewardCompletionSchema } from '../models/RewardCompletionSchema';
 import type { RewardExpandedSchema } from '../models/RewardExpandedSchema';
 import type { RewardSchema } from '../models/RewardSchema';
@@ -71,6 +74,50 @@ export class RewardsService {
                 'is_locked': isLocked,
             },
             errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+    /**
+     * Create Onetime Payment
+     * Create a one-time reward using the system user
+     * @returns OnetimePaymentResponse Successful Response
+     * @throws ApiError
+     */
+    public createOnetimePaymentApiRewardsOnetimePost({
+        requestBody,
+    }: {
+        requestBody: CreateOneTimeRewardRequest,
+    }): CancelablePromise<OnetimePaymentResponse> {
+        return this.httpRequest.request({
+            method: 'POST',
+            url: '/api/rewards/onetime',
+            body: requestBody,
+            mediaType: 'application/json',
+            errors: {
+                400: `Bad Request`,
+                422: `Validation Error`,
+            },
+        });
+    }
+    /**
+     * Check Onetime Payment
+     * Check if a one-time payment has been received and create the reward if so
+     * @returns any Successful Response
+     * @throws ApiError
+     */
+    public checkOnetimePaymentApiRewardsOnetimeCheckPost({
+        requestBody,
+    }: {
+        requestBody: CheckOneTimePaymentRequest,
+    }): CancelablePromise<Record<string, any>> {
+        return this.httpRequest.request({
+            method: 'POST',
+            url: '/api/rewards/onetime/check',
+            body: requestBody,
+            mediaType: 'application/json',
+            errors: {
+                400: `Bad Request`,
                 422: `Validation Error`,
             },
         });
