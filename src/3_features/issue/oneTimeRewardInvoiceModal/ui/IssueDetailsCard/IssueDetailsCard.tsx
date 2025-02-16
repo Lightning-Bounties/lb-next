@@ -21,17 +21,17 @@ const IssueDetailsCard: FC<IssueDetailsCardProps> = ({
         : issueTitle
 
     return (
-        <Card style={{ marginBottom: 16 }}>
+        <Card style={{ marginBottom: 16, textAlign: 'center' }}>
             <div>
-                <Text strong>Repository: </Text>
+                <Text strong>Issue URL: </Text>
                 <Text>{issueUrl}</Text>
             </div>
             <div>
-                <Text strong>Issue: </Text>
+                <Text strong>Issue Descr: </Text>
                 <Text>{truncatedTitle}</Text>
             </div>
             <div>
-                <Text strong>Deposit Amount: </Text>
+                <Text strong>Adding: </Text>
                 <Text>{rewardAmount} sats</Text>
             </div>
         </Card>

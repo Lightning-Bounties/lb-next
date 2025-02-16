@@ -12,6 +12,7 @@ type OneTimeRewardInvoiceModalProps = {
     pendingValues: {
         amount: number
         issueUrl: string
+        issueId: string
         issueTitle: string
     }
 }
@@ -24,7 +25,7 @@ const OneTimeRewardInvoiceModal: FC<OneTimeRewardInvoiceModalProps> = ({
 }) => {
     return (
         <Modal
-            title="Add Reward to Issue"
+            title={<div style={{ textAlign: 'center' }}>Add Reward to Issue</div>}
             open={open}
             footer={[
                 <Button key="cancel" onClick={onCancel}>
@@ -40,7 +41,10 @@ const OneTimeRewardInvoiceModal: FC<OneTimeRewardInvoiceModalProps> = ({
                 issueTitle={pendingValues?.issueTitle || ''}
                 rewardAmount={pendingValues?.amount || 0}
             />
-            <PaymentCard amount={pendingValues?.amount || 0} />
+            <PaymentCard 
+                amount={pendingValues?.amount || 0} 
+                issueId={pendingValues?.issueId || ''}
+            />
         </Modal>
     )
 }

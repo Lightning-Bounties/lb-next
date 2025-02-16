@@ -8,9 +8,10 @@ import { FC } from 'react'
 type IssueBaseInfoAddRewardProps = {
     issueId: string
     issueUrl: string
+    issueTitle: string
 }
 
-const IssueBaseInfoAddReward: FC<IssueBaseInfoAddRewardProps> = ({ issueId, issueUrl }) => {
+const IssueBaseInfoAddReward: FC<IssueBaseInfoAddRewardProps> = ({ issueId, issueUrl, issueTitle }) => {
 
   const { error, isLoading } = useQuery({
     queryKey: userApi.qkGetUserData(),
@@ -18,7 +19,7 @@ const IssueBaseInfoAddReward: FC<IssueBaseInfoAddRewardProps> = ({ issueId, issu
     retry: false
   })
 
-  return <AddReward issueId={issueId} issueUrl={issueUrl} isLoggedIn={!error} />
+  return <AddReward issueId={issueId} issueUrl={issueUrl} issueTitle={issueTitle} isLoggedIn={!error} />
 
 }
 

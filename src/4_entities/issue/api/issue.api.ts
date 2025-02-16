@@ -33,6 +33,42 @@ class IssueApi {
         return data
     }
 
+    async createOneTimePayment(issueId: string, amount: number) {
+        const resp = await fetch(
+            `${API_URL}/api/rewards/onetime`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    issue_lb_id: issueId,
+                    reward_sats: amount
+                })
+            }
+        )
+        const data = await resp.json()
+        return data
+    }
+
+    async checkOneTimePayment(issueId: string, checkingId: string) {
+        const resp = await fetch(
+            `${API_URL}/api/rewards/onetime/check`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    issue_lb_id: issueId,
+                    checking_id: checkingId
+                })
+            }
+        )
+        const data = await resp.json()
+        return data
+    }
+
 }
 
 const issueApi = new IssueApi()

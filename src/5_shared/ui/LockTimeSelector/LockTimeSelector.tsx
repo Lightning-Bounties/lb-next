@@ -61,7 +61,7 @@ const LockTimeSelector: FC<LockTimeSelectorProps> = ({
                 <Form.Item
                     name={amountName}
                     rules={[
-                        { required: true, message: 'Required field' },
+                        { required: !isOneTimeReward, message: 'Required field' },
                         { type: 'number', min: 1, message: 'Value must be at least 1' }
                     ]}
                     normalize={(value: string) => Number(value)}
@@ -73,7 +73,7 @@ const LockTimeSelector: FC<LockTimeSelectorProps> = ({
                 <Form.Item
                     name={unitName}
                     rules={[
-                        { required: true, message: 'Required field' }
+                        { required: !isOneTimeReward, message: 'Required field' }
                     ]}
                 >
                     <Select

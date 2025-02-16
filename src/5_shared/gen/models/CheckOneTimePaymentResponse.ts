@@ -2,8 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type OnetimePaymentResponse = {
-    invoice: string;
-    checking_id: string;
+export type CheckOneTimePaymentResponse = {
+    is_paid: boolean;
 };
 

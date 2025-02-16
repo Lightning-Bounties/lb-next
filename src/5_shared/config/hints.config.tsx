@@ -39,6 +39,17 @@ const hintsConfig: HintsConfigMap = {
          ),
         buttonText: 'OK'
     },
+    anonRewardCheckboxOneTimeReward: {
+        title: 'Always Anonymous',
+        body: (
+            <div>
+            You will always create an anonymous reward when adding to reward from a signed out state.
+            <br/><br/>
+            If you would like your profile to be present and/or the ability to take back your award please register and sign-in.
+            </div>
+         ),
+        buttonText: 'OK'
+    },
     lockTimeSelector: {
         title: 'Bounty Lock Times',
         body: (

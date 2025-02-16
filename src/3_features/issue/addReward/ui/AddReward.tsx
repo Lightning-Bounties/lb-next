@@ -16,12 +16,13 @@ import { hintsConfig } from '@/5_shared/config/hints.config'
 type AddRewardProps = {
 	issueId: string
 	issueUrl: string
+    issueTitle: string
     isLoggedIn: boolean
 }
 
-const AddReward: FC<AddRewardProps> = ({ issueId, issueUrl, isLoggedIn }) => {
+const AddReward: FC<AddRewardProps> = ({ issueId, issueUrl, issueTitle, isLoggedIn }) => {
 
-	const [formVisible, setFormVisible] = useState(false)
+	const [formVisible, setFormVisible] = useState(true)
 	const [openTour, setOpenTour] = useState(false)
 	const anonymousHelpRef = useRef(null)
 	const [isModalOpen, setIsModalOpen] = useState(false)
@@ -62,7 +63,8 @@ const AddReward: FC<AddRewardProps> = ({ issueId, issueUrl, isLoggedIn }) => {
             setPendingValues({
                 ...values,
                 issueUrl,
-                issueTitle: 'Issue Title' // TODO: Get actual issue title from props
+                issueId,
+                issueTitle,
             })
             setIsModalOpen(true)
         }
@@ -84,13 +86,18 @@ const AddReward: FC<AddRewardProps> = ({ issueId, issueUrl, isLoggedIn }) => {
 		setFormVisible(false)
 	}
 
+    const hintName = isLoggedIn ? 
+        'anonRewardCheckbox' : 
+        'anonRewardCheckboxOneTimeReward'
+
     const tourSteps: TourProps['steps'] = [
+
         {
-            title: hintsConfig['anonRewardCheckbox'].title,
-            description: hintsConfig['anonRewardCheckbox'].body,
+            title: hintsConfig[hintName].title,
+            description: hintsConfig[hintName].body,
             target: () => anonymousHelpRef.current,
             nextButtonProps: {
-                children: hintsConfig['anonRewardCheckbox'].buttonText
+                children: hintsConfig[hintName].buttonText
             }
         }
     ]
@@ -117,7 +124,7 @@ const AddReward: FC<AddRewardProps> = ({ issueId, issueUrl, isLoggedIn }) => {
                     layout="vertical"
                     style={{ width: '100%' }}
                 >
-                    <h4>{isLoggedIn ? 'Add Reward to the Bounty' : 'Add Reward and Pay Invoice'}</h4>
+                    <h4>{'Add Reward to the Bounty'}</h4>
                     <Row gutter={[16, 16]} style={{ marginBottom: '4px' }}>
                         <Col>
                             <Button onClick={() => handleQuickAmount(21)} style={{ marginRight: '8px' }}>
@@ -152,7 +159,9 @@ const AddReward: FC<AddRewardProps> = ({ issueId, issueUrl, isLoggedIn }) => {
                             </Form.Item>
                         </Col>
                     </Row>
-                    <Row>
+                    {/* { isLoggedIn && ( */}
+                    { (true) && (
+                        <Row>
                         <Col span={24}>
                             <Collapse
                                 bordered={false}
@@ -178,7 +187,9 @@ const AddReward: FC<AddRewardProps> = ({ issueId, issueUrl, isLoggedIn }) => {
                                                     valuePropName="checked"
                                                     noStyle
                                                 >
-                                                    <Checkbox />
+                                                    <Checkbox
+                                                        disabled={!isLoggedIn}
+                                                    />
                                                 </Form.Item>
                                             </Col>
                                         </Row>
@@ -188,12 +199,12 @@ const AddReward: FC<AddRewardProps> = ({ issueId, issueUrl, isLoggedIn }) => {
                                         onClose={() => setOpenTour(false)}
                                         steps={tourSteps}
                                     />
-                                    <LockTimeSelector />
                                     <LockTimeSelector isOneTimeReward={!isLoggedIn} />
                                 </Panel>
                             </Collapse>
                         </Col>
-                    </Row>
+                        </Row>
+                    )}
                 </Form>
             )}
             <OneTimeRewardInvoiceModal
