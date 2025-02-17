@@ -46,7 +46,7 @@ const ProfileRewardCard: FC<ProfileRewardCardProps> = (props) => {
         onSuccess: () => {
             api.success({ message: 'Reward expired successfully!' })
             queryClient.invalidateQueries({
-                queryKey: profileApi.qkGetProfileRewardsHistory(props.rewarder_id)
+                queryKey: profileApi.qkGetProfileRewardsHistory(props.rewarder_id ?? '')
             })
             queryClient.invalidateQueries({ 
                 queryKey: profileApi.qkGetUserWallet() 

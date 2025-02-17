@@ -14,15 +14,19 @@ class FeedApi {
     }
 
     async createReward(opts: { 
-        issueUrl: string, 
+        issueUrl?: string,
+        issueId?: string, 
         rewardAmount: number, 
         unlocks_at: string,
+        is_anonymous?: boolean,
     }) {
         const resp = await appApi.rewards.postRewardApiRewardsPost({
             requestBody: {
                 issue_html_url: opts.issueUrl,
+                issue_lb_id: opts.issueId,
                 reward_sats: opts.rewardAmount,
                 unlocks_at: opts.unlocks_at,
+                is_anonymous: opts.is_anonymous
             }
         })
         return resp

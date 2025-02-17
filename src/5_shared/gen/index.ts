@@ -10,10 +10,14 @@ export { CancelablePromise, CancelError } from './core/CancelablePromise';
 export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
+export type { CheckOneTimePaymentRequest } from './models/CheckOneTimePaymentRequest';
+export type { CheckOneTimePaymentResponse } from './models/CheckOneTimePaymentResponse';
 export type { CheckPullRequest } from './models/CheckPullRequest';
 export type { ClaimRewardRequest } from './models/ClaimRewardRequest';
 export type { ClaimRewardResponse } from './models/ClaimRewardResponse';
 export type { CountResponse } from './models/CountResponse';
+export type { CreateOneTimePaymentResponse } from './models/CreateOneTimePaymentResponse';
+export type { CreateOneTimeRewardRequest } from './models/CreateOneTimeRewardRequest';
 export type { CreateRewardRequest } from './models/CreateRewardRequest';
 export type { DepositRequestSchema } from './models/DepositRequestSchema';
 export type { DepositResponseSchema } from './models/DepositResponseSchema';

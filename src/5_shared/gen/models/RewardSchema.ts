@@ -7,9 +7,10 @@ export type RewardSchema = {
     modified_at: string;
     id: string;
     issue_id: string;
-    rewarder_id: string;
+    rewarder_id?: (string | null);
     reward_sats: number;
     unlocks_at?: (string | null);
     expires_at?: (string | null);
+    is_anonymous?: boolean;
 };
 

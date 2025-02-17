@@ -124,6 +124,7 @@ const IssueBaseInfo: FC<IssueBaseInfoProps> = async ({ rewardId }) => {
                         ? <IssueBaseInfoAddReward 
                             issueId={data.id} 
                             issueUrl={data.html_url} 
+                            issueTitle={data.title}
                         />
                         : null
                 }

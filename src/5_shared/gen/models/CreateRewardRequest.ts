@@ -8,5 +8,6 @@ export type CreateRewardRequest = {
     reward_sats: number;
     expires_at?: (string | null);
     unlocks_at?: (string | null);
+    is_anonymous?: boolean;
 };
 

@@ -26,6 +26,30 @@ const hintsConfig: HintsConfigMap = {
          ),
         buttonText: 'OK'
     },
+    anonRewardCheckbox: {
+        title: 'Anonymous Rewards',
+        body: (
+            <div>
+            Check this box to hide your name/profile from appearing on this reward.
+            <br/><br/>
+            You can still expire your reward (after the lock-time have elapsed) just like with a normal reward.
+            <br/><br/>
+            <b>TODO</b> - add to <a href="https://docs.lightningbounties.com/docs/posting-a-bounty/post-a-bounty" target="blank">docs</a>.
+            </div>
+         ),
+        buttonText: 'OK'
+    },
+    anonRewardCheckboxOneTimeReward: {
+        title: 'Always Anonymous',
+        body: (
+            <div>
+            You will always create an anonymous reward when adding to reward from a signed out state.
+            <br/><br/>
+            If you would like your profile to be present and/or the ability to take back your award please register and sign-in.
+            </div>
+         ),
+        buttonText: 'OK'
+    },
     lockTimeSelector: {
         title: 'Bounty Lock Times',
         body: (
@@ -37,6 +61,21 @@ const hintsConfig: HintsConfigMap = {
             As a rule of thumb, we suggest the default of 2 weeks for your first bounty.
             <br/><br/>
             <b>TODO</b> - add to <a href="https://docs.lightningbounties.com/docs/posting-a-bounty/post-a-bounty" target="blank">docs</a>.
+            </div>
+         ),
+        buttonText: 'Got it'
+    },
+    lockTimeSelectorOneTimeReward: {
+        title: 'No Lock/Expiry on One-Time Rewards',
+        body: (
+            <div>
+            You are making an anonymous one-time additional reward: you can't set a lock time. 
+            <br/><br/>
+            Since you are not logged-in, this reward will not be tied to an account and you will not be able to be able to expire this award and recover the funds. Thus there is no lock time available for this reward action.
+            <br/><br/>
+            If you want to be able expire this award, you can log-in and post the reward as <a href="https://docs.lightningbounties.com/docs/posting-a-bounty/post-a-bounty" target="blank">anonymous (TODO)</a>.
+            <br/><br/>
+            If this bounty is closed, without completion, your reward will be rolled onto other bounties. See the docs for more details on <a href="https://docs.lightningbounties.com/docs/posting-a-bounty/post-a-bounty" target="blank">rolling forward one-time rewards (TODO)</a>.
             </div>
          ),
         buttonText: 'Got it'
