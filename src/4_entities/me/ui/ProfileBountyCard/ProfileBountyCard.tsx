@@ -43,6 +43,14 @@ const ProfileBountyCard: React.FC<ProfileBountyCardProps> = ({
                 <strong>Claimed:</strong> {claimedAt ? new Date(claimedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : 'Not claimed'}
             </Paragraph>
             <Paragraph>
+                <strong>Issue:</strong>
+                {htmlUrl ? (
+                    <Link href={htmlUrl} target="_blank" rel="noopener noreferrer">
+                        <span style={{color: 'gray', marginLeft: '5px'}}>{htmlUrl}</span>
+                    </Link>
+                ) : <span style={{color: 'gray', marginLeft: '5px'}}>{htmlUrl}</span>}
+            </Paragraph>
+            <Paragraph>
                 <strong>Total Reward:</strong> {totalReward} sats
             </Paragraph>
         </Card>
