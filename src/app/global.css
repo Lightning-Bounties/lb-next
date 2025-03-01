@@ -23,3 +23,14 @@ html {
 body[data-color-mode*='dark'] {
     --color-canvas-default: #181818 !important
 }
+.ant-notification {
+    top: 80px !important;
+}
+
+.ant-collapse-header:focus,
+.ant-collapse-header:hover
+{
+    color: #1677FF !important;
+    
+}
+
