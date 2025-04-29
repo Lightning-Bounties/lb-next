@@ -18,6 +18,7 @@
     "@uiw/react-markdown-preview": "^5.1.2",
     "antd": "^5.19.3",
     "axios": "^1.7.2",
+    "bolt11": "^1.4.1",
     "immer": "^10.1.1",
     "next": "14.2.5",
     "qrcode.react": "^3.1.0",
