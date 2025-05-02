@@ -13,6 +13,7 @@ import {
     Checkbox,
     Tour,
     TourProps,
+    Typography,
 } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { OneTimeRewardInvoiceModal } from '@/3_features/issue/oneTimeRewardInvoiceModal';
@@ -24,6 +25,7 @@ import { catchHTTPValidationError } from '@/5_shared/utils/catchHTTPValidationEr
 import { LockTimeSelector } from '@/5_shared/ui/LockTimeSelector';
 import { convertToUnlocksAtTimestamp } from '@/5_shared/utils/timeConversion';
 import { hintsConfig } from '@/5_shared/config/hints.config';
+import Paragraph from 'antd/lib/typography/Paragraph';
 
 type AddRewardProps = {
     issueId: string;
@@ -157,6 +159,7 @@ const AddReward: FC<AddRewardProps> = ({
                     style={{ width: '100%' }}
                 >
                     <h4>{'Add Reward to the Bounty'}</h4>
+
                     <Row gutter={[16, 16]} style={{ marginBottom: '4px' }}>
                         <Col>
                             <Button
@@ -216,6 +219,12 @@ const AddReward: FC<AddRewardProps> = ({
                             </Form.Item>
                         </Col>
                     </Row>
+                    <Typography.Text
+                        style={{ marginLeft: '5px' }}
+                        type="secondary"
+                    >
+                        1$ ~ 1000 sats
+                    </Typography.Text>
                     {/* { isLoggedIn && ( */}
                     {true && (
                         <Row>

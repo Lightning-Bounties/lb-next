@@ -1,7 +1,7 @@
 import { Card, Flex, Spin, Typography } from 'antd';
 import { FC } from 'react';
 import s from './PaymentsCard.module.css';
-import { Price } from '@/5_shared/ui/Price/Price';
+import { SATPrice } from '@/5_shared/ui/SATPrice/SATPrice';
 import { getStringDate } from '@/5_shared/utils/getStringDate';
 import { LightningTransactionSchema } from '@/5_shared/gen';
 
@@ -16,7 +16,7 @@ const PaymentCard: FC<LightningTransactionSchema> = (props) => {
                         >
                             <Flex align="center">
                                 {props.amount > 0 ? '+' : ''}
-                                <Price amount={props.amount} />
+                                <SATPrice amount={props.amount} />
                             </Flex>
                         </span>
                         {props.pending ? (
@@ -31,7 +31,7 @@ const PaymentCard: FC<LightningTransactionSchema> = (props) => {
                     </Typography>
                 </Flex>
                 <Typography style={{ fontStyle: 'italic' }}>
-                    {'"' + props.memo + '"'}
+                    "{props.memo}"
                 </Typography>
             </Flex>
         </Card>

@@ -11,11 +11,11 @@ const parseTimestamp = (timestamp: string) => {
 };
 import { RewardExpandedSchema, RewardSchema } from '@/5_shared/gen';
 import { Avatar } from '@/5_shared/ui/Avatar/Avatar';
-import { Price } from '@/5_shared/ui/Price/Price';
 import { getStringDate } from '@/5_shared/utils/getStringDate';
 import { Card, Flex, Typography, Tooltip } from 'antd';
 import Link from 'next/link';
 import { FC } from 'react';
+import { Prices } from '@/3_features/me/prices';
 
 const RewardCard: FC<RewardExpandedSchema> = (props) => {
     const {
@@ -79,7 +79,7 @@ const RewardCard: FC<RewardExpandedSchema> = (props) => {
                         </>
                     )}
                 </Flex>
-                <Price amount={props.reward_sats} />
+                <Prices amount={props.reward_sats} />
             </Flex>
             <Flex justify="space-between" align="flex-end">
                 <Tooltip

@@ -11,8 +11,13 @@ import logo from '../icons/LB_nobg.svg';
 import Image from 'next/image';
 import s from './Header.module.css';
 import { appRoutes } from '@/5_shared/config/appRoutes';
+
 const ThemeToggler = dynamic(
-    () => import('../../../../3_features/me/themeToggler/ui/ThemeToggler'),
+    () => import('@/3_features/me/themeToggler/ui/ThemeToggler'),
+    { ssr: false },
+);
+const CurrencyToggler = dynamic(
+    () => import('@/3_features/me/currencyToggler/ui/CurrencyToggler'),
     { ssr: false },
 );
 
@@ -68,7 +73,12 @@ const Header: FC<HeaderProps> = ({ profileSlot, walletSlot }) => {
                     </Flex>
                 </Flex>
                 <Flex gap="middle" align="center" className={s.mobileGap}>
-                    <Flex className={s.themeToggler}>
+                    <Flex align="center" gap="small" className={s.themeToggler}>
+                        {isLoading ? (
+                            <Spin />
+                        ) : error ? null : (
+                            <CurrencyToggler />
+                        )}
                         <ThemeToggler />
                     </Flex>
                     {isLoading ? (
