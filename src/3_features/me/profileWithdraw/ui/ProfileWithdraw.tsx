@@ -33,10 +33,13 @@ const ProfileWithdraw: React.FC<ProfileWithdrawProps> = ({ refetch }) => {
 
   const onFinishHandler = async (data: { payment_request: string }) => {
     try {
+      const paymentRequest = data.payment_request.startsWith('lightning:')                 
+        ? data.payment_request.substring(10)
+        : data.payment_request;     
       await withdrawFunds({
-        paymentLink: data.payment_request,
+        paymentLink: paymentRequest,
       });
-      api.success({ message: 'Success' });
+      api.success({ message: 'Payment initiated successlly. But not confirmed yet' });
       await refetch();
       form.resetFields();
       setIsButtonEnabled(false);
@@ -53,10 +56,10 @@ const ProfileWithdraw: React.FC<ProfileWithdrawProps> = ({ refetch }) => {
       setError(null);
       setDecodedData(null);
 
-      if (invoice.startsWith('lnbc') || invoice.startsWith('lntb') || invoice.includes('lightning:')) {
+      if (invoice.startsWith('lnbc') || invoice.includes('lightning:')) {
         try {
           const parsed = await parseInvoice(invoice);
-          if (!parsed || parsed.isLNURL || !parsed.data) {
+          if (!parsed || !parsed.data) {
             setError('Only standard BOLT11 invoices are supported in this form.');
             return;
           }
@@ -82,8 +85,13 @@ const ProfileWithdraw: React.FC<ProfileWithdrawProps> = ({ refetch }) => {
             hash,
           });
         } catch (err) {
-          setError((err as Error).message || 'Failed to decode invoice.');
+          const errorMessage = (err as Error).message || 'Failed to decode invoice.';
+          setError(errorMessage.length > 30 ? errorMessage.substring(0, 30) + '...' : errorMessage);
         }
+      } else {
+        setIsButtonEnabled(false);
+        setDecodedData(null);
+        setError('Invoice type not recognized: expecting it to start with `lnbc` or `lightning:`.');
       }
     } else {
       setIsButtonEnabled(false);
@@ -144,7 +152,7 @@ const ProfileWithdraw: React.FC<ProfileWithdrawProps> = ({ refetch }) => {
       {decodedData && (
         <div style={{ marginTop: 16 }}>
           <Divider orientation="left" plain>
-            <Typography.Text style={{ color: 'white' }}>Decoded Invoice</Typography.Text>
+            <Typography.Text>Decoded Invoice</Typography.Text>
           </Divider>
           
           <Flex vertical gap="small">
@@ -173,13 +181,10 @@ const ProfileWithdraw: React.FC<ProfileWithdrawProps> = ({ refetch }) => {
                 Hash:
               </Typography.Text>
               <div style={{ 
-                // backgroundColor: '#1f2937', 
-                // padding: '8px', 
-                // borderRadius: '4px',
                 flex: 1
               }}>
                 <Typography.Text
-                  style={{ fontSize: '12px', wordBreak: 'break-all', color: 'white' }}
+                  style={{ fontSize: '12px', wordBreak: 'break-all' }}
                 >
                   {decodedData.hash}
                 </Typography.Text>
