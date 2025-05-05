@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write .",
+    "format": "prettier --write \"**/*.{js,ts,tsx,json,css}\"",
+    "format:local": "[ -f .prettierignore.local ] && prettier --write --ignore-path .prettierignore.local \"**/*.{js,ts,tsx,json,css}\" || npm run format",
     "gen": "openapi --input https://<BACKEND_URL>/api/openapi.json --output ./src/5_shared/gen --client axios --useOptions --useUnionTypes --name lb"
   },
   "dependencies": {
