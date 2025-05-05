@@ -1,6 +1,54 @@
+/* Keep existing title styles */
 .title {
-    white-space: normal; 
-    overflow-wrap: break-word;
-    width: 100%; 
-    margin: 0; 
+  white-space: normal; 
+  overflow-wrap: break-word;
+  width: 100%; 
+  margin: 0; 
+}
+
+/* Add link styling */
+.linkText {
+  color: gray;
+  margin-left: 5px;
+  transition: color 0.3s ease;
+}
+
+/* Hover effects for links */
+.linkText:hover {
+  color: #1890ff; /* Blue color on hover for light mode */
+  text-decoration: underline;
+}
+
+/* Issue number styling */
+.issueNumber {
+  color: gray;
+  margin-left: 5px;
+  transition: color 0.3s ease;
+}
+
+/* Hover effect for issue number */
+.issueNumber:hover {
+  color: #1890ff; /* Blue color on hover for light mode */
+}
+
+/* Repository link styling */
+.repoLink {
+  color: gray;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+/* Hover effect for repository link */
+.repoLink:hover {
+  color: #1890ff; /* Blue color on hover for light mode */
+  text-decoration: underline;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .linkText:hover,
+  .issueNumber:hover,
+  .repoLink:hover {
+      color: #40a9ff; /* Lighter blue for dark mode */
+  }
 }
