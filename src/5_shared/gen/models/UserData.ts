@@ -8,6 +8,5 @@
 export type UserData = {
     id: string;
     github_username: string;
-    avatar_url?: (string | null);
+    avatar_url?: string | null;
 };
-

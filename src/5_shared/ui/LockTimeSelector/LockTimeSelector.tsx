@@ -1,7 +1,16 @@
-import { Col, Form, Input, Row, Select, Typography, Tour, TourProps, } from 'antd'
-import { QuestionCircleOutlined } from '@ant-design/icons'
-import { FC, useRef, useState } from 'react'
-import { hintsConfig } from '@/5_shared/config/hints.config'
+import {
+    Col,
+    Form,
+    Input,
+    Row,
+    Select,
+    Typography,
+    Tour,
+    TourProps,
+} from 'antd';
+import { QuestionCircleOutlined } from '@ant-design/icons';
+import { FC, useRef, useState } from 'react';
+import { hintsConfig } from '@/5_shared/config/hints.config';
 
 const timeUnits = [
     { label: 'Minutes', value: 'minutes' },
@@ -9,7 +18,7 @@ const timeUnits = [
     { label: 'Days', value: 'days' },
     { label: 'Weeks', value: 'weeks' },
     { label: 'Months', value: 'months' },
-]
+];
 
 interface LockTimeSelectorProps {
     amountName?: string;
@@ -17,18 +26,17 @@ interface LockTimeSelectorProps {
     isOneTimeReward?: boolean;
 }
 
-const LockTimeSelector: FC<LockTimeSelectorProps> = ({ 
-    amountName = "lockedUntilAmount",
-    unitName = "lockedUntilUnit",
-    isOneTimeReward = false
+const LockTimeSelector: FC<LockTimeSelectorProps> = ({
+    amountName = 'lockedUntilAmount',
+    unitName = 'lockedUntilUnit',
+    isOneTimeReward = false,
 }) => {
-
-    const ref1 = useRef<any>(null)
+    const ref1 = useRef<any>(null);
     const [open, setOpen] = useState<boolean>(false);
 
-    const hintName = isOneTimeReward ? 
-        'lockTimeSelectorOneTimeReward' : 
-        'lockTimeSelector'
+    const hintName = isOneTimeReward
+        ? 'lockTimeSelectorOneTimeReward'
+        : 'lockTimeSelector';
 
     const steps: TourProps['steps'] = [
         {
@@ -36,44 +44,63 @@ const LockTimeSelector: FC<LockTimeSelectorProps> = ({
             description: hintsConfig[hintName].body,
             target: () => ref1.current,
             nextButtonProps: {
-                children: hintsConfig[hintName].buttonText
-            }
-        }
-    ]
+                children: hintsConfig[hintName].buttonText,
+            },
+        },
+    ];
 
     return (
         <Row gutter={[8, 8]} align="middle" style={{ marginTop: '8px' }}>
             <Col span={1} style={{ display: 'flex', alignItems: 'center' }}>
-                <Tour open={open} onClose={() => setOpen(false)} steps={steps} />
+                <Tour
+                    open={open}
+                    onClose={() => setOpen(false)}
+                    steps={steps}
+                />
                 <QuestionCircleOutlined
                     ref={ref1}
-                    onClick={() => { setOpen(true) }}
+                    onClick={() => {
+                        setOpen(true);
+                    }}
                     className={`opacity50`}
                 />
             </Col>
             <Col span={7} style={{ display: 'flex', alignItems: 'center' }}>
-                <Typography.Text>
-                    Lock reward:
-                </Typography.Text>
+                <Typography.Text>Lock reward:</Typography.Text>
             </Col>
 
             <Col span={4}>
                 <Form.Item
                     name={amountName}
                     rules={[
-                        { required: !isOneTimeReward, message: 'Required field' },
-                        { type: 'number', min: 1, message: 'Value must be at least 1' }
+                        {
+                            required: !isOneTimeReward,
+                            message: 'Required field',
+                        },
+                        {
+                            type: 'number',
+                            min: 1,
+                            message: 'Value must be at least 1',
+                        },
                     ]}
                     normalize={(value: string) => Number(value)}
                 >
-                    <Input type="number" min={1} placeholder="Duration" disabled={isOneTimeReward} />
+                    <Input
+                        type="number"
+                        min={1}
+                        placeholder="Duration"
+                        disabled={isOneTimeReward}
+                    />
                 </Form.Item>
             </Col>
             <Col span={6}>
                 <Form.Item
                     name={unitName}
                     rules={[
-                        { required: !isOneTimeReward, message: 'Required field' }
+                        {
+                            required: !isOneTimeReward,
+                            message: 'Required field',
+                        },
                     ]}
                 >
                     <Select
@@ -84,7 +111,7 @@ const LockTimeSelector: FC<LockTimeSelectorProps> = ({
                 </Form.Item>
             </Col>
         </Row>
-    )
-}
+    );
+};
 
-export { LockTimeSelector }
+export { LockTimeSelector };

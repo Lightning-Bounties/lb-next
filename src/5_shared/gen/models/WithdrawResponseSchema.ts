@@ -5,4 +5,3 @@
 export type WithdrawResponseSchema = {
     success: boolean;
 };
-

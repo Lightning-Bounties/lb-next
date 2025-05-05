@@ -5,4 +5,3 @@
 export type ClaimRewardRequest = {
     issue_id: string;
 };
-

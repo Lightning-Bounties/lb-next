@@ -1,1 +1,1 @@
-export { ProfileWithdraw } from './ui/ProfileWithdraw'
+export { ProfileWithdraw } from './ui/ProfileWithdraw';

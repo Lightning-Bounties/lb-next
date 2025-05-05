@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { Card, Typography } from 'antd';
 import React from 'react';
@@ -22,39 +22,62 @@ const ProfileBountyCard: React.FC<ProfileBountyCardProps> = ({
     issueNumber,
     claimedAt,
     totalReward,
-    htmlUrl
+    htmlUrl,
 }) => {
     return (
         <Card style={{ marginBottom: '16px' }}>
-          <Paragraph style={{ marginBottom: '0px' }}>
-    <Link 
-        href={`https://github.com/${repository}`} 
-        target="_blank" 
-        rel="noopener noreferrer"
-    >
-        <span className={styles.repoLink}>{repository}</span>
-    </Link>
-</Paragraph>
-            <Title level={4} className={styles.title} style={{ marginTop: '10px' }}>
+            <Paragraph style={{ marginBottom: '0px' }}>
+                <Link
+                    href={`https://github.com/${repository}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <span className={styles.repoLink}>{repository}</span>
+                </Link>
+            </Paragraph>
+            <Title
+                level={4}
+                className={styles.title}
+                style={{ marginTop: '10px' }}
+            >
                 {title}
                 {htmlUrl ? (
-                    <Link href={htmlUrl} target="_blank" rel="noopener noreferrer">
-                        <span className={styles.issueNumber}>#{issueNumber}</span>
+                    <Link
+                        href={htmlUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <span className={styles.issueNumber}>
+                            #{issueNumber}
+                        </span>
                     </Link>
                 ) : (
                     <span className={styles.issueNumber}>#{issueNumber}</span>
                 )}
             </Title>
             <Paragraph>
-                <strong>Claimed:</strong> {claimedAt ? new Date(claimedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : 'Not claimed'}
+                <strong>Claimed:</strong>{' '}
+                {claimedAt
+                    ? new Date(claimedAt).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
+                      })
+                    : 'Not claimed'}
             </Paragraph>
             <Paragraph>
                 <strong>Issue:</strong>
                 {htmlUrl ? (
-                    <Link href={htmlUrl} target="_blank" rel="noopener noreferrer">
+                    <Link
+                        href={htmlUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
                         <span className={styles.linkText}>{htmlUrl}</span>
                     </Link>
-                ) : <span className={styles.linkText}>{htmlUrl}</span>}
+                ) : (
+                    <span className={styles.linkText}>{htmlUrl}</span>
+                )}
             </Paragraph>
             <Paragraph>
                 <strong>Total Reward:</strong> {totalReward} sats

@@ -1,24 +1,23 @@
-import { appApi } from '@/5_shared/api/app.api'
-import { API_URL, FEED_LIMIT } from '@/5_shared/consts/app.consts'
-import { IssueExpandedSchema } from '@/5_shared/gen'
+import { appApi } from '@/5_shared/api/app.api';
+import { API_URL, FEED_LIMIT } from '@/5_shared/consts/app.consts';
+import { IssueExpandedSchema } from '@/5_shared/gen';
 
 class FeedApi {
+    private FeedApiKey = ['FeedApi'];
 
-    private FeedApiKey = ['FeedApi']
-
-    qkGetFeedTotalCount = () => [this.FeedApiKey, 'getFeedTotalCount']
+    qkGetFeedTotalCount = () => [this.FeedApiKey, 'getFeedTotalCount'];
 
     async getFeedTotalCount() {
-        const resp = await appApi.issues.countIssuesApiIssuesCountGet({})
-        return resp.count
+        const resp = await appApi.issues.countIssuesApiIssuesCountGet({});
+        return resp.count;
     }
 
-    async createReward(opts: { 
-        issueUrl?: string,
-        issueId?: string, 
-        rewardAmount: number, 
-        unlocks_at: string,
-        is_anonymous?: boolean,
+    async createReward(opts: {
+        issueUrl?: string;
+        issueId?: string;
+        rewardAmount: number;
+        unlocks_at: string;
+        is_anonymous?: boolean;
     }) {
         const resp = await appApi.rewards.postRewardApiRewardsPost({
             requestBody: {
@@ -26,29 +25,32 @@ class FeedApi {
                 issue_lb_id: opts.issueId,
                 reward_sats: opts.rewardAmount,
                 unlocks_at: opts.unlocks_at,
-                is_anonymous: opts.is_anonymous
-            }
-        })
-        return resp
+                is_anonymous: opts.is_anonymous,
+            },
+        });
+        return resp;
     }
 
-    async checkPull(opts: { 'repo_full_name': string, 'pull_request_number': number }) {
+    async checkPull(opts: {
+        repo_full_name: string;
+        pull_request_number: number;
+    }) {
         const resp = await appApi.rewards.checkPullApiRewardsCheckPullPost({
             requestBody: {
-                'repo_full_name': opts.repo_full_name,
-                'pull_request_number': opts.pull_request_number
-            }
-        })
-        return resp
+                repo_full_name: opts.repo_full_name,
+                pull_request_number: opts.pull_request_number,
+            },
+        });
+        return resp;
     }
 
     async claimReward(opts: { issueId: string }) {
         const resp = await appApi.rewards.claimRewardApiRewardsClaimRewardPost({
             requestBody: {
-                'issue_id': opts.issueId
-            }
-        })
-        return resp
+                issue_id: opts.issueId,
+            },
+        });
+        return resp;
     }
 
     async getFeedList(page: number) {
@@ -58,14 +60,14 @@ class FeedApi {
                 next: {
                     tags: ['feed'],
                 },
-                cache: 'no-cache'
-            }
-        )
-        const data: IssueExpandedSchema[] = await resp.json()
-        return data
+                cache: 'no-cache',
+            },
+        );
+        const data: IssueExpandedSchema[] = await resp.json();
+        return data;
     }
 }
 
-const feedApi = new FeedApi()
+const feedApi = new FeedApi();
 
-export { feedApi }
+export { feedApi };

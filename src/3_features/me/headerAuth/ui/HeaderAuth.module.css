@@ -1,4 +1,4 @@
-.box>* {
+.box > * {
     color: var(--ant-color-primary) !important;
     cursor: pointer;
 }

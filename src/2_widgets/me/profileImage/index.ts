@@ -1,1 +1,1 @@
-export { ProfileImage } from './ui/ProfileImage'
+export { ProfileImage } from './ui/ProfileImage';

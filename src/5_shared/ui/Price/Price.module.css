@@ -4,7 +4,7 @@ body .value {
 
 @media screen and (max-width: 600px) {
     body .value {
-        font-size: 14px; 
+        font-size: 14px;
         white-space: nowrap;
     }
 }

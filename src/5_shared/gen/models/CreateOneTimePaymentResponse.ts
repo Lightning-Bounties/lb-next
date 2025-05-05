@@ -6,4 +6,3 @@ export type CreateOneTimePaymentResponse = {
     invoice: string;
     checking_id: string;
 };
-

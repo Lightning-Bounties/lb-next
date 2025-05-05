@@ -11,4 +11,3 @@ export type RepositorySchema = {
     owner_github_id: number;
     html_url: string;
 };
-

@@ -20,7 +20,10 @@ export class lb {
     public readonly users: UsersService;
     public readonly wallets: WalletsService;
     public readonly request: BaseHttpRequest;
-    constructor(config?: Partial<OpenAPIConfig>, HttpRequest: HttpRequestConstructor = AxiosHttpRequest) {
+    constructor(
+        config?: Partial<OpenAPIConfig>,
+        HttpRequest: HttpRequestConstructor = AxiosHttpRequest,
+    ) {
         this.request = new HttpRequest({
             BASE: config?.BASE ?? '',
             VERSION: config?.VERSION ?? '0.0.0',
@@ -40,4 +43,3 @@ export class lb {
         this.wallets = new WalletsService(this.request);
     }
 }
-

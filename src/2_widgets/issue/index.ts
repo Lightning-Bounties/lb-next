@@ -1,2 +1,2 @@
-export { IssueBaseInfo } from './issueBaseInfo'
-export { IssueRewardsList } from './issueRewardsList'
+export { IssueBaseInfo } from './issueBaseInfo';
+export { IssueRewardsList } from './issueRewardsList';

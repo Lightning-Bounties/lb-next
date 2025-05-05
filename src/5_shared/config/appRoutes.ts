@@ -4,7 +4,7 @@ const appRoutes = {
     issue: 'issue',
     github: 'https://github.com/',
     feed: '/',
-    paginationFeed: '/feed/'
-}
+    paginationFeed: '/feed/',
+};
 
-export { appRoutes }
+export { appRoutes };

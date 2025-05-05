@@ -8,6 +8,5 @@ export type UserSchema = {
     id: string;
     github_id: number;
     github_username: string;
-    avatar_url?: (string | null);
+    avatar_url?: string | null;
 };
-

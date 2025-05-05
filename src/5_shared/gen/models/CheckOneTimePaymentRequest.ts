@@ -6,4 +6,3 @@ export type CheckOneTimePaymentRequest = {
     issue_lb_id: string;
     checking_id: string;
 };
-

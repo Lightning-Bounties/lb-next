@@ -1,1 +1,1 @@
-export { LockTimeSelector } from './LockTimeSelector'
+export { LockTimeSelector } from './LockTimeSelector';

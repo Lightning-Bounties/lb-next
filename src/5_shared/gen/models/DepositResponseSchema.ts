@@ -6,4 +6,3 @@ export type DepositResponseSchema = {
     invoice: string;
     checking_id: string;
 };
-

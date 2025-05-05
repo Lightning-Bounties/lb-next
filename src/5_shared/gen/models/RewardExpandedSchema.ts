@@ -9,12 +9,11 @@ export type RewardExpandedSchema = {
     modified_at: string;
     id: string;
     issue_id: string;
-    rewarder_id?: (string | null);
+    rewarder_id?: string | null;
     reward_sats: number;
-    unlocks_at?: (string | null);
-    expires_at?: (string | null);
+    unlocks_at?: string | null;
+    expires_at?: string | null;
     is_anonymous?: boolean;
-    rewarder_data?: (UserData | null);
+    rewarder_data?: UserData | null;
     issue_data: IssueData;
 };
-

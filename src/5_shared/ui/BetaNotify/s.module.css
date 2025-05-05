@@ -6,7 +6,7 @@
     border-radius: var(--ant-border-radius);
     border: 1px solid var(--ant-orange-6);
     box-sizing: border-box;
-    padding: var(--ant-padding-md)
+    padding: var(--ant-padding-md);
 }
 
 .title {
@@ -17,6 +17,6 @@
 
 @media screen and (max-width: 332px) {
     .box {
-        padding: var(--ant-padding-xs)
+        padding: var(--ant-padding-xs);
     }
 }

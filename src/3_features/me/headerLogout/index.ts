@@ -1,1 +1,1 @@
-export { HeaderLogout } from './ui/HeaderLogout'
+export { HeaderLogout } from './ui/HeaderLogout';

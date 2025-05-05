@@ -1,7 +1,7 @@
-import { SatsIcon } from '@/5_shared/icons/SatsIcon'
-import { Flex, Typography } from 'antd'
-import s from './Price.module.css'
-import { FC } from 'react'
+import { SatsIcon } from '@/5_shared/icons/SatsIcon';
+import { Flex, Typography } from 'antd';
+import s from './Price.module.css';
+import { FC } from 'react';
 
 const Price: FC<{ amount?: number }> = ({ amount }) => {
     const displayOption = process.env.NEXT_PUBLIC_SATS_DISPLAY_OPTION;
@@ -16,10 +16,10 @@ const Price: FC<{ amount?: number }> = ({ amount }) => {
     };
 
     return (
-        <Flex align="center" >
+        <Flex align="center">
             <Typography className={s.value}>{formatAmount()}</Typography>
             {displayOption !== 'text' && <SatsIcon />}
         </Flex>
-    )
-}
-export { Price }
+    );
+};
+export { Price };

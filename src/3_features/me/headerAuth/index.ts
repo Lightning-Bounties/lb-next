@@ -1,1 +1,1 @@
-export { HeaderAuth } from './ui/HeaderAuth'
+export { HeaderAuth } from './ui/HeaderAuth';

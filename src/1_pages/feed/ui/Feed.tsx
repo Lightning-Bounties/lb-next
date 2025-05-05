@@ -1,7 +1,7 @@
-import { FeedList } from '@/2_widgets/feed'
-import { CreateRewardForm, FeedPagination } from '@/3_features/feed'
-import { Flex } from 'antd'
-import { FC } from 'react'
+import { FeedList } from '@/2_widgets/feed';
+import { CreateRewardForm, FeedPagination } from '@/3_features/feed';
+import { Flex } from 'antd';
+import { FC } from 'react';
 
 const Feed: FC<{ page?: number }> = ({ page }) => {
     return (
@@ -13,6 +13,6 @@ const Feed: FC<{ page?: number }> = ({ page }) => {
             <FeedPagination />
             <br />
         </Flex>
-    )
-}
-export { Feed }
+    );
+};
+export { Feed };

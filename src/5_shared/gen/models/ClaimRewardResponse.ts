@@ -5,7 +5,6 @@
 import type { RewardCompletionSchema } from './RewardCompletionSchema';
 export type ClaimRewardResponse = {
     success: boolean;
-    data?: (RewardCompletionSchema | null);
-    message?: (string | null);
+    data?: RewardCompletionSchema | null;
+    message?: string | null;
 };
-

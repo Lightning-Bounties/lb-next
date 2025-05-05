@@ -1,1 +1,1 @@
-export { CheckPull } from './ui/CheckPull'
+export { CheckPull } from './ui/CheckPull';

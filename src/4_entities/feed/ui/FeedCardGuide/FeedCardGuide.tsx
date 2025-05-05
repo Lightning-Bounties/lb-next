@@ -1,12 +1,11 @@
-'use client'
+'use client';
 
 import { hintsConfig } from '@/5_shared/config/hints.config';
-import { QuestionCircleOutlined } from '@ant-design/icons'
+import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Tour, TourProps } from 'antd';
 import { useRef, useState } from 'react';
 
 const FeedCardGuide = () => {
-
     const ref1 = useRef(null);
     const [open, setOpen] = useState<boolean>(false);
 
@@ -16,29 +15,29 @@ const FeedCardGuide = () => {
             description: hintsConfig['rewardCardFromFeed']?.body,
             target: () => ref1.current,
             nextButtonProps: {
-                children: hintsConfig['rewardCardFromFeed']?.buttonText
-            }
+                children: hintsConfig['rewardCardFromFeed']?.buttonText,
+            },
         },
-    ]
+    ];
 
     return (
         <>
             <div onClick={(e) => e.stopPropagation()}>
                 <QuestionCircleOutlined
                     ref={ref1}
-                    onClick={(e) => { 
+                    onClick={(e) => {
                         e.stopPropagation();
                         setOpen(true);
                     }}
                     className={`opacity50`}
                 />
-                <Tour 
-                    open={open} 
-                    onClose={() => setOpen(false)} 
+                <Tour
+                    open={open}
+                    onClose={() => setOpen(false)}
                     steps={steps}
                 />
             </div>
         </>
-    )
-}
-export { FeedCardGuide }
+    );
+};
+export { FeedCardGuide };

@@ -1,15 +1,15 @@
 {
-    "extends": ["next/core-web-vitals", "plugin:prettier/recommended"],
-    "plugins": ["prettier"],
-    "rules": {
-        "quotes": ["warn", "single"],
-        "indent": ["warn", 4],
-        "prettier/prettier": [
-            "warn",
-            {
-                "singleQuote": true,
-                "tabWidth": 4
-            }
-        ]
-    }
+  "extends": ["next/core-web-vitals", "plugin:prettier/recommended"],
+  "plugins": ["prettier"],
+  "rules": {
+    "quotes": ["warn", "single"],
+    "indent": ["warn", 4],
+    "prettier/prettier": [
+      "warn",
+      {
+        "singleQuote": true,
+        "tabWidth": 4
+      }
+    ]
+  }
 }

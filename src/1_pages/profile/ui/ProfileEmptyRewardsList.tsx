@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { Empty } from 'antd'
+import { Empty } from 'antd';
 
 const ProfileEmptyRewardsList = () => {
     return (
@@ -8,6 +8,6 @@ const ProfileEmptyRewardsList = () => {
             image={Empty.PRESENTED_IMAGE_SIMPLE}
             description="The list is empty"
         />
-    )
-}
-export { ProfileEmptyRewardsList }
+    );
+};
+export { ProfileEmptyRewardsList };

@@ -1,1 +1,1 @@
-export { issueApi } from './api/issue.api'
+export { issueApi } from './api/issue.api';

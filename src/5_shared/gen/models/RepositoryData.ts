@@ -9,4 +9,3 @@ export type RepositoryData = {
     id: string;
     full_name: string;
 };
-

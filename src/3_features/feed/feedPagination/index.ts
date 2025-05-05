@@ -1,1 +1,1 @@
-export { FeedPagination } from './ui/FeedPagination'
+export { FeedPagination } from './ui/FeedPagination';

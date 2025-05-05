@@ -15,13 +15,13 @@ export class AuthService {
     public githubAuthApiAuthGithubGet({
         redirectUri,
     }: {
-        redirectUri?: (string | null),
+        redirectUri?: string | null;
     }): CancelablePromise<void> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/api/auth/github',
             query: {
-                'redirect_uri': redirectUri,
+                redirect_uri: redirectUri,
             },
             errors: {
                 308: `Successful Response`,
@@ -37,13 +37,13 @@ export class AuthService {
     public githubCallbackApiAuthGithubCallbackGet({
         code,
     }: {
-        code: string,
+        code: string;
     }): CancelablePromise<TokenResponse> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/api/auth/github/callback',
             query: {
-                'code': code,
+                code: code,
             },
             errors: {
                 401: `Unauthorized`,

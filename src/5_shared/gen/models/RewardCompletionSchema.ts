@@ -7,4 +7,3 @@ export type RewardCompletionSchema = {
     winner_id: string;
     total_sats: number;
 };
-

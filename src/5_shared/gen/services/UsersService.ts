@@ -35,15 +35,15 @@ export class UsersService {
         userId,
         username,
     }: {
-        userId?: (string | null),
-        username?: (string | null),
+        userId?: string | null;
+        username?: string | null;
     }): CancelablePromise<UserSchema> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/api/users/',
             query: {
-                'user_id': userId,
-                'username': username,
+                user_id: userId,
+                username: username,
             },
             errors: {
                 404: `Not Found`,

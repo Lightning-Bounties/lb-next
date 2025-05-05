@@ -1,1 +1,1 @@
-export { ProfileRewardsHistory } from './ui/ProfileRewardsHistory'
+export { ProfileRewardsHistory } from './ui/ProfileRewardsHistory';
