@@ -40,3 +40,6 @@ next-env.d.ts
 venv
 .env.aider
 .aider*
+
+# prettier
+.prettierignore.local
