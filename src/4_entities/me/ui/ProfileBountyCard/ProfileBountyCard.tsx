@@ -26,17 +26,23 @@ const ProfileBountyCard: React.FC<ProfileBountyCardProps> = ({
 }) => {
     return (
         <Card style={{ marginBottom: '16px' }}>
-            <Paragraph style={{ marginBottom: '0px' }}>
-                <span style={{ color: 'gray' }}>{repository}</span>
-            </Paragraph>
+          <Paragraph style={{ marginBottom: '0px' }}>
+    <Link 
+        href={`https://github.com/${repository}`} 
+        target="_blank" 
+        rel="noopener noreferrer"
+    >
+        <span className={styles.repoLink}>{repository}</span>
+    </Link>
+</Paragraph>
             <Title level={4} className={styles.title} style={{ marginTop: '10px' }}>
                 {title}
                 {htmlUrl ? (
                     <Link href={htmlUrl} target="_blank" rel="noopener noreferrer">
-                        <span style={{ color: 'gray', marginLeft: '5px' }}>#{issueNumber}</span>
+                        <span className={styles.issueNumber}>#{issueNumber}</span>
                     </Link>
                 ) : (
-                    <span style={{ color: 'gray', marginLeft: '5px' }}>#{issueNumber}</span>
+                    <span className={styles.issueNumber}>#{issueNumber}</span>
                 )}
             </Title>
             <Paragraph>
@@ -46,9 +52,9 @@ const ProfileBountyCard: React.FC<ProfileBountyCardProps> = ({
                 <strong>Issue:</strong>
                 {htmlUrl ? (
                     <Link href={htmlUrl} target="_blank" rel="noopener noreferrer">
-                        <span style={{color: 'gray', marginLeft: '5px'}}>{htmlUrl}</span>
+                        <span className={styles.linkText}>{htmlUrl}</span>
                     </Link>
-                ) : <span style={{color: 'gray', marginLeft: '5px'}}>{htmlUrl}</span>}
+                ) : <span className={styles.linkText}>{htmlUrl}</span>}
             </Paragraph>
             <Paragraph>
                 <strong>Total Reward:</strong> {totalReward} sats

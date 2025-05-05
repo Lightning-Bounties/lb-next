@@ -10,7 +10,7 @@ import { HeaderWallet } from '@/2_widgets/header/headerWallet'
 import { BetaNotify } from '@/5_shared/ui/BetaNotify/BetaNotify'
 import { GoogleAnalytics } from "./GoogleAnalitycs"
 
-const IS_DEV = process.env.NEXT_PUBLIC_DEV_MODE || ''
+const IS_DEV = process.env.NEXT_PUBLIC_DEV_MODE === 'true'
 
 export const metadata: Metadata = {
   title: "Create Next App",
