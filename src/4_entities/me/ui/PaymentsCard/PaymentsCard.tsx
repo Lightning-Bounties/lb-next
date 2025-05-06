@@ -31,7 +31,7 @@ const PaymentCard: FC<LightningTransactionSchema> = (props) => {
                     </Typography>
                 </Flex>
                 <Typography style={{ fontStyle: 'italic' }}>
-                    "{props.memo}"
+                    {'"' + props.memo + '"'}
                 </Typography>
             </Flex>
         </Card>

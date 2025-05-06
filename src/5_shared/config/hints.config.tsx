@@ -15,7 +15,8 @@ const hintsConfig: HintsConfigMap = {
         title: 'Create a new bounty',
         body: (
             <div>
-                First make sure you've deposited sats to your account on LB.{' '}
+                First make sure you&apos;ve deposited sats to your account on
+                LB.{' '}
                 <i>
                     For more help on this see{' '}
                     <a
@@ -42,7 +43,7 @@ const hintsConfig: HintsConfigMap = {
                     must be less than the total amount of available sats in your
                     account
                 </i>
-                ). Click "Create" to post the bounty.
+                ). Click &quot;Create&quot; to post the bounty.
                 <br />
                 <br />
                 See this{' '}
@@ -101,7 +102,7 @@ const hintsConfig: HintsConfigMap = {
             <div>
                 This is how long your bounty will stay <i>locked</i>. After the
                 lock time is over, you can <i>expire</i> the reward and return
-                the sats to your own wallet if they haven't been claimed.
+                the sats to your own wallet if they haven&apos;t been claimed.
                 <br />
                 <br />
                 If your lock time is too short, bounty hunters might be
@@ -132,7 +133,7 @@ const hintsConfig: HintsConfigMap = {
         body: (
             <div>
                 You are making an anonymous one-time additional reward: you
-                can't set a lock time.
+                can&apos;t set a lock time.
                 <br />
                 <br />
                 Since you are not logged-in, this reward will not be tied to an
@@ -169,8 +170,9 @@ const hintsConfig: HintsConfigMap = {
         title: 'Example of a Bounty Card',
         body: (
             <div>
-                If there's no icon on the right listed as "Winner" than its open
-                to be claimed! Learn more about how to do that in the docs{' '}
+                If there&apos;s no icon on the right listed as
+                &quot;Winner&quot; than its open to be claimed! Learn more about
+                how to do that in the docs{' '}
                 <a
                     href="https://docs.lightningbounties.com/docs/solve-a-bounty/working-on-the-bounty"
                     target="blank"
@@ -194,7 +196,7 @@ const hintsConfig: HintsConfigMap = {
         body: (
             <div>
                 Enter the amount of sats you want to deposit and click
-                "Generate".
+                &quot;Generate&quot;.
                 <br />
                 <br />
                 An invoice will appear on the right, pay it with a lightning
@@ -218,7 +220,7 @@ const hintsConfig: HintsConfigMap = {
         title: 'Optional: Verify your Invoice on Branta',
         body: (
             <div>
-                Use this link to verify the invoice you're about to pay is
+                Use this link to verify the invoice you&apos;re about to pay is
                 correct.
                 <br />
                 <br />
@@ -228,7 +230,7 @@ const hintsConfig: HintsConfigMap = {
                 <br />
                 <br />
                 For even further safety, the link can be opened on another
-                separate phone or computer. See Branta's{' '}
+                separate phone or computer. See Branta&apos;s{' '}
                 <a
                     href="https://docs.branta.pro/address-verification"
                     target="_blank"
@@ -264,7 +266,7 @@ const hintsConfig: HintsConfigMap = {
                 <br />
                 Generate a BOLT-11 Invoice with your desired amount of sats to
                 withdraw from your lightning wallet, paste the invoice into the
-                form and click "Withdraw".
+                form and click &quot;Withdraw&quot;.
             </div>
         ),
         buttonText: 'OK',
@@ -273,8 +275,9 @@ const hintsConfig: HintsConfigMap = {
         title: 'Claim Reward workflow',
         body: (
             <div>
-                Use this form to claim the reward after you've submitted your
-                pull request and added a PR message which references this issue.{' '}
+                Use this form to claim the reward after you&apos;ve submitted
+                your pull request and added a PR message which references this
+                issue.{' '}
                 <i>
                     For more help on this see{' '}
                     <a
@@ -288,7 +291,8 @@ const hintsConfig: HintsConfigMap = {
                 <br />
                 <br />
                 Simply enter the the number of the pull request and click the
-                "Check" button. For example, for PR #11 enter "11".
+                &quot;Check&quot; button. For example, for PR #11 enter
+                &quot;11&quot;.
             </div>
         ),
         buttonText: 'OK',
