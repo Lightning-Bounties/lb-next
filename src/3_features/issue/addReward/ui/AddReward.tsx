@@ -219,13 +219,6 @@ const AddReward: FC<AddRewardProps> = ({
                             </Form.Item>
                         </Col>
                     </Row>
-                    <Typography.Text
-                        style={{ marginLeft: '5px' }}
-                        type="secondary"
-                    >
-                        1$ ~ 1000 sats
-                    </Typography.Text>
-                    {/* { isLoggedIn && ( */}
                     {true && (
                         <Row>
                             <Col span={24}>

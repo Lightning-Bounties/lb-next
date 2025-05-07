@@ -2,18 +2,19 @@
 import { FC } from 'react';
 import { Flex, Spin, Typography } from 'antd';
 import s from '@/5_shared/ui/USDPrice/USDPrice.module.css';
-import { useQuery } from '@tanstack/react-query';
 import { userApi } from '@/4_entities/user';
+import { useBtcUsdRate } from '@/4_entities/user/hooks/useBtcUsdRate';
 
 const USDPrice: FC<{ amount?: number; isCaption?: boolean }> = ({
     amount,
     isCaption = false,
 }) => {
-    const { data, isLoading } = useQuery({
-        queryKey: ['currency', amount],
-        queryFn: () => userApi.convertToUsd(amount),
-        gcTime: 0,
-    });
+    const { data: btcUsdRate, isLoading } = useBtcUsdRate();
+
+    const usdValue =
+        !isLoading && btcUsdRate
+            ? userApi.convertSatsToUsd(amount, btcUsdRate)
+            : '0.00';
 
     return (
         <Flex align="center">
@@ -22,10 +23,10 @@ const USDPrice: FC<{ amount?: number; isCaption?: boolean }> = ({
             ) : (
                 <>
                     <Typography className={isCaption ? s.caption : s.value}>
-                        {data}
+                        $
                     </Typography>
                     <Typography className={isCaption ? s.caption : s.value}>
-                        $
+                        {usdValue}
                     </Typography>
                 </>
             )}

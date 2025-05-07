@@ -67,25 +67,30 @@ class UserApi {
         }
     }
 
-    async convertToUsd(satAmount: number | undefined) {
-        if (satAmount) {
-            const response = await fetch(
-                'https://api.coinbase.com/v2/prices/BTC-USD/spot',
-                {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    cache: 'no-store',
+    qkGetBtcUsdRate = () => [this.UserApiKey, 'btcUsdRate'];
+
+    async fetchBtcUsdRate() {
+        const response = await fetch(
+            'https://api.coinbase.com/v2/prices/BTC-USD/spot',
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
                 },
-            );
-            const data = await response.json();
-            const btcToUsdRate = parseFloat(data.data.amount);
-            const usdAmount = (satAmount / 100_000_000) * btcToUsdRate;
-            return usdAmount.toFixed(2);
-        } else {
-            return 0;
-        }
+                cache: 'no-store',
+            },
+        );
+        const data = await response.json();
+        return parseFloat(data.data.amount);
+    }
+
+    convertSatsToUsd(
+        satAmount: number | undefined,
+        btcUsdRate: number,
+    ): string {
+        if (!satAmount) return '0.00';
+        const usdAmount = (satAmount / 100_000_000) * btcUsdRate;
+        return usdAmount.toFixed(2);
     }
 }
 const userApi = new UserApi();

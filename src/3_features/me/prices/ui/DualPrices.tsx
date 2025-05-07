@@ -6,11 +6,11 @@ import { USDPrice } from '@/5_shared/ui/USDPrice/USDPrice';
 import { useQuery } from '@tanstack/react-query';
 import { userApi } from '@/4_entities/user/api/user.api';
 
-interface PricesProps {
-    amount: number;
+interface DualPricesProps {
+    amount: number | undefined;
 }
 
-const Prices = ({ amount }: PricesProps) => {
+const DualPrices = ({ amount }: DualPricesProps) => {
     const currency = useUserStore((state) => state.currency);
 
     const { data: userData } = useQuery({
@@ -23,8 +23,11 @@ const Prices = ({ amount }: PricesProps) => {
     return effectiveCurrency === 'BTC' ? (
         <SATPrice amount={amount} />
     ) : (
-        <USDPrice amount={amount} />
+        <>
+            <SATPrice amount={amount} />
+            <USDPrice isCaption={true} amount={amount} />
+        </>
     );
 };
 
-export { Prices };
+export { DualPrices };

@@ -6,6 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Flex, Tooltip, Typography } from 'antd';
 import s from './HeaderWallet.module.css';
 import { USDPrice } from '@/5_shared/ui/USDPrice/USDPrice';
+import { DualPrices } from '@/3_features/me/prices';
 import { WalletOutlined } from '@ant-design/icons';
 
 const HeaderWallet = () => {
@@ -19,8 +20,8 @@ const HeaderWallet = () => {
         (userWallet?.in_rewards
             ? ' / Reserved balance (in sats)'
             : userWallet?.free_sats === 0
-                ? '. To add sats to your go to Profile > Deposit'
-                : ' (in sats)');
+              ? '. To add sats to your go to Profile > Deposit'
+              : ' (in sats)');
 
     return (
         <Tooltip title={userWalletTooltip}>
@@ -30,8 +31,7 @@ const HeaderWallet = () => {
                 gap="small"
                 style={{ cursor: 'pointer' }}
             >
-                <SATPrice amount={userWallet?.free_sats} />
-                <USDPrice isCaption={true} amount={userWallet?.free_sats} />
+                <DualPrices amount={userWallet?.free_sats} />
                 {userWallet?.in_rewards ? (
                     <>
                         <Typography>/</Typography>

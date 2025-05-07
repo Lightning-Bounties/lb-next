@@ -8,7 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Button, Divider, Flex, Tabs, Typography } from 'antd';
 import Title from 'antd/es/typography/Title';
 import { FC, ReactNode, useState } from 'react';
-import { USDPrice } from '@/5_shared/ui/USDPrice/USDPrice';
+import { DualPrices } from '@/3_features/me/prices';
 
 type ProfileInfoProps = {
     rewardsHistorySlot?: ReactNode;
@@ -42,8 +42,7 @@ const ProfileInfo: FC<ProfileInfoProps> = ({
             <Title level={3}>{data?.github_username}</Title>
             <Flex align="center" gap="small">
                 <Typography>Balance:</Typography>
-                <SATPrice amount={userWallet?.free_sats} />
-                <USDPrice isCaption={true} amount={userWallet?.free_sats} />
+                <DualPrices amount={userWallet?.free_sats} />
                 {userWallet?.in_rewards ? (
                     <>
                         <Typography>/</Typography>
