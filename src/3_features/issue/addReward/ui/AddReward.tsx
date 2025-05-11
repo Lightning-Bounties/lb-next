@@ -242,7 +242,7 @@ const AddReward: FC<AddRewardProps> = ({
                                                         style={{
                                                             cursor: 'pointer',
                                                         }}
-                                                        className={`opacity50`}
+                                                        className={'opacity50'}
                                                     />
                                                 </Col>
                                                 <Col

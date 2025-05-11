@@ -62,7 +62,7 @@ const LockTimeSelector: FC<LockTimeSelectorProps> = ({
                     onClick={() => {
                         setOpen(true);
                     }}
-                    className={`opacity50`}
+                    className={'opacity50'}
                 />
             </Col>
             <Col span={7} style={{ display: 'flex', alignItems: 'center' }}>

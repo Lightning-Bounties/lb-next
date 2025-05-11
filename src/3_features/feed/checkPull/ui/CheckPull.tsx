@@ -101,7 +101,7 @@ const CheckPull: FC<CheckPullProps> = ({ repoName, issueId }) => {
                                 onClick={() => {
                                     setOpen(true);
                                 }}
-                                className={`opacity50`}
+                                className={'opacity50'}
                             />
                         </Flex>
                     </Form>

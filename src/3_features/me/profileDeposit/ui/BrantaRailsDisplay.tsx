@@ -45,7 +45,7 @@ const BrantaRailsDisplay: FC<BrantaRailsDisplayProps> = ({
                         height="10"
                     >
                         <defs>
-                            <style>{`.cls-1{fill:#747474;}`}</style>
+                            <style>{'.cls-1{fill:#747474;}'}</style>
                         </defs>
                         <g>
                             <path

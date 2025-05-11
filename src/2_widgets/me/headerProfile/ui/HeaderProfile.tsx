@@ -18,7 +18,7 @@ const HeaderProfile: FC = () => {
 
     return (
         <Flex gap="small" align="center">
-            <Link href={`/me`}>
+            <Link href={'/me'}>
                 <Tooltip title="Profile">
                     <Flex align="center" gap="small">
                         <Typography className={s.name}>

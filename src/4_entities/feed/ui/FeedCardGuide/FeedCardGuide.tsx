@@ -29,7 +29,7 @@ const FeedCardGuide = () => {
                         e.stopPropagation();
                         setOpen(true);
                     }}
-                    className={`opacity50`}
+                    className={'opacity50'}
                 />
                 <Tour
                     open={open}
