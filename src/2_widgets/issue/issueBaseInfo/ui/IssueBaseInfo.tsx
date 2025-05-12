@@ -3,7 +3,6 @@ import Title from 'antd/es/typography/Title';
 import Link from 'next/link';
 import { LinkOutlined, TrophyFilled } from '@ant-design/icons';
 import { Avatar } from '@/5_shared/ui/Avatar/Avatar';
-import { Price } from '@/5_shared/ui/Price/Price';
 import s from './IssueBaseInfo.module.css';
 import { FC } from 'react';
 import { issueApi } from '@/4_entities/issue';
@@ -14,6 +13,7 @@ import { appRoutes } from '@/5_shared/config/appRoutes';
 import { IssueBaseInfoCheckPull } from './IssueBaseInfoCheckPull';
 import { orange, grey } from '@ant-design/colors';
 import { IssueBaseInfoAddReward } from './IssueBaseInfoAddReward';
+import { Prices } from '@/3_features/me/prices';
 
 const IssueBaseInfoDesc = dynamic(() => import('./IssueBaseInfoDesc'), {
     ssr: false,
@@ -98,7 +98,7 @@ const IssueBaseInfo: FC<IssueBaseInfoProps> = async ({ rewardId }) => {
                         <Typography className="opacity50">
                             total reward
                         </Typography>
-                        <Price amount={data.unexpired_total_rewards} />
+                        <Prices amount={data.unexpired_total_rewards} />
                     </Flex>
                     <Flex align="center" gap="small">
                         <Typography className="opacity50">rewards</Typography>

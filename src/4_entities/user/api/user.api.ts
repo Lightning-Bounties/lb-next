@@ -1,6 +1,6 @@
 import { appApi } from '@/5_shared/api/app.api';
 import { API_URL } from '@/5_shared/consts/app.consts';
-
+import { isAxiosError } from 'axios';
 class UserApi {
     private UserApiKey = ['UserApiKey'];
 
@@ -65,6 +65,32 @@ class UserApi {
         if (typeof window !== 'undefined') {
             window.localStorage.setItem('darkTheme', isDarkTheme);
         }
+    }
+
+    qkGetBtcUsdRate = () => [this.UserApiKey, 'btcUsdRate'];
+
+    async fetchBtcUsdRate() {
+        const response = await fetch(
+            'https://api.coinbase.com/v2/prices/BTC-USD/spot',
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                cache: 'no-store',
+            },
+        );
+        const data = await response.json();
+        return parseFloat(data.data.amount);
+    }
+
+    convertSatsToUsd(
+        satAmount: number | undefined,
+        btcUsdRate: number,
+    ): string {
+        if (!satAmount) return '0.00';
+        const usdAmount = (satAmount / 100_000_000) * btcUsdRate;
+        return usdAmount.toFixed(2);
     }
 }
 const userApi = new UserApi();

@@ -3,11 +3,12 @@
 import { ProfileDeposit, ProfileWithdraw } from '@/3_features/me';
 import { profileApi } from '@/4_entities/me';
 import { userApi } from '@/4_entities/user';
-import { Price } from '@/5_shared/ui/Price/Price';
+import { SATPrice } from '@/5_shared/ui/SATPrice/SATPrice';
 import { useQuery } from '@tanstack/react-query';
 import { Button, Divider, Flex, Tabs, Typography } from 'antd';
 import Title from 'antd/es/typography/Title';
 import { FC, ReactNode, useState } from 'react';
+import { DualPrices } from '@/3_features/me/prices';
 
 type ProfileInfoProps = {
     rewardsHistorySlot?: ReactNode;
@@ -41,12 +42,12 @@ const ProfileInfo: FC<ProfileInfoProps> = ({
             <Title level={3}>{data?.github_username}</Title>
             <Flex align="center" gap="small">
                 <Typography>Balance:</Typography>
-                <Price amount={userWallet?.free_sats} />
+                <DualPrices amount={userWallet?.free_sats} />
                 {userWallet?.in_rewards ? (
                     <>
                         <Typography>/</Typography>
                         <Flex className="opacity50" align="center" gap="small">
-                            <Price amount={userWallet?.in_rewards} />
+                            <SATPrice amount={userWallet?.in_rewards} />
                             <Typography>in rewards</Typography>
                         </Flex>
                     </>

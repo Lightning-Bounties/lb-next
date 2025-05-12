@@ -5,13 +5,13 @@ import Link from 'next/link';
 import s from './FeedCard.module.css';
 import { Avatar } from '@/5_shared/ui/Avatar/Avatar';
 import { FC, ReactNode } from 'react';
-import { Price } from '@/5_shared/ui/Price/Price';
 import { IssueExpandedSchema } from '@/5_shared/gen';
 import { getStringDate } from '@/5_shared/utils/getStringDate';
 import { TrophyFilled } from '@ant-design/icons';
 import { appRoutes } from '@/5_shared/config/appRoutes';
 import { orange } from '@ant-design/colors';
 import { useRouter } from 'next/navigation';
+import { Prices } from '@/3_features/me/prices';
 
 type FeedCardProps = IssueExpandedSchema & {
     guideSlot?: ReactNode;
@@ -148,7 +148,9 @@ const FeedCard: FC<FeedCardProps> = (props) => {
                                 <Typography className="opacity50">
                                     Reward:
                                 </Typography>
-                                <Price amount={props.unexpired_total_rewards} />
+                                <Prices
+                                    amount={props.unexpired_total_rewards}
+                                />
                             </Flex>
                         </Flex>
                     </Col>

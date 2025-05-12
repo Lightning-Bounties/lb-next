@@ -1,7 +1,6 @@
 'use client';
 
 import { RewardExpandedSchema } from '@/5_shared/gen';
-import { Price } from '@/5_shared/ui/Price/Price';
 import { getStringDate } from '@/5_shared/utils/getStringDate';
 import { Card, Flex, Typography, Button, Tooltip, notification } from 'antd';
 import Title from 'antd/es/typography/Title';
@@ -9,6 +8,7 @@ import Link from 'next/link';
 import { FC, useState } from 'react';
 import { profileApi } from '@/4_entities/me';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { Prices } from '@/3_features/me/prices';
 
 type ProfileRewardCardProps = RewardExpandedSchema & {
     activeController?: boolean;
@@ -73,7 +73,7 @@ const ProfileRewardCard: FC<ProfileRewardCardProps> = (props) => {
                         </Link>
                     </Flex>
                     <Flex vertical gap="small">
-                        <Price amount={props.reward_sats} />
+                        <Prices amount={props.reward_sats} />
                     </Flex>
                 </Flex>
                 <Flex justify="space-between" align="center">

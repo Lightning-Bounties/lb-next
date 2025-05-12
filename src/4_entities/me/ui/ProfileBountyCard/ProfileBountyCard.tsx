@@ -1,9 +1,10 @@
 'use client';
 
-import { Card, Typography } from 'antd';
+import { Card, Flex, Typography } from 'antd';
 import React from 'react';
 import Link from 'next/link';
 import styles from './ProfileBountyCard.module.css';
+import { Prices } from '@/3_features/me/prices';
 
 const { Title, Paragraph } = Typography;
 
@@ -27,13 +28,7 @@ const ProfileBountyCard: React.FC<ProfileBountyCardProps> = ({
     return (
         <Card style={{ marginBottom: '16px' }}>
             <Paragraph style={{ marginBottom: '0px' }}>
-                <Link
-                    href={`https://github.com/${repository}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <span className={styles.repoLink}>{repository}</span>
-                </Link>
+                <span style={{ color: 'gray' }}>{repository}</span>
             </Paragraph>
             <Title
                 level={4}
@@ -47,12 +42,14 @@ const ProfileBountyCard: React.FC<ProfileBountyCardProps> = ({
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <span className={styles.issueNumber}>
+                        <span style={{ color: 'gray', marginLeft: '5px' }}>
                             #{issueNumber}
                         </span>
                     </Link>
                 ) : (
-                    <span className={styles.issueNumber}>#{issueNumber}</span>
+                    <span style={{ color: 'gray', marginLeft: '5px' }}>
+                        #{issueNumber}
+                    </span>
                 )}
             </Title>
             <Paragraph>
@@ -73,15 +70,21 @@ const ProfileBountyCard: React.FC<ProfileBountyCardProps> = ({
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <span className={styles.linkText}>{htmlUrl}</span>
+                        <span style={{ color: 'gray', marginLeft: '5px' }}>
+                            {htmlUrl}
+                        </span>
                     </Link>
                 ) : (
-                    <span className={styles.linkText}>{htmlUrl}</span>
+                    <span style={{ color: 'gray', marginLeft: '5px' }}>
+                        {htmlUrl}
+                    </span>
                 )}
             </Paragraph>
-            <Paragraph>
-                <strong>Total Reward:</strong> {totalReward} sats
-            </Paragraph>
+
+            <Flex align="center" gap="small">
+                <strong>Total Reward:</strong>
+                <Prices amount={totalReward} />
+            </Flex>
         </Card>
     );
 };
