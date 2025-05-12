@@ -6,4 +6,3 @@ export type CreateOneTimeRewardRequest = {
     issue_lb_id: string;
     reward_sats: number;
 };
-

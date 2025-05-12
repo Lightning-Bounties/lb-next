@@ -1,1 +1,1 @@
-export { CreateRewardForm } from './ui/CreateRewardForm'
+export { CreateRewardForm } from './ui/CreateRewardForm';

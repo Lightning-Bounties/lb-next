@@ -5,4 +5,3 @@
 export type WithdrawRequestSchema = {
     invoice: string;
 };
-

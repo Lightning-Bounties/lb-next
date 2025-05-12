@@ -47,7 +47,7 @@ export class WalletsService {
     public depositSatsApiWalletDepositPost({
         requestBody,
     }: {
-        requestBody: DepositRequestSchema,
+        requestBody: DepositRequestSchema;
     }): CancelablePromise<DepositResponseSchema> {
         return this.httpRequest.request({
             method: 'POST',
@@ -77,7 +77,7 @@ export class WalletsService {
     public withdrawSatsApiWalletWithdrawPost({
         requestBody,
     }: {
-        requestBody: WithdrawRequestSchema,
+        requestBody: WithdrawRequestSchema;
     }): CancelablePromise<WithdrawResponseSchema> {
         return this.httpRequest.request({
             method: 'POST',
@@ -102,15 +102,15 @@ export class WalletsService {
         skip,
         limit = 100,
     }: {
-        skip?: number,
-        limit?: number,
+        skip?: number;
+        limit?: number;
     }): CancelablePromise<Array<LightningTransactionSchema>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/api/wallet/history',
             query: {
-                'skip': skip,
-                'limit': limit,
+                skip: skip,
+                limit: limit,
             },
             errors: {
                 401: `Unauthorized`,

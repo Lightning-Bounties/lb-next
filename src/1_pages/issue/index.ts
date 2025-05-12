@@ -1,1 +1,1 @@
-export { Issue } from './ui/Issue'
+export { Issue } from './ui/Issue';

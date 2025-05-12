@@ -3,20 +3,19 @@ import { issueApi } from '@/4_entities/issue';
 import { Metadata, ResolvingMetadata } from 'next';
 
 type Props = {
-    params: { page: string }
-}
+    params: { page: string };
+};
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-
-    const id = params.page
-    const data = await issueApi.getIssueData(id)
+    const id = params.page;
+    const data = await issueApi.getIssueData(id);
 
     return {
         title: (data.title ?? 'Issue Page') + ' | LB',
-        description: 'TODO: ADD description'
-    }
+        description: 'TODO: ADD description',
+    };
 }
 
 export default async function IssuePage({ params }: any) {
-    return <Issue issueId={params.page} />
+    return <Issue issueId={params.page} />;
 }

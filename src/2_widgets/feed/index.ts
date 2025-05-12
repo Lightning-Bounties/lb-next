@@ -1,1 +1,1 @@
-export { FeedList } from './feedList'
+export { FeedList } from './feedList';

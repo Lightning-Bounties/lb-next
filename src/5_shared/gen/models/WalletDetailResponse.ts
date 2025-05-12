@@ -7,4 +7,3 @@ export type WalletDetailResponse = {
     free_sats: number;
     in_rewards: number;
 };
-

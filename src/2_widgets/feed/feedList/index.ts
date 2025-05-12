@@ -1,1 +1,1 @@
-export { FeedList } from './ui/FeedList'
+export { FeedList } from './ui/FeedList';

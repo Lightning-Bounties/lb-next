@@ -1,1 +1,1 @@
-export { IssueBreadcrumbs } from './ui/IssueBreadcrumbs'
+export { IssueBreadcrumbs } from './ui/IssueBreadcrumbs';

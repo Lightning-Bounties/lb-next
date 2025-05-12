@@ -26,7 +26,7 @@ export class RewardsService {
     public postRewardApiRewardsPost({
         requestBody,
     }: {
-        requestBody: CreateRewardRequest,
+        requestBody: CreateRewardRequest;
     }): CancelablePromise<RewardSchema> {
         return this.httpRequest.request({
             method: 'POST',
@@ -54,25 +54,25 @@ export class RewardsService {
         isExpired,
         isLocked,
     }: {
-        skip?: number,
-        limit?: number,
-        issueId?: (string | null),
-        isClosed?: (boolean | null),
-        rewarderId?: (string | null),
-        isExpired?: (boolean | null),
-        isLocked?: (boolean | null),
+        skip?: number;
+        limit?: number;
+        issueId?: string | null;
+        isClosed?: boolean | null;
+        rewarderId?: string | null;
+        isExpired?: boolean | null;
+        isLocked?: boolean | null;
     }): CancelablePromise<Array<RewardExpandedSchema>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/api/rewards/',
             query: {
-                'skip': skip,
-                'limit': limit,
-                'issue_id': issueId,
-                'is_closed': isClosed,
-                'rewarder_id': rewarderId,
-                'is_expired': isExpired,
-                'is_locked': isLocked,
+                skip: skip,
+                limit: limit,
+                issue_id: issueId,
+                is_closed: isClosed,
+                rewarder_id: rewarderId,
+                is_expired: isExpired,
+                is_locked: isLocked,
             },
             errors: {
                 422: `Validation Error`,
@@ -88,7 +88,7 @@ export class RewardsService {
     public createOnetimePaymentApiRewardsOnetimePost({
         requestBody,
     }: {
-        requestBody: CreateOneTimeRewardRequest,
+        requestBody: CreateOneTimeRewardRequest;
     }): CancelablePromise<CreateOneTimePaymentResponse> {
         return this.httpRequest.request({
             method: 'POST',
@@ -110,7 +110,7 @@ export class RewardsService {
     public checkOnetimePaymentApiRewardsOnetimeCheckPost({
         requestBody,
     }: {
-        requestBody: CheckOneTimePaymentRequest,
+        requestBody: CheckOneTimePaymentRequest;
     }): CancelablePromise<CheckOneTimePaymentResponse> {
         return this.httpRequest.request({
             method: 'POST',
@@ -135,21 +135,21 @@ export class RewardsService {
         isExpired,
         isLocked,
     }: {
-        issueId?: (string | null),
-        isClosed?: (boolean | null),
-        rewarderId?: (string | null),
-        isExpired?: (boolean | null),
-        isLocked?: (boolean | null),
+        issueId?: string | null;
+        isClosed?: boolean | null;
+        rewarderId?: string | null;
+        isExpired?: boolean | null;
+        isLocked?: boolean | null;
     }): CancelablePromise<CountResponse> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/api/rewards/count',
             query: {
-                'issue_id': issueId,
-                'is_closed': isClosed,
-                'rewarder_id': rewarderId,
-                'is_expired': isExpired,
-                'is_locked': isLocked,
+                issue_id: issueId,
+                is_closed: isClosed,
+                rewarder_id: rewarderId,
+                is_expired: isExpired,
+                is_locked: isLocked,
             },
             errors: {
                 422: `Validation Error`,
@@ -168,13 +168,13 @@ export class RewardsService {
     public getRewardApiRewardsRewardIdGet({
         rewardId,
     }: {
-        rewardId: string,
+        rewardId: string;
     }): CancelablePromise<RewardExpandedSchema> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/api/rewards/{reward_id}',
             path: {
-                'reward_id': rewardId,
+                reward_id: rewardId,
             },
             errors: {
                 404: `Not Found`,
@@ -190,13 +190,13 @@ export class RewardsService {
     public expireRewardApiRewardsRewardIdExpirePost({
         rewardId,
     }: {
-        rewardId: string,
+        rewardId: string;
     }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/api/rewards/{reward_id}/expire',
             path: {
-                'reward_id': rewardId,
+                reward_id: rewardId,
             },
             errors: {
                 422: `Validation Error`,
@@ -211,7 +211,7 @@ export class RewardsService {
     public checkPullApiRewardsCheckPullPost({
         requestBody,
     }: {
-        requestBody: CheckPullRequest,
+        requestBody: CheckPullRequest;
     }): CancelablePromise<Array<RewardCompletionSchema>> {
         return this.httpRequest.request({
             method: 'POST',
@@ -232,7 +232,7 @@ export class RewardsService {
     public claimRewardApiRewardsClaimRewardPost({
         requestBody,
     }: {
-        requestBody: ClaimRewardRequest,
+        requestBody: ClaimRewardRequest;
     }): CancelablePromise<ClaimRewardResponse> {
         return this.httpRequest.request({
             method: 'POST',

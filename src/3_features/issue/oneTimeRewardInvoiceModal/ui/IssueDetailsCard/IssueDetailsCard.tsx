@@ -1,24 +1,25 @@
-'use client'
+'use client';
 
-import { FC } from 'react'
-import { Card, Typography } from 'antd'
+import { FC } from 'react';
+import { Card, Typography } from 'antd';
 
-const { Text } = Typography
+const { Text } = Typography;
 
 type IssueDetailsCardProps = {
-    issueUrl: string
-    issueTitle: string
-    rewardAmount: number
-}
+    issueUrl: string;
+    issueTitle: string;
+    rewardAmount: number;
+};
 
 const IssueDetailsCard: FC<IssueDetailsCardProps> = ({
     issueUrl,
     issueTitle,
-    rewardAmount
+    rewardAmount,
 }) => {
-    const truncatedTitle = issueTitle.length > 80 
-        ? issueTitle.substring(0, 77) + '...' 
-        : issueTitle
+    const truncatedTitle =
+        issueTitle.length > 80
+            ? issueTitle.substring(0, 77) + '...'
+            : issueTitle;
 
     return (
         <Card style={{ marginBottom: 16, textAlign: 'center' }}>
@@ -35,7 +36,7 @@ const IssueDetailsCard: FC<IssueDetailsCardProps> = ({
                 <Text>{rewardAmount} sats</Text>
             </div>
         </Card>
-    )
-}
+    );
+};
 
-export { IssueDetailsCard }
+export { IssueDetailsCard };

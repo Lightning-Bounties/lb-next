@@ -3,7 +3,6 @@
 /* tslint:disable */
 /* eslint-disable */
 export type HTTPExceptionDetailSchema = {
-    error_code?: (number | null);
-    message?: (string | null);
+    error_code?: number | null;
+    message?: string | null;
 };
-

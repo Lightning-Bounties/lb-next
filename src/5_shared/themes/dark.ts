@@ -1,4 +1,4 @@
-import { ThemeConfig } from 'antd'
+import { ThemeConfig } from 'antd';
 
 const darkTheme: ThemeConfig = {
     cssVar: true,
@@ -9,31 +9,31 @@ const darkTheme: ThemeConfig = {
         colorTextDisabled: '#FFF',
         colorTextQuaternary: 'rgba(255,255,255,.5)',
         colorBorderSecondary: 'rgba(255,255,255,.1)',
-        colorBorder: 'rgba(255,255,255,.3)'
+        colorBorder: 'rgba(255,255,255,.3)',
     },
     components: {
         Button: {
-            controlOutline: 'transparent'
+            controlOutline: 'transparent',
         },
         Input: {
-            margin: 0
+            margin: 0,
         },
         Form: {
-            itemMarginBottom: 0
+            itemMarginBottom: 0,
         },
         Layout: {
             headerBg: '#000',
-            headerPadding: '0 20px'
+            headerPadding: '0 20px',
         },
         Breadcrumb: {
             linkColor: 'rgba(255,255,255,.5)',
-            separatorColor: 'rgba(255,255,255,.5)'
+            separatorColor: 'rgba(255,255,255,.5)',
         },
         Select: {
-            controlItemBgHover: "rgba(255,255,255,.5)",
-            controlItemBgActive: "rgb(89, 126, 247)",
+            controlItemBgHover: 'rgba(255,255,255,.5)',
+            controlItemBgActive: 'rgb(89, 126, 247)',
         },
-    }
-}
+    },
+};
 
-export { darkTheme }
+export { darkTheme };

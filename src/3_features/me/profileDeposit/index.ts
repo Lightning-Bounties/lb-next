@@ -1,1 +1,1 @@
-export { ProfileDeposit } from './ui/ProfileDeposit'
+export { ProfileDeposit } from './ui/ProfileDeposit';

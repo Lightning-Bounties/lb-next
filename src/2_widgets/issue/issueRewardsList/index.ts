@@ -1,1 +1,1 @@
-export { IssueRewardsList } from './ui/IssueRewardsList'
+export { IssueRewardsList } from './ui/IssueRewardsList';

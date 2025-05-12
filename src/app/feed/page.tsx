@@ -4,9 +4,8 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
     title: 'Bounties Feed | LB',
     // description: 'TODO: ADD description ',
-}
-
+};
 
 export default function FeedPage() {
-    return <Feed />
+    return <Feed />;
 }

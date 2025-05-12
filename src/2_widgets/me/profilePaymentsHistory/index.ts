@@ -1,1 +1,1 @@
-export { ProfilePaymentsHistory } from './ui/ProfilePaymentsHistory'
+export { ProfilePaymentsHistory } from './ui/ProfilePaymentsHistory';

@@ -1,1 +1,1 @@
-export { Header } from './headerBox'
+export { Header } from './headerBox';

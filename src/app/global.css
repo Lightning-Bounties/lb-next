@@ -13,7 +13,7 @@ html {
 }
 
 .opacity50 {
-    opacity: .5;
+    opacity: 0.5;
 }
 
 [data-color-mode*='dark'] .wmde-markdown,
@@ -22,15 +22,13 @@ html {
 .wmde-markdown[data-color-mode*='dark'],
 body[data-color-mode*='dark'] {
     --color-canvas-default: #181818 !important
+;
 }
 .ant-notification {
     top: 80px !important;
 }
 
 .ant-collapse-header:focus,
-.ant-collapse-header:hover
-{
-    color: #1677FF !important;
-    
+.ant-collapse-header:hover {
+    color: #1677ff !important;
 }
-

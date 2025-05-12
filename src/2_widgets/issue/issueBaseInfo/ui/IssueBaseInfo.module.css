@@ -1,10 +1,10 @@
 .title__number {
-    font-size: var(--ant-font-size-heading-1)
+    font-size: var(--ant-font-size-heading-1);
 }
 
 @media screen and (max-width: 800px) {
     .info__line {
         flex-direction: column;
-        align-items: start!important;
+        align-items: start !important;
     }
 }

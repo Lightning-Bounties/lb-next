@@ -8,4 +8,3 @@ export type IssueData = {
     title: string;
     is_closed: boolean;
 };
-

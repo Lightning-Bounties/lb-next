@@ -1,6 +1,6 @@
 {
   "name": "lb",
-  "version": "1.5.2",
+  "version": "1.6.2",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -8,7 +8,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write .",
+    "lint:src": "next lint --dir src",
+    "format": "prettier --write \"**/*.{js,ts,tsx,json,css}\"",
+    "format:local": "[ -f .prettierignore.local ] && prettier --write --ignore-path .prettierignore.local \"**/*.{js,ts,tsx,json,css}\" || npm run format",
     "gen": "openapi --input https://<BACKEND_URL>/api/openapi.json --output ./src/5_shared/gen --client axios --useOptions --useUnionTypes --name lb"
   },
   "dependencies": {

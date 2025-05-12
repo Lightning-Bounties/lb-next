@@ -1,1 +1,1 @@
-export { ProfileDepositStatus } from './ui/ProfileDepositStatus'
+export { ProfileDepositStatus } from './ui/ProfileDepositStatus';

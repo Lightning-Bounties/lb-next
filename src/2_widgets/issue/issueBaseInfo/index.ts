@@ -1,1 +1,1 @@
-export { IssueBaseInfo } from './ui/IssueBaseInfo'
+export { IssueBaseInfo } from './ui/IssueBaseInfo';

@@ -1,1 +1,1 @@
-export { HeaderProfile } from './ui/HeaderProfile'
+export { HeaderProfile } from './ui/HeaderProfile';

@@ -1,1 +1,1 @@
-export { HeaderWallet } from './ui/HeaderWallet'
+export { HeaderWallet } from './ui/HeaderWallet';

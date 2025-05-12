@@ -17,15 +17,15 @@ export class RepositoriesService {
         skip,
         limit = 100,
     }: {
-        skip?: number,
-        limit?: number,
+        skip?: number;
+        limit?: number;
     }): CancelablePromise<Array<RepositorySchema>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/api/repositories/',
             query: {
-                'skip': skip,
-                'limit': limit,
+                skip: skip,
+                limit: limit,
             },
             errors: {
                 422: `Validation Error`,
@@ -55,13 +55,13 @@ export class RepositoriesService {
     public getRepositoryByIdApiRepositoriesRepositoryIdGet({
         repositoryId,
     }: {
-        repositoryId: string,
+        repositoryId: string;
     }): CancelablePromise<RepositorySchema> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/api/repositories/{repository_id}',
             path: {
-                'repository_id': repositoryId,
+                repository_id: repositoryId,
             },
             errors: {
                 404: `Not Found`,

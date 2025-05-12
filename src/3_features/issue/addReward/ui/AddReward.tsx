@@ -1,108 +1,140 @@
-'use client'
+'use client';
 
-import { FC, useState, useRef } from 'react'
-import { Button, Input, Flex, Form, Collapse, notification, Row, Col, Checkbox, Tour, TourProps } from 'antd'
-import { QuestionCircleOutlined } from '@ant-design/icons'
-import { OneTimeRewardInvoiceModal } from '@/3_features/issue/oneTimeRewardInvoiceModal'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { feedApi } from '@/4_entities/feed'
-import { profileApi } from '@/4_entities/me'
-import { useRouter } from 'next/navigation'
+import { FC, useState, useRef } from 'react';
+import {
+    Button,
+    Input,
+    Flex,
+    Form,
+    Collapse,
+    notification,
+    Row,
+    Col,
+    Checkbox,
+    Tour,
+    TourProps,
+} from 'antd';
+import { QuestionCircleOutlined } from '@ant-design/icons';
+import { OneTimeRewardInvoiceModal } from '@/3_features/issue/oneTimeRewardInvoiceModal';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { feedApi } from '@/4_entities/feed';
+import { profileApi } from '@/4_entities/me';
+import { useRouter } from 'next/navigation';
 import { catchHTTPValidationError } from '@/5_shared/utils/catchHTTPValidationError';
-import { LockTimeSelector } from '@/5_shared/ui/LockTimeSelector'
-import { convertToUnlocksAtTimestamp } from '@/5_shared/utils/timeConversion'
-import { hintsConfig } from '@/5_shared/config/hints.config'
+import { LockTimeSelector } from '@/5_shared/ui/LockTimeSelector';
+import { convertToUnlocksAtTimestamp } from '@/5_shared/utils/timeConversion';
+import { hintsConfig } from '@/5_shared/config/hints.config';
 
 type AddRewardProps = {
-	issueId: string
-	issueUrl: string
-    issueTitle: string
-    isLoggedIn: boolean
-}
+    issueId: string;
+    issueUrl: string;
+    issueTitle: string;
+    isLoggedIn: boolean;
+};
 
-const AddReward: FC<AddRewardProps> = ({ issueId, issueUrl, issueTitle, isLoggedIn }) => {
+const AddReward: FC<AddRewardProps> = ({
+    issueId,
+    issueUrl,
+    issueTitle,
+    isLoggedIn,
+}) => {
+    const [formVisible, setFormVisible] = useState(true);
+    const [openTour, setOpenTour] = useState(false);
+    const anonymousHelpRef = useRef(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [pendingValues, setPendingValues] = useState<any>(null);
+    const [form] = Form.useForm();
+    const [api, contextHolder] = notification.useNotification();
+    const queryClient = useQueryClient();
+    const router = useRouter();
 
-	const [formVisible, setFormVisible] = useState(true)
-	const [openTour, setOpenTour] = useState(false)
-	const anonymousHelpRef = useRef(null)
-	const [isModalOpen, setIsModalOpen] = useState(false)
-	const [pendingValues, setPendingValues] = useState<any>(null)
-	const [form] = Form.useForm()
-	const [api, contextHolder] = notification.useNotification()
-	const queryClient = useQueryClient()
-	const router = useRouter()
-
-	const { mutate: addReward, isPending } = useMutation({
-		mutationFn: feedApi.createReward,
-		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ['issue', issueId] })
-            queryClient.invalidateQueries({ queryKey: profileApi.qkGetUserWallet() })
-			api.success({ message: 'Reward added successfully' })
-			form.resetFields(['amount', 'lockedUntilAmount', 'lockedUntilUnit'])
-			setFormVisible(false)
-			router.refresh()
-		},
-		onError: (error) => {
-			api.error({ message: catchHTTPValidationError(error) })
-		}
-	})
+    const { mutate: addReward, isPending } = useMutation({
+        mutationFn: feedApi.createReward,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['issue', issueId] });
+            queryClient.invalidateQueries({
+                queryKey: profileApi.qkGetUserWallet(),
+            });
+            api.success({ message: 'Reward added successfully' });
+            form.resetFields([
+                'amount',
+                'lockedUntilAmount',
+                'lockedUntilUnit',
+            ]);
+            setFormVisible(false);
+            router.refresh();
+        },
+        onError: (error) => {
+            api.error({ message: catchHTTPValidationError(error) });
+        },
+    });
 
     const handleQuickAmount = (amount: number) => {
-        form.setFieldValue('amount', amount)
-    }
+        form.setFieldValue('amount', amount);
+    };
 
-	const onFinish = (values: { amount: number, lockedUntilAmount: number, lockedUntilUnit: string, is_anonymous: boolean }) => {
-		if (isLoggedIn) {
-            addReward({ 
+    const onFinish = (values: {
+        amount: number;
+        lockedUntilAmount: number;
+        lockedUntilUnit: string;
+        is_anonymous: boolean;
+    }) => {
+        if (isLoggedIn) {
+            addReward({
                 issueId,
                 rewardAmount: values.amount,
-                unlocks_at: convertToUnlocksAtTimestamp(values.lockedUntilAmount, values.lockedUntilUnit),
-                is_anonymous: values.is_anonymous
-            })
+                unlocks_at: convertToUnlocksAtTimestamp(
+                    values.lockedUntilAmount,
+                    values.lockedUntilUnit,
+                ),
+                is_anonymous: values.is_anonymous,
+            });
         } else {
             setPendingValues({
                 ...values,
                 issueUrl,
                 issueId,
                 issueTitle,
-            })
-            setIsModalOpen(true)
+            });
+            setIsModalOpen(true);
         }
-	}
+    };
 
-	const handleModalConfirm = () => {
-		if (pendingValues) {
-			addReward({ 
-				issueId,
-				rewardAmount: pendingValues.amount,
-				unlocks_at: convertToUnlocksAtTimestamp(pendingValues.lockedUntilAmount, pendingValues.lockedUntilUnit),
-				is_anonymous: pendingValues.is_anonymous
-			})
-			setIsModalOpen(false)
-		}
-	}
+    const handleModalConfirm = () => {
+        if (pendingValues) {
+            addReward({
+                issueId,
+                rewardAmount: pendingValues.amount,
+                unlocks_at: convertToUnlocksAtTimestamp(
+                    pendingValues.lockedUntilAmount,
+                    pendingValues.lockedUntilUnit,
+                ),
+                is_anonymous: pendingValues.is_anonymous,
+            });
+            setIsModalOpen(false);
+        }
+    };
 
-	const handleCancel = () => {
-		setFormVisible(false)
-	}
+    const handleCancel = () => {
+        setFormVisible(false);
+    };
 
-    const hintName = isLoggedIn ? 
-        'anonRewardCheckbox' : 
-        'anonRewardCheckboxOneTimeReward'
+    const hintName = isLoggedIn
+        ? 'anonRewardCheckbox'
+        : 'anonRewardCheckboxOneTimeReward';
 
     const tourSteps: TourProps['steps'] = [
-
         {
             title: hintsConfig[hintName].title,
             description: hintsConfig[hintName].body,
             target: () => anonymousHelpRef.current,
             nextButtonProps: {
-                children: hintsConfig[hintName].buttonText
-            }
-        }
-    ]
+                children: hintsConfig[hintName].buttonText,
+            },
+        },
+    ];
 
-	const { Panel } = Collapse
+    const { Panel } = Collapse;
 
     return (
         <Flex vertical gap="large" align="start">
@@ -113,13 +145,13 @@ const AddReward: FC<AddRewardProps> = ({ issueId, issueUrl, issueTitle, isLogged
                 </Button>
             )}
             {formVisible && (
-                <Form 
+                <Form
                     initialValues={{
                         lockedUntilAmount: isLoggedIn ? 2 : 3,
                         lockedUntilUnit: isLoggedIn ? 'weeks' : 'months',
-                        is_anonymous: isLoggedIn ? false : true
+                        is_anonymous: isLoggedIn ? false : true,
                     }}
-                    form={form} 
+                    form={form}
                     onFinish={onFinish}
                     layout="vertical"
                     style={{ width: '100%' }}
@@ -127,26 +159,51 @@ const AddReward: FC<AddRewardProps> = ({ issueId, issueUrl, issueTitle, isLogged
                     <h4>{'Add Reward to the Bounty'}</h4>
                     <Row gutter={[16, 16]} style={{ marginBottom: '4px' }}>
                         <Col>
-                            <Button onClick={() => handleQuickAmount(21)} style={{ marginRight: '8px' }}>
+                            <Button
+                                onClick={() => handleQuickAmount(21)}
+                                style={{ marginRight: '8px' }}
+                            >
                                 21 sats
                             </Button>
-                            <Button onClick={() => handleQuickAmount(1000)} style={{ marginRight: '8px' }}>
+                            <Button
+                                onClick={() => handleQuickAmount(1000)}
+                                style={{ marginRight: '8px' }}
+                            >
                                 1000 sats
                             </Button>
-                            <Button onClick={() => handleQuickAmount(8333)} style={{ marginRight: '8px' }}>
+                            <Button
+                                onClick={() => handleQuickAmount(8333)}
+                                style={{ marginRight: '8px' }}
+                            >
                                 8333 sats
                             </Button>
                             <Form.Item
                                 name="amount"
-                                rules={[{ required: true, message: 'Please input reward amount' }]}
-                                style={{ display: 'inline-block', marginBottom: 0, marginRight: '8px' }}
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'Please input reward amount',
+                                    },
+                                ]}
+                                style={{
+                                    display: 'inline-block',
+                                    marginBottom: 0,
+                                    marginRight: '8px',
+                                }}
                             >
-                                <Input type="number" placeholder="Amount in sats" />
+                                <Input
+                                    type="number"
+                                    placeholder="Amount in sats"
+                                />
                             </Form.Item>
                         </Col>
                         <Col>
                             <Form.Item>
-                                <Button type="primary" htmlType="submit" loading={isPending}>
+                                <Button
+                                    type="primary"
+                                    htmlType="submit"
+                                    loading={isPending}
+                                >
                                     Add Reward
                                 </Button>
                             </Form.Item>
@@ -160,49 +217,75 @@ const AddReward: FC<AddRewardProps> = ({ issueId, issueUrl, issueTitle, isLogged
                         </Col>
                     </Row>
                     {/* { isLoggedIn && ( */}
-                    { (true) && (
+                    {true && (
                         <Row>
-                        <Col span={24}>
-                            <Collapse
-                                bordered={false}
-                                style={{ background: 'none', padding: 0 }}
-                            >
-                                <Panel key="1" header="Advanced settings" forceRender>
-                                    <Form.Item style={{ marginBottom: '8px' }}>
-                                        <Row align="middle" gutter={8}>
-                                            <Col span={1}>
-                                                <QuestionCircleOutlined
-                                                    ref={anonymousHelpRef}
-                                                    onClick={() => setOpenTour(true)}
-                                                    style={{ cursor: 'pointer' }}
-                                                    className={`opacity50`}
-                                                />
-                                            </Col>
-                                            <Col span={7} style={{ display: 'flex', alignItems: 'center' }}>
-                                                <span style={{ marginRight: '8px' }}>Make reward anonymous</span>
-                                            </Col>
-                                            <Col>
-                                                <Form.Item
-                                                    name="is_anonymous"
-                                                    valuePropName="checked"
-                                                    noStyle
-                                                >
-                                                    <Checkbox
-                                                        disabled={!isLoggedIn}
+                            <Col span={24}>
+                                <Collapse
+                                    bordered={false}
+                                    style={{ background: 'none', padding: 0 }}
+                                >
+                                    <Panel
+                                        key="1"
+                                        header="Advanced settings"
+                                        forceRender
+                                    >
+                                        <Form.Item
+                                            style={{ marginBottom: '8px' }}
+                                        >
+                                            <Row align="middle" gutter={8}>
+                                                <Col span={1}>
+                                                    <QuestionCircleOutlined
+                                                        ref={anonymousHelpRef}
+                                                        onClick={() =>
+                                                            setOpenTour(true)
+                                                        }
+                                                        style={{
+                                                            cursor: 'pointer',
+                                                        }}
+                                                        className={'opacity50'}
                                                     />
-                                                </Form.Item>
-                                            </Col>
-                                        </Row>
-                                    </Form.Item>
-                                    <Tour 
-                                        open={openTour}
-                                        onClose={() => setOpenTour(false)}
-                                        steps={tourSteps}
-                                    />
-                                    <LockTimeSelector isOneTimeReward={!isLoggedIn} />
-                                </Panel>
-                            </Collapse>
-                        </Col>
+                                                </Col>
+                                                <Col
+                                                    span={7}
+                                                    style={{
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                    }}
+                                                >
+                                                    <span
+                                                        style={{
+                                                            marginRight: '8px',
+                                                        }}
+                                                    >
+                                                        Make reward anonymous
+                                                    </span>
+                                                </Col>
+                                                <Col>
+                                                    <Form.Item
+                                                        name="is_anonymous"
+                                                        valuePropName="checked"
+                                                        noStyle
+                                                    >
+                                                        <Checkbox
+                                                            disabled={
+                                                                !isLoggedIn
+                                                            }
+                                                        />
+                                                    </Form.Item>
+                                                </Col>
+                                            </Row>
+                                        </Form.Item>
+                                        <Tour
+                                            open={openTour}
+                                            onClose={() => setOpenTour(false)}
+                                            steps={tourSteps}
+                                        />
+                                        <LockTimeSelector
+                                            isOneTimeReward={!isLoggedIn}
+                                        />
+                                    </Panel>
+                                </Collapse>
+                            </Col>
                         </Row>
                     )}
                 </Form>
@@ -214,7 +297,7 @@ const AddReward: FC<AddRewardProps> = ({ issueId, issueUrl, issueTitle, isLogged
                 pendingValues={pendingValues}
             />
         </Flex>
-    )
-}
+    );
+};
 
-export { AddReward }
+export { AddReward };

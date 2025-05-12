@@ -6,4 +6,3 @@ export type CheckPullRequest = {
     repo_full_name: string;
     pull_request_number: number;
 };
-
