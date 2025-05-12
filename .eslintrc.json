@@ -3,7 +3,6 @@
   "plugins": ["prettier"],
   "rules": {
     "quotes": ["warn", "single"],
-    "indent": ["warn", 4],
     "prettier/prettier": [
       "warn",
       {
