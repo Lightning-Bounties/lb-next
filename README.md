@@ -1,6 +1,6 @@
 <div align="center">
 <a href="https://www.lightningbounties.com">
-<img src="https://raw.githubusercontent.com/Lightning-Bounties/lb-next/refs/heads/master/public/lb_Logo_github2.png" alt="Lightning Bounties Logo" width="50%" height="150">
+<img src="https://raw.githubusercontent.com/Lightning-Bounties/lb-next/refs/heads/master/public/lb_Logo_github2.png" alt="Lightning Bounties Logo" width="55%" height="150">
 </a>
 
 ![GitHub stars](https://img.shields.io/github/stars/Lightning-Bounties/lb-next?style=for-the-badge)
@@ -176,7 +176,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <p align="center">
 <a href="https://www.lightningbounties.com">
-<img src="https://raw.githubusercontent.com/Lightning-Bounties/lb-next/refs/heads/master/public/lb_Logo_github2.png" alt="Lightning Bounties Logo" width="50%" height="150">
+<img src="https://raw.githubusercontent.com/Lightning-Bounties/lb-next/refs/heads/master/public/lb_Logo_github2.png" alt="Lightning Bounties Logo" width="55%" height="150">
 </a>
 <br>
 <i>Turning Bugs into Bitcoin, One Commit at a Time.</i>
