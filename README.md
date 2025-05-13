@@ -9,9 +9,9 @@
 ![GitHub license](https://img.shields.io/github/license/Lightning-Bounties/lb-next?style=for-the-badge)
 
 **GitHub's great. What if you could get paid on it?**
+<br>
+<i>Lightning Bounties is a Bitcoin-powered bug bounty platform that seamlessly connects GitHub workflows with instant Bitcoin payments through the Lightning Network.</i>
 </div>
-
-Lightning Bounties is a Bitcoin-powered bug bounty platform that seamlessly connects GitHub workflows with instant Bitcoin payments through the Lightning Network.
 
 ## 🌐 Connect With Us
 
