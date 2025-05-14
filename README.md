@@ -1,5 +1,5 @@
 <div align="center">
-<a href="https://www.lightningbounties.com">
+<a href="https://app.lightningbounties.com">
 <img src="https://raw.githubusercontent.com/Lightning-Bounties/lb-next/refs/heads/master/public/lb_Logo_github2.png" alt="Lightning Bounties Logo" width="55%" height="150">
 </a>
 
@@ -13,20 +13,27 @@
 <i>Lightning Bounties is a Bitcoin-powered bug bounty platform that seamlessly connects GitHub workflows with instant Bitcoin payments through the Lightning Network.</i>
 </div>
 
+## 🌐 Resources
+
+<div align="start">
+
+[![BountyPlatform](https://img.shields.io/badge/Bounty-Platform-FF6C37?style=for-the-badge&logo=bug&logoColor=white)](https://app.lightningbounties.com/)
+[![Documentation](https://img.shields.io/badge/Docs-Read%20More-4285F4?style=for-the-badge&logo=gitbook&logoColor=white)](https://docs.lightningbounties.com)
+[![DevRoadmap](https://img.shields.io/badge/GitHub-Lightning--Bounties-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/orgs/Lightning-Bounties/projects/2/views/1)
+[![Discord-Support](https://img.shields.io/badge/Discord-Join%20Community-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/zBxj4x4Cbq)
+
+</div>
+
 ## 🌐 Connect With Us
 
 <div align="start">
 
-[![Website](https://img.shields.io/badge/Website-lightningbounties.com-0078D7?style=for-the-badge&logo=firefox-browser&logoColor=white)](https://www.lightningbounties.com)
-[![Bounty Platform](https://img.shields.io/badge/Bounty-Platform-FF6C37?style=for-the-badge&logo=bug&logoColor=white)](https://app.lightningbounties.com/)
-[![Documentation](https://img.shields.io/badge/Docs-Read%20More-4285F4?style=for-the-badge&logo=gitbook&logoColor=white)](https://docs.lightningbounties.com)
+[![Homepage](https://img.shields.io/badge/Website-lightningbounties.com-0078D7?style=for-the-badge&logo=firefox-browser&logoColor=white)](https://www.lightningbounties.com)
 [![Blog](https://img.shields.io/badge/Blog-Latest%20Updates-FFA500?style=for-the-badge&logo=rss&logoColor=white)](https://blog.lightningbounties.com)
-[![GitHub](https://img.shields.io/badge/GitHub-Lightning--Bounties-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Lightning-Bounties)
 [![Twitter](https://img.shields.io/badge/Twitter-@LBounties-1DA1F2?style=for-the-badge&logo=x&logoColor=white)](https://twitter.com/LBounties)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Lightning--Bounties-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/lightning-bounties)
-[![Discord](https://img.shields.io/badge/Discord-Join%20Community-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/zBxj4x4Cbq)
-[![YouTube](https://img.shields.io/badge/YouTube-Lightning%20Bounties-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@LightningBounties)
 [![Nostr](https://img.shields.io/badge/Nostr-Lightning--Bounties-8E44AD?style=for-the-badge&logo=nostr&logoColor=white)](https://jumble.social/users/npub1d9qyu8yqd9jhxnnw2x4dnmryg9tcqdj6f6uupgwj433tcqukxpust8w9qj)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Lightning--Bounties-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/lightning-bounties)
+[![YouTube](https://img.shields.io/badge/YouTube-Lightning%20Bounties-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@LightningBounties)
 
 </div>
 
@@ -34,7 +41,7 @@
 
 ## 🚀 About Lightning Bounties
 
-In the current landscape, many open-source bug bounty platforms inadvertently shut out developers from regions outside the USA and EU, creating barriers to participation and diversity. Lightning Bounties is revolutionizing open-source development by integrating Bitcoin payments directly into GitHub workflows.
+In the current landscape, many open-source bug bounty platforms inadvertently shut out developers from developing regions, creating barriers to participation and diversity. Lightning Bounties is revolutionizing open-source development by integrating Bitcoin payments directly into GitHub workflows.
 
 Our platform empowers developers worldwide to earn Bitcoin for fixing bugs and contributing to open-source projects, while project maintainers gain access to global talent to solve their issues faster.
 
@@ -55,37 +62,8 @@ Born at the MIT Bitcoin Hackathon in April 2024, Lightning Bounties aligns with 
 | 🔍 **GitHub API as Oracle** | Rewards are automatically sent to contributors once their pull request is merged, preventing fraud |
 | 💰 **Support Any Project** | Post bounties on issues from any open-source project, even if you're not the project owner |
 
-## 📋 Getting Started
- 
-### Installation
 
-Below is an example of how you can instruct your audience on installing and setting up your app. 
-
-1. Clone the repo
-   ```sh
-   git clone https://github.com/Lightning-Bounties/lb-next
-   ```
-2. Install NPM packages
-   ```sh
-   npm install
-   ```
-3. Env Vars: <em> edit as needed </em>
-   ```sh
-   cp .env.local.example .env.local
-   ```
-4. Config Files: <em> edit as needed </em>
-   ```js
-   tsconfig.json
-   ```  
-5. Run Dev Server
-   ```sh
-   npm run dev
-   ```
-6.  Grab a JWT token from the production backend and add it to your local storage under the dev server domain.
-    - see documents for instructions and video [here](https://docs.lightningbounties.com/docs/solve-a-bounty/working-on-opensource-frontend-lb-next).
-      
-
-## 🤝 How to Contribute
+## 🤝 How to Participate
 
 1. **Find an open bounty** on our [bounty platform](https://app.lightningbounties.com) or in the [Issues tab](https://github.com/Lightning-Bounties/docs/issues).
 2. **Fork this repository** and create a new branch for your work.
@@ -147,6 +125,34 @@ Yes! You can post bounties for any open-source project on GitHub, even if you're
 A lock time guarantees that the reward remains available for a set period (e.g., two weeks) while developers work on solving the issue.
 </details>
 
+## 📋 Contributing to this Repositroy
+ 
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/Lightning-Bounties/lb-next
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. Env Vars: <em> edit as needed </em>
+   ```sh
+   cp .env.local.example .env.local
+   ```
+4. Config Files: <em> edit as needed </em>
+   ```js
+   tsconfig.json
+   ```  
+5. Run Dev Server
+   ```sh
+   npm run dev
+   ```
+6.  Grab a JWT token from the production backend and add it to your local storage under the dev server domain.
+    - see documents for instructions and video [here](https://docs.lightningbounties.com/docs/solve-a-bounty/working-on-opensource-frontend-lb-next).
+      
+
 ## 👨‍💻 Top Contributors
 
 We appreciate all our contributors who make Lightning Bounties possible!
@@ -167,10 +173,6 @@ We appreciate all our contributors who make Lightning Bounties possible!
 | <p align="start" width="240">Branta offers payment verification for various bitcoin and lightning technologies.</p> | <p align="start" width="240">Documentation platform for teams to share knowledge</p> | <p align="start" width="240">Founder-focused incubator, who provides resources and mentorship to drive impactful Bitcoin companies.</p> | <p align="start" width="240">Jumble is a user-friendly Nostr client focused on relay feed browsing and relay discovery.</p> |
 
 </div>
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
