@@ -5,9 +5,11 @@ import { profileApi } from '@/4_entities/me';
 import { userApi } from '@/4_entities/user';
 import { SATPrice } from '@/5_shared/ui/SATPrice/SATPrice';
 import { useQuery } from '@tanstack/react-query';
-import { Button, Divider, Flex, Tabs, Typography } from 'antd';
+import { Button, Divider, Flex, Tabs, Tour, TourProps, Typography } from 'antd';
+import { QuestionCircleOutlined } from '@ant-design/icons';
 import Title from 'antd/es/typography/Title';
-import { FC, ReactNode, useState } from 'react';
+import { FC, ReactNode, useState, useRef } from 'react';
+import { hintsConfig } from '@/5_shared/config/hints.config';
 import { DualPrices } from '@/3_features/me/prices';
 
 type ProfileInfoProps = {
@@ -33,6 +35,20 @@ const ProfileInfo: FC<ProfileInfoProps> = ({
         'deposit' | 'withdraw' | undefined
     >(undefined);
 
+    const [openTour, setOpenTour] = useState(false);
+    const anonymousHelpRef = useRef(null);
+    const hintName = 'profileBalance';
+    const tourSteps: TourProps['steps'] = [
+        {
+            title: hintsConfig[hintName].title,
+            description: hintsConfig[hintName].body,
+            target: () => anonymousHelpRef.current,
+            nextButtonProps: {
+                children: hintsConfig[hintName].buttonText,
+            },
+        },
+    ];
+
     const setActiveTabHandler = (tab: 'deposit' | 'withdraw' | undefined) => {
         activeTab == tab ? setActiveTab(undefined) : setActiveTab(tab);
     };
@@ -52,6 +68,19 @@ const ProfileInfo: FC<ProfileInfoProps> = ({
                         </Flex>
                     </>
                 ) : null}
+                <QuestionCircleOutlined
+                    ref={anonymousHelpRef}
+                    onClick={() => setOpenTour(true)}
+                    style={{
+                        cursor: 'pointer',
+                    }}
+                    className={'opacity50'}
+                />
+                <Tour
+                    open={openTour}
+                    onClose={() => setOpenTour(false)}
+                    steps={tourSteps}
+                />
             </Flex>
             <Flex gap="small" align="center">
                 <Button

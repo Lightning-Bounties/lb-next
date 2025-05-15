@@ -297,6 +297,40 @@ const hintsConfig: HintsConfigMap = {
         ),
         buttonText: 'OK',
     },
+    profileBalance: {
+        title: 'Profile Balance',
+        body: (
+            <div>
+                This displays your available balance in sats. And your balance
+                in dollars if you&apos;ve toggled to dollar mode on the top
+                header.
+                <br />
+                <br />
+                Your balance is displayed as <i>available</i> sats /{' '}
+                <i>reserved sats</i>
+                <br />
+                <br />
+                <b>Available sats:</b> can be withdrawn, placed on a new bounty
+                or added to an existing bounty.
+                <br />
+                <br />
+                <b>Reserved sats:</b> cannot be withdrawn as they are currently
+                escrowed on a bounty. If the reward is unlocked you expire them
+                to move them to available.
+                <br />
+                <br />
+                See more in the docs{' '}
+                <a
+                    href="https://docs.lightningbounties.com/docs/getting-started/managing-your-bounty/user-balances-overview"
+                    target="_blank"
+                >
+                    here
+                </a>
+                .
+            </div>
+        ),
+        buttonText: 'OK',
+    },
 };
 
 export { hintsConfig };
