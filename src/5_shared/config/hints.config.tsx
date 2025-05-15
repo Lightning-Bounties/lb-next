@@ -232,7 +232,7 @@ const hintsConfig: HintsConfigMap = {
                 For even further safety, the link can be opened on another
                 separate phone or computer. See Branta&apos;s{' '}
                 <a
-                    href="https://docs.branta.pro/address-verification"
+                    href="https://www.branta.pro"
                     target="_blank"
                 >
                     documentation
