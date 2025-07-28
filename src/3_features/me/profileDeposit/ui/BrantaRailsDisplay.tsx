@@ -33,7 +33,7 @@ const BrantaRailsDisplay: FC<BrantaRailsDisplayProps> = ({
             <Tour open={open} onClose={() => setOpen(false)} steps={steps} />
             <a
                 target="_blank"
-                href={`https://${process.env.NEXT_PUBLIC_DEV_MODE == 'true' ? 'staging' : 'payments'}.branta.pro/v1/verify/${invoice}`}
+                href={`https://${process.env.NEXT_PUBLIC_DEV_MODE == 'true' ? 'staging' : 'guardrail'}.branta.pro/v1/verify/${invoice}`}
             >
                 <Typography className="opacity50">Verify Invoice:</Typography>
                 <div style={{ display: 'inline-block' }}>
