@@ -20,7 +20,7 @@ const hintsConfig: HintsConfigMap = {
                 <i>
                     For more help on this see{' '}
                     <a
-                        href="https://docs.lightningbounties.com/docs/posting-a-bounty/deposit-funds-to-post-a-bounty"
+                        href="https://docs.lightningbounties.com/docs/getting-started/posting-a-bounty/deposit-funds"
                         target="blank"
                     >
                         this section in docs
@@ -48,7 +48,7 @@ const hintsConfig: HintsConfigMap = {
                 <br />
                 See this{' '}
                 <a
-                    href="https://docs.lightningbounties.com/docs/posting-a-bounty/post-a-bounty"
+                    href="https://docs.lightningbounties.com/docs/getting-started/posting-a-bounty/create-a-github-issue-and-submit-a-new-reward"
                     target="blank"
                 >
                     section in docs
@@ -70,9 +70,9 @@ const hintsConfig: HintsConfigMap = {
                 elapsed) just like with a normal reward.
                 <br />
                 <br />
-                <b>TODO</b> - add to{' '}
+                See{' '}
                 <a
-                    href="https://docs.lightningbounties.com/docs/posting-a-bounty/post-a-bounty"
+                    href="https://docs.lightningbounties.com/docs/resources/frequently-asked-questions/lightning-bounties-faqs#anonymous-rewards"
                     target="blank"
                 >
                     docs
@@ -116,9 +116,9 @@ const hintsConfig: HintsConfigMap = {
                 first bounty.
                 <br />
                 <br />
-                <b>TODO</b> - add to{' '}
+                See{' '}
                 <a
-                    href="https://docs.lightningbounties.com/docs/posting-a-bounty/post-a-bounty"
+                    href="https://docs.lightningbounties.com/docs/getting-started/managing-your-bounty/issue-lock-time"
                     target="blank"
                 >
                     docs
@@ -143,25 +143,11 @@ const hintsConfig: HintsConfigMap = {
                 <br />
                 <br />
                 If you want to be able expire this award, you can log-in and
-                post the reward as{' '}
-                <a
-                    href="https://docs.lightningbounties.com/docs/posting-a-bounty/post-a-bounty"
-                    target="blank"
-                >
-                    anonymous (TODO)
-                </a>
-                .
+                post the reward as anonymous.
                 <br />
                 <br />
                 If this bounty is closed, without completion, your reward will
-                be rolled onto other bounties. See the docs for more details on{' '}
-                <a
-                    href="https://docs.lightningbounties.com/docs/posting-a-bounty/post-a-bounty"
-                    target="blank"
-                >
-                    rolling forward one-time rewards (TODO)
-                </a>
-                .
+                be rolled onto other bounties.
             </div>
         ),
         buttonText: 'Got it',
@@ -206,7 +192,7 @@ const hintsConfig: HintsConfigMap = {
                 If this is new concept for you: find out more of how to do this
                 and setup your first wallet in our docs{' '}
                 <a
-                    href="https://docs.lightningbounties.com/docs/posting-a-bounty/deposit-funds-to-post-a-bounty"
+                    href="https://docs.lightningbounties.com/docs/getting-started/posting-a-bounty/deposit-funds"
                     target="_blank"
                 >
                     here
@@ -231,10 +217,7 @@ const hintsConfig: HintsConfigMap = {
                 <br />
                 For even further safety, the link can be opened on another
                 separate phone or computer. See Branta&apos;s{' '}
-                <a
-                    href="https://www.branta.pro"
-                    target="_blank"
-                >
+                <a href="https://www.branta.pro/guardrail" target="_blank">
                     documentation
                 </a>{' '}
                 for more information.
@@ -267,6 +250,16 @@ const hintsConfig: HintsConfigMap = {
                 Generate a BOLT-11 Invoice with your desired amount of sats to
                 withdraw from your lightning wallet, paste the invoice into the
                 form and click &quot;Withdraw&quot;.
+                <br />
+                <br />
+                See the{' '}
+                <a
+                    href="https://docs.lightningbounties.com/docs/getting-started/solving-a-bounty/withdraw-funds"
+                    target="_blank"
+                >
+                    withdraw documentation
+                </a>
+                for troubleshooting and more in-depth explanation.
             </div>
         ),
         buttonText: 'OK',
@@ -281,7 +274,7 @@ const hintsConfig: HintsConfigMap = {
                 <i>
                     For more help on this see{' '}
                     <a
-                        href="https://docs.lightningbounties.com/docs/solve-a-bounty/working-on-the-bounty"
+                        href="https://docs.lightningbounties.com/docs/getting-started/solving-a-bounty/working-on-the-bounty#id-4.1-click-on-claim-reward-and-add-pull-requested-number"
                         target="blank"
                     >
                         this section in docs
@@ -290,9 +283,40 @@ const hintsConfig: HintsConfigMap = {
                 </i>
                 <br />
                 <br />
-                Simply enter the the number of the pull request and click the
-                &quot;Check&quot; button. For example, for PR #11 enter
-                &quot;11&quot;.
+            </div>
+        ),
+        buttonText: 'OK',
+    },
+    profileBalance: {
+        title: 'Profile Balance',
+        body: (
+            <div>
+                This displays your available balance in sats. And your balance
+                in dollars if you&apos;ve toggled to dollar mode on the top
+                header.
+                <br />
+                <br />
+                Your balance is displayed as <i>available</i> sats /{' '}
+                <i>reserved sats</i>
+                <br />
+                <br />
+                <b>Available sats:</b> can be withdrawn, placed on a new bounty
+                or added to an existing bounty.
+                <br />
+                <br />
+                <b>Reserved sats:</b> cannot be withdrawn as they are currently
+                escrowed on a bounty. If the reward is unlocked you expire them
+                to move them to available.
+                <br />
+                <br />
+                See more in the docs{' '}
+                <a
+                    href="https://docs.lightningbounties.com/docs/getting-started/managing-your-bounty/user-balances-overview"
+                    target="_blank"
+                >
+                    here
+                </a>
+                .
             </div>
         ),
         buttonText: 'OK',
