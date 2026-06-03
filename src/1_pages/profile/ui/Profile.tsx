@@ -1,7 +1,7 @@
 import { Button, Col, Flex, Row, Tabs } from 'antd';
 import s from './Profile.module.css';
 import Link from 'next/link';
-import Title from 'antd/es/typography/Title';
+import { Title, Typography } from 'antd/es/typography';
 import { ProfileRewardCard } from '@/4_entities/me';
 import { ProfileBountyCard } from '@/4_entities/me';
 import { FC } from 'react';
@@ -12,6 +12,8 @@ import {
     UserSchema,
 } from '@/5_shared/gen';
 import { ProfileEmptyRewardsList } from './ProfileEmptyRewardsList';
+import { useQuery } from '@tanstack/react-query';
+import { userApi } from '@4_entities/user';
 
 type ProfileProps = {
     userInfo: UserSchema;
