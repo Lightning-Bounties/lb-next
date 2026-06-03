@@ -70,6 +70,12 @@ const Header: FC<HeaderProps> = ({ profileSlot, walletSlot }) => {
                         >
                             About
                         </Link>
+                    <Link
+                        href={appRoutes.me}
+                        className={s.headerContributors}
+                    >
+                        Contributors
+                    </Link>
                     </Flex>
                 </Flex>
                 <Flex gap="middle" align="center" className={s.mobileGap}>
