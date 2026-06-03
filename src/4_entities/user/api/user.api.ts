@@ -96,3 +96,12 @@ class UserApi {
 const userApi = new UserApi();
 
 export { userApi };
+
+    qkGetFollowers() {
+        return [this.UserApiKey, 'getFollowers'];
+    }
+
+    async getFollowers() {
+        const resp = await appApi.users.getUserFollowersApiUsersFollowersGet();
+        return resp;
+    }
