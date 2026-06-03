@@ -1,11 +1,12 @@
 import { API_URL } from '@/5_shared/consts/app.consts';
 import { IssueExpandedSchema, RewardExpandedSchema } from '@/5_shared/gen';
+import { retryFetch } from '@/5_shared/utils/retryFetch';
 
 class IssueApi {
     private IssueApi = ['IssueApi'];
 
     async getIssueData(issueId: string) {
-        const resp = await fetch(`${API_URL}/api/issues/${issueId}`, {
+        const resp = await retryFetch(`${API_URL}/api/issues/${issueId}`, {
             next: {
                 tags: ['Issue'],
             },
@@ -16,21 +17,21 @@ class IssueApi {
     }
 
     async getAllIssueRewards(issueId: string) {
-        const resp = await fetch(
+        const resp = await retryFetch(
             `${API_URL}/api/rewards/?issue_id=${issueId}&skip=0&limit=100`,
             {
                 next: {
                     tags: ['IssueRewardss'],
                 },
                 cache: 'no-cache',
-            },
+            }
         );
         const data: RewardExpandedSchema[] = await resp.json();
         return data;
     }
 
     async createOneTimePayment(issueId: string, amount: number) {
-        const resp = await fetch(`${API_URL}/api/rewards/onetime`, {
+        const resp = await retryFetch(`${API_URL}/api/rewards/onetime`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -45,7 +46,7 @@ class IssueApi {
     }
 
     async checkOneTimePayment(issueId: string, checkingId: string) {
-        const resp = await fetch(`${API_URL}/api/rewards/onetime/check`, {
+        const resp = await retryFetch(`${API_URL}/api/rewards/onetime/check`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
