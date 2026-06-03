@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { LinkOutlined, TrophyFilled } from '@ant-design/icons';
 import { Avatar } from '@/5_shared/ui/Avatar/Avatar';
 import s from './IssueBaseInfo.module.css';
-import { FC } from 'react';
+import { useState, FC , useState, useEffect } from 'react';
 import { issueApi } from '@/4_entities/issue';
 import { getStringDate } from '@/5_shared/utils/getStringDate';
 import { IssueBreadcrumbs } from '@/3_features/issue';
@@ -158,6 +158,32 @@ const IssueBaseInfo: FC<IssueBaseInfoProps> = async ({ rewardId }) => {
                         issueTitle={data.title}
                     />
                 ) : null}
+        {linkedPrs.length > 0 && (
+            <Flex vertical gap="small">
+                <Typography className="opacity50" onClick={() => setShowLinkedPrs(!showLinkedPrs)}>
+                    Existing PRs
+                    {!showLinkedPrs ? (
+                        <span> ▾</span>
+                    ) : (
+                        <span> ▴</span>
+                    )}
+                </Typography>
+                {showLinkedPrs && (
+                    <>
+                        {loadingLinkedPrs && <Typography>Loading...</Typography>}
+                        {errorLinkedPrs && <Typography style={{color: 'red'}}>{errorLinkedPrs}</Typography>}
+                        {!loadingLinkedPrs && !errorLinkedPrs && linkedPrs.map((pr) => (
+                            <Flex key={pr.number} horizontal gap="small" align="center">
+                                <Link href={pr.html_url} target="_blank" rel="nofollow">
+                                    <Typography>#{pr.number}</Typography>
+                                </Link>
+                                <Typography>{pr.title}</Typography>
+                            </Flex>
+                        ))}
+                    </>
+                )}
+            </Flex>
+        )}
                 {data.body ? (
                     <Flex vertical gap="small">
                         <Typography className="opacity50">
