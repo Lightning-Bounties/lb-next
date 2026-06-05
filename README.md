@@ -184,3 +184,9 @@ We appreciate all our contributors who make Lightning Bounties possible!
 <i>Turning Bugs into Bitcoin, One Commit at a Time.</i>
 <br>
 </p>
+
+---
+*Fixed via automated bounty hunter.*
+
+---
+*Fixed via automated bounty hunter.*
