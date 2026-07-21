@@ -13,7 +13,12 @@ import { appRoutes } from '@/5_shared/config/appRoutes';
 import { IssueBaseInfoCheckPull } from './IssueBaseInfoCheckPull';
 import { orange, grey } from '@ant-design/colors';
 import { IssueBaseInfoAddReward } from './IssueBaseInfoAddReward';
+import { IssueExistingPulls } from './IssueExistingPulls';
 import { Prices } from '@/3_features/me/prices';
+import {
+    countOpenLinkedPulls,
+    fetchLinkedPullRequests,
+} from '@/5_shared/utils/githubLinkedPulls';
 
 const IssueBaseInfoDesc = dynamic(() => import('./IssueBaseInfoDesc'), {
     ssr: false,
@@ -26,6 +31,11 @@ type IssueBaseInfoProps = {
 const IssueBaseInfo: FC<IssueBaseInfoProps> = async ({ rewardId }) => {
     try {
         const data = await issueApi.getIssueData(rewardId);
+        const linkedPulls = await fetchLinkedPullRequests(
+            data.repository_data.full_name,
+            data.issue_number,
+        );
+        const openPullCount = countOpenLinkedPulls(linkedPulls);
 
         return (
             <Flex vertical gap="large">
@@ -62,6 +72,23 @@ const IssueBaseInfo: FC<IssueBaseInfoProps> = async ({ rewardId }) => {
                             }}
                         >
                             Closed
+                        </Typography>
+                    )}
+                    {openPullCount > 0 && (
+                        <Typography
+                            style={{
+                                display: 'inline-block',
+                                color: '#1677ff',
+                                padding: '3px 10px',
+                                borderRadius: '4px',
+                                fontWeight: 'bold',
+                                marginLeft: '10px',
+                                textAlign: 'center',
+                                border: '1px solid #91caff',
+                            }}
+                        >
+                            {openPullCount} open PR
+                            {openPullCount === 1 ? '' : 's'}
                         </Typography>
                     )}
                     &nbsp; &nbsp; &nbsp; &nbsp;
@@ -113,6 +140,7 @@ const IssueBaseInfo: FC<IssueBaseInfoProps> = async ({ rewardId }) => {
                         </Typography>
                     </Flex>
                 </Flex>
+                <IssueExistingPulls pulls={linkedPulls} />
                 {data.winner_data && (
                     <Flex
                         className={s.info__line}

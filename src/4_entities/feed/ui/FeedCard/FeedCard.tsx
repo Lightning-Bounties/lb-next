@@ -12,6 +12,7 @@ import { appRoutes } from '@/5_shared/config/appRoutes';
 import { orange } from '@ant-design/colors';
 import { useRouter } from 'next/navigation';
 import { Prices } from '@/3_features/me/prices';
+import { OpenPrBadge } from './OpenPrBadge';
 
 type FeedCardProps = IssueExpandedSchema & {
     guideSlot?: ReactNode;
@@ -63,7 +64,11 @@ const FeedCard: FC<FeedCardProps> = (props) => {
                     {props.repository_data.full_name}
                 </Link>
                 <Title level={3} className={s.title}>
-                    {props.title}
+                    {props.title}{' '}
+                    <OpenPrBadge
+                        fullName={props.repository_data.full_name}
+                        issueNumber={props.issue_number}
+                    />
                 </Title>
                 <Row gutter={[12, 12]} align="middle">
                     <Col md={18} xs={14} sm={14} className={s.owner}>
