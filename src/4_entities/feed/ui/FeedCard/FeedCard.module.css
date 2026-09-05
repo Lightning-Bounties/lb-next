@@ -1,5 +1,7 @@
 .title {
     margin-top: 0;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .col_title {
@@ -9,6 +11,7 @@
 
 .issue_link {
     color: var(--ant-text-color);
+    word-break: break-all;
 }
 
 @media screen and (max-width: 700px) {
@@ -25,6 +28,7 @@
 
 .card {
     cursor: pointer;
+    overflow: hidden;
 }
 
 .rewardContainer {
@@ -38,11 +42,13 @@
     flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
+    overflow: hidden;
 }
 
 @media screen and (max-width: 700px) {
     .reward {
         flex-direction: column;
         align-items: flex-start;
+        max-width: 100%;
     }
 }

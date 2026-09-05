@@ -2,6 +2,7 @@ body,
 html {
     padding: 0;
     margin: 0;
+    overflow-x: hidden;
 }
 
 .cont {
@@ -31,4 +32,14 @@ body[data-color-mode*='dark'] {
 .ant-collapse-header:focus,
 .ant-collapse-header:hover {
     color: #1677ff !important;
+}
+
+.ant-layout-header {
+    overflow: visible !important;
+}
+
+@media screen and (max-width: 600px) {
+    .ant-layout-header {
+        padding: 0 12px !important;
+    }
 }
