@@ -6,6 +6,9 @@
 
     .headerLinks {
         margin-right: 3px !important;
+        flex-wrap: wrap;
+        gap: 4px;
+        max-width: 60%;
     }
 
     .themeToggler {
@@ -14,5 +17,6 @@
 
     .mobileGap {
         gap: 5px !important;
+        flex-shrink: 0;
     }
 }
