@@ -3,3 +3,13 @@
         display: none;
     }
 }
+
+@media screen and (max-width: 480px) {
+    .wallet {
+        font-size: 12px;
+        max-width: 120px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
