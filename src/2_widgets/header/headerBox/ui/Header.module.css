@@ -16,3 +16,9 @@
         gap: 5px !important;
     }
 }
+
+@media screen and (max-width: 480px) {
+    .mobileGap {
+        gap: 2px !important;
+    }
+}
