@@ -27,7 +27,13 @@ const PaymentCard: FC<LightningTransactionSchema> = (props) => {
                         ) : null}
                     </Flex>
                     <Typography className="opacity50">
-                        {getStringDate(new Date(props.time * 1000))}
+                        {getStringDate(
+                                    typeof props.time === 'string'
+                                        ? new Date(props.time)
+                                        : props.time > 1e12
+                                            ? new Date(props.time)
+                                            : new Date(props.time * 1000)
+                                )}
                     </Typography>
                 </Flex>
                 <Typography style={{ fontStyle: 'italic' }}>
