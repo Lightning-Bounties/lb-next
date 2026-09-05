@@ -1,6 +1,6 @@
 import { profileApi } from '@/4_entities/me';
 import { hintsConfig } from '@/5_shared/config/hints.config';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import {
     Button,
     Flex,
@@ -34,6 +34,7 @@ type ProfileWithdrawProps = {
 const ProfileWithdraw: React.FC<ProfileWithdrawProps> = ({ refetch }) => {
     const [form] = Form.useForm();
     const [api, contextHolder] = notification.useNotification();
+    const queryClient = useQueryClient();
     const { mutateAsync: withdrawFunds } = useMutation({
         mutationFn: profileApi.withdrawFunds,
     });
@@ -52,6 +53,7 @@ const ProfileWithdraw: React.FC<ProfileWithdrawProps> = ({ refetch }) => {
             api.success({
                 message: 'Payment initiated successlly. But not confirmed yet',
             });
+            await queryClient.invalidateQueries({ queryKey: profileApi.qkGetUserWallet() });
             await refetch();
             form.resetFields();
             setIsButtonEnabled(false);
