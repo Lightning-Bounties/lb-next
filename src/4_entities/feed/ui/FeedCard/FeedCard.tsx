@@ -24,9 +24,7 @@ const FeedCard: FC<FeedCardProps> = (props) => {
         router.push(`/${appRoutes.issue}/${props.id}`);
     };
 
-    const handleLinkClick = (e: React.MouseEvent) => {
-        e.stopPropagation();
-    };
+    // Profile links use default Link behavior - no stopPropagation needed
 
     const renderRewarderAvatars = () => {
         const rewarders = [
@@ -41,7 +39,7 @@ const FeedCard: FC<FeedCardProps> = (props) => {
                     <Link
                         key={index}
                         href={'/' + appRoutes.profile + '/' + rewarder.id}
-                        onClick={handleLinkClick}
+                       
                     >
                         <Avatar avatarUrl={rewarder.avatar_url as string} />
                     </Link>
@@ -58,7 +56,7 @@ const FeedCard: FC<FeedCardProps> = (props) => {
                     href={props.html_url ?? ''}
                     target="_blank"
                     rel="nofollow"
-                    onClick={handleLinkClick}
+                   
                 >
                     {props.repository_data.full_name}
                 </Link>
@@ -77,7 +75,7 @@ const FeedCard: FC<FeedCardProps> = (props) => {
                                         props.last_rewarder_data?.id
                                     }
                                     rel="nofollow"
-                                    onClick={handleLinkClick}
+                                   
                                 >
                                     {props.last_rewarder_data?.github_username}
                                 </Link>
@@ -109,7 +107,7 @@ const FeedCard: FC<FeedCardProps> = (props) => {
                                             props.winner_data?.id
                                         }
                                         rel="nofollow"
-                                        onClick={handleLinkClick}
+                                       
                                     >
                                         <Avatar
                                             icon={
@@ -133,7 +131,7 @@ const FeedCard: FC<FeedCardProps> = (props) => {
                                                 props.winner_data?.id
                                             }
                                             rel="nofollow"
-                                            onClick={handleLinkClick}
+                                           
                                         >
                                             {props.winner_data?.github_username}
                                         </Link>

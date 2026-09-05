@@ -11,4 +11,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.qrBox :global(.ant-card-body) canvas {
+    max-width: 100%;
+    max-height: 100%;
 }
