@@ -72,7 +72,7 @@ const FeedCard: FC<FeedCardProps> = (props) => {
                             <Flex align="center" gap="small">
                                 <Link
                                     href={
-                                        appRoutes.profile +
+                                        '/' + appRoutes.profile +
                                         '/' +
                                         props.last_rewarder_data?.id
                                     }
@@ -104,7 +104,7 @@ const FeedCard: FC<FeedCardProps> = (props) => {
                                 <>
                                     <Link
                                         href={
-                                            appRoutes.profile +
+                                            '/' + appRoutes.profile +
                                             '/' +
                                             props.winner_data?.id
                                         }
@@ -128,7 +128,7 @@ const FeedCard: FC<FeedCardProps> = (props) => {
                                     <Flex align="center" gap="small">
                                         <Link
                                             href={
-                                                appRoutes.profile +
+                                                '/' + appRoutes.profile +
                                                 '/' +
                                                 props.winner_data?.id
                                             }
